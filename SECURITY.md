@@ -20,4 +20,8 @@ We will acknowledge receipt, work with you on a coordinated disclosure timeline,
 
 ## How this repository is secured
 
-This repository follows the [defense-in-depth](https://github.com/jaredwray/agentic/blob/main/skills/security/defense-in-depth-nodejs/SKILL.md) hardening checklist. Measures are listed below as they land; once the hardening rollout starts, the full checklist and current status live in `DEFENSE_IN_DEPTH.md` at the repo root.
+This repository follows the [defense-in-depth](https://github.com/jaredwray/agentic/blob/main/skills/security/defense-in-depth-nodejs/SKILL.md) hardening checklist. Only controls that are actually in the repo are listed here:
+
+- CI and deploy workflows use read-only `contents` permissions; checkout sets `persist-credentials: false`; the built site is uploaded as a workflow artifact and is never committed back from CI.
+- Workflow names and job ids are kebab-case so they can be set as required status checks.
+- Dependencies install through pnpm, with the version pinned in `package.json`.
