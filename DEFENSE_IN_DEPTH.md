@@ -11,7 +11,7 @@ Profile: website/app · public
 ## 2. CODEOWNERS and cloud bootstrap
 - [ ] VS Code / Cursor `task.allowAutomaticTasks` is `off` or `prompt` in User settings (global, not workspace) (manual)
 - [x] `.github/CODEOWNERS` covers `/.github/`, `/.vscode/`, `/.cursor/`, `/.devcontainer/`, `/scripts/` with owners the maintainer names — PR #9
-- [ ] Codespaces and Cursor Cloud Agents bootstrap Aikido Safe Chain via scripts/setup-cloud-environment.sh (--ci shims, frozen lockfile) (PR pending)
+- [ ] Codespaces and Cursor Cloud Agents bootstrap Aikido Safe Chain via scripts/setup-cloud-environment.sh (--ci shims, frozen lockfile) (PR #10 pending)
 - [ ] Dev Container `image` pinned by digest (`name:<tag>@sha256:<digest>`; not a floating tag)
 
 ## 3. Dependencies (pnpm)
