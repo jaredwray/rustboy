@@ -20,11 +20,4 @@ We will acknowledge receipt, work with you on a coordinated disclosure timeline,
 
 ## How this repository is secured
 
-This repository follows the [defense-in-depth](https://github.com/jaredwray/agentic/blob/main/skills/security/defense-in-depth-nodejs/SKILL.md) hardening checklist; progress is tracked in [DEFENSE_IN_DEPTH.md](./DEFENSE_IN_DEPTH.md). Measures currently in place:
-
-- CI runs with read-only permissions; generated output is a workflow artifact, never committed back; `persist-credentials` is off on checkout.
-- Workflows and job names are kebab-case so they can be required status checks.
-- Dependencies install through pnpm. Socket Firewall (`sfw`) wraps `pnpm install` in CI. Workflows are security-linted with zizmor on every PR. Every action is pinned to a full commit SHA.
-- Codespaces and Cursor Cloud Agents install through Aikido Safe Chain; package-manager shims must not be bypassed.
-- The Codespaces Dev Container image is pinned by digest (`name:<tag>@sha256:<digest>`), not a floating tag.
-- Dependencies install through pnpm with a 7-day cooldown on new versions, lifecycle scripts blocked by default except reviewed `allowBuilds` entries, and `trustPolicy: no-downgrade`.
+This repository follows the [defense-in-depth](https://github.com/jaredwray/agentic/blob/main/skills/security/defense-in-depth-nodejs/SKILL.md) hardening checklist. Measures are listed below as they land; once the hardening rollout starts, the full checklist and current status live in `DEFENSE_IN_DEPTH.md` at the repo root.
