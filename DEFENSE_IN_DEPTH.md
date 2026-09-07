@@ -36,7 +36,7 @@ Profile: website/app · public
 
 ## 6. Security tooling
 - [x] Aikido runs on every build — PR #20
-- [ ] Aikido deploy gate: deploy-site's deploy job `needs:` a passing `scan-release` (PR #25 pending)
+- [x] Aikido deploy gate: deploy-site's deploy job `needs:` a passing `scan-release` — PR #25
 - [x] Socket reviews every PR that changes dependencies
 
 ## 7. Repository lockdown
