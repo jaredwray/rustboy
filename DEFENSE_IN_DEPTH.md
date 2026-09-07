@@ -32,7 +32,7 @@ Profile: website/app · public
 - [x] Workflow `name:` and job `name:` contain no spaces (kebab-case) so they can be set as required status checks
 - [x] `persist-credentials: false` on checkouts that don't push
 - [x] No `pull_request_target` on workflows that run untrusted PR code
-- [ ] Artifact-publishing workflows disable `actions/setup-node` default caching (`package-manager-cache: false`) to prevent cache poisoning (PR pending)
+- [ ] Artifact-publishing workflows disable `actions/setup-node` default caching (`package-manager-cache: false`) to prevent cache poisoning (PR #19 pending)
 - [x] No npm tokens (or other registry credentials) in Actions secrets
 
 ## 6. Security tooling
