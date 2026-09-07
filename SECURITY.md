@@ -22,6 +22,6 @@ We will acknowledge receipt, work with you on a coordinated disclosure timeline,
 
 This repository follows the [defense-in-depth](https://github.com/jaredwray/agentic/blob/main/skills/security/defense-in-depth-nodejs/SKILL.md) hardening checklist; progress is tracked in [DEFENSE_IN_DEPTH.md](./DEFENSE_IN_DEPTH.md). Measures currently in place:
 
-- CI and deploy workflows use read-only `contents` permissions; checkout sets `persist-credentials: false`; the built site is uploaded as a workflow artifact and is never committed back from CI.
+- CI and deploy workflows use read-only `contents` permissions; checkout sets `persist-credentials: false`; generated output is a workflow artifact, never committed back; every action is pinned to a full commit SHA; Socket Firewall (`sfw`) wraps `pnpm install`; workflows are security-linted with zizmor on every PR.
 - Workflow names and job ids are kebab-case so they can be set as required status checks.
 - Dependencies install through pnpm with a 7-day cooldown on new versions, lifecycle scripts blocked by default, and `trustPolicy: no-downgrade`. Socket reviews every dependency change.
