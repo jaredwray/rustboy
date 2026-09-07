@@ -17,7 +17,7 @@
   "engines": {
     "node": ">=22.12.0"
   },
-  "packageManager": "pnpm@12.3.4",
+  "packageManager": "pnpm@12.1.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -37,6 +37,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "typescript": "^6.0.3",
-    "wrangler": "^4.129.0"
+    "wrangler": "^4.127.1"
   }
 }
