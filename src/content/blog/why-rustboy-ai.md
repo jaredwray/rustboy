@@ -7,8 +7,6 @@ draft: false
 tags: ["origin", "making-of"]
 ---
 
-# Why rustboy.ai
-
 *Team Rust Boy AI · first origin post · 7 September 2026*
 
 In the early 2000s, Scottish illustrator Brian Taylor (also known as Candykiller) started an unfinished CG short called *Rustboy*. A short opening sequence circulated for years after: storm, a castle or keep, lightning that wakes a small rusty robot on a table, a lonely climb toward light. The film was never finished or released. Taylor documented the production online at the time; contemporary coverage (including WIRED in May 2002) pointed people at rustboy.com as the production blog of record. Today [rustboy.com](https://rustboy.com) is a retrospective site about that unfinished project — still a place that points people toward the original story and artist.
