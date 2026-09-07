@@ -23,7 +23,7 @@ export const GET: APIRoute = async (context) => {
       pubDate: post.data.pubDate,
       link: `/blog/${post.id}/`,
       categories: post.data.tags,
-      customData: `<dc:creator><![CDATA[${AUTHOR.name}]]></dc:creator>`,
+      customData: `<dc:creator><![CDATA[${post.data.author ?? AUTHOR.name}]]></dc:creator>`,
     })),
     customData: `<language>${SITE.lang}</language>`,
   });

@@ -1,47 +1,41 @@
 ---
-import FluidInk from "../components/FluidInk.astro";
+import FaceMark from "../components/FaceMark.astro";
+import HeroStill from "../components/HeroStill.astro";
 import PostCard from "../components/PostCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { BLOG, INK, SITE } from "../config";
+import { BLOG, MEDIA, SITE } from "../config";
 import { getPublishedPosts } from "../utils/posts";
 
 const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
 ---
 
 <BaseLayout overlayHeader>
-  <FluidInk variant="hero" enabled={INK.hero}>
+  <HeroStill src={MEDIA.heroStill} alt={MEDIA.heroStillAlt}>
     <div class="hero">
-      <p class="hero__eyebrow">rustboy.ai</p>
+      <p class="hero__eyebrow">
+        <FaceMark />
+        {SITE.titleMark}
+      </p>
       <h1 class="hero__title">{SITE.title}</h1>
       <p class="hero__lede">{SITE.tagline}</p>
       <p class="hero__cta">
-        <a href="/blog/">Read the blog ↓</a>
+        <a href="/blog/why-we-are-keeping-the-cupboard/">The cupboard</a>
       </p>
     </div>
 
-    {
-      SITE.titleMark && (
-        <p class="hero__rail tategaki" aria-hidden="true">
-          墨と水 — INK IN WATER
-        </p>
-      )
-    }
+    <p class="hero__rail tategaki" aria-hidden="true">ONE FACE</p>
 
-    {
-      INK.hero && (
-        <p class="hero__notes" aria-hidden="true">
-          <span>Navier–Stokes / WebGL2</span>
-          <span class="hero__notes-mid">Scroll ↓</span>
-          <span>Move — stir the ink</span>
-        </p>
-      )
-    }
-  </FluidInk>
+    <p class="hero__notes" aria-hidden="true">
+      <span>KF02 body lock</span>
+      <span class="hero__notes-mid">Warm green optic · empty socket</span>
+      <span>The record</span>
+    </p>
+  </HeroStill>
 
   <section class="section wrap">
     <div class="latest__head">
       <h2 class="eyebrow">Latest</h2>
-      <a class="latest__all label" href="/blog/">All posts →</a>
+      <a class="latest__all label" href="/blog/">All notes →</a>
     </div>
 
     <div class="latest__list">
@@ -49,13 +43,9 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
     </div>
   </section>
 
-  {
-    INK.divider && (
-      <FluidInk variant="divider" strength={INK.strength * 0.7}>
-        <p class="divider__label label">墨 — Ink and paper</p>
-      </FluidInk>
-    )
-  }
+  <HeroStill variant="band" src={MEDIA.bandStill} alt={MEDIA.bandStillAlt}>
+    <p class="band__label label">kf11j — rear lock</p>
+  </HeroStill>
 </BaseLayout>
 
 <style>
@@ -63,48 +53,52 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
     display: flex;
     flex: 1;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-end;
     gap: var(--space-6);
-    padding: var(--space-24) var(--gutter);
-    text-align: center;
+    max-width: 38rem;
+    padding: calc(var(--space-24) + var(--space-8)) var(--gutter) var(--space-16);
   }
 
   .hero__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: var(--color-optic);
   }
 
   .hero__title {
     font-family: var(--font-mono);
     font-size: var(--text-hero);
     font-weight: 600;
-    line-height: 0.9;
+    line-height: 0.86;
     max-width: 100%;
     letter-spacing: var(--tracking-hero);
     text-transform: uppercase;
+    text-shadow: 0 1px 24px color-mix(in oklab, var(--color-hero-bg) 70%, transparent);
   }
 
   .hero__lede {
-    max-width: 32rem;
+    max-width: 28rem;
     font-size: var(--text-md);
-    color: var(--color-fg-muted);
+    color: var(--color-hero-muted);
   }
 
   .hero__cta a {
     display: inline-block;
     padding: var(--space-3) var(--space-6);
     border: var(--rule-width) solid var(--color-accent);
-    border-radius: var(--radius);
+    border-radius: 0;
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--color-accent);
+    color: var(--color-hero-fg);
     transition:
       background var(--duration-fast) var(--ease-out),
       color var(--duration-fast) var(--ease-out);
@@ -120,13 +114,11 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
     top: 50%;
     right: var(--gutter);
     translate: 0 -50%;
+    color: var(--color-hero-muted);
   }
 
-  /* These describe the simulation, so they only appear once it has actually
-     started — not when it declined for reduced motion or missing WebGL2. The
-     element tags itself with data-ink-active on boot. */
   .hero__notes {
-    display: none;
+    display: flex;
     position: absolute;
     inset-inline: var(--gutter);
     bottom: var(--space-6);
@@ -136,11 +128,7 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
     font-size: var(--text-xs);
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
-    color: var(--color-fg-faint);
-  }
-
-  :global(.ink:has([data-ink-active])) .hero__notes {
-    display: flex;
+    color: var(--color-hero-muted);
   }
 
   .latest__head {
@@ -164,9 +152,10 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
     border-bottom: none;
   }
 
-  .divider__label {
-    margin: auto;
-    text-align: center;
+  .band__label {
+    margin-top: auto;
+    padding: var(--space-6) var(--gutter);
+    color: var(--color-hero-muted);
   }
 
   @media (max-width: 55rem) {
@@ -177,8 +166,12 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
   }
 
   @media (max-width: 34rem) {
-    :global(.ink:has([data-ink-active])) .hero__notes {
+    .hero__notes {
       display: none;
+    }
+
+    .hero {
+      padding-bottom: var(--space-12);
     }
   }
 </style>

@@ -33,7 +33,7 @@ export const GET: APIRoute = async ({ site }) => {
     "",
     `- [Blog](${absolute("/blog/")}): every post, newest first.`,
     `- [Tags](${absolute("/tags/")}): ${tags.map((t) => t.name).join(", ")}.`,
-    `- [About](${absolute("/about/")}): about the author and this site.`,
+    `- [About](${absolute("/about/")}): about Team Rust Boy AI and this site.`,
     "",
     "## Feeds",
     "",

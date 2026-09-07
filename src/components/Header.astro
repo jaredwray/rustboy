@@ -1,5 +1,6 @@
 ---
 import { NAV, SITE } from "../config";
+import FaceMark from "./FaceMark.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
@@ -16,10 +17,11 @@ const isCurrent = (href: string) =>
 
 <header class="site-header" data-overlay={overlay ? "" : undefined}>
   <a class="brand" href="/">
+    <FaceMark />
     <span class="brand__mark">{SITE.title}</span>
     {
       SITE.titleMark && (
-        <span class="brand__sub">{SITE.titleMark} — {SITE.tagline}</span>
+        <span class="brand__sub">{SITE.titleMark}</span>
       )
     }
   </a>
@@ -62,13 +64,30 @@ const isCurrent = (href: string) =>
     position: absolute;
     inset-inline: 0;
     top: 0;
+    color: var(--color-hero-fg);
+  }
+
+  .site-header[data-overlay] .nav a,
+  .site-header[data-overlay] .brand__sub,
+  .site-header[data-overlay] .theme-toggle {
+    color: var(--color-hero-muted);
+  }
+
+  .site-header[data-overlay] .nav a:hover,
+  .site-header[data-overlay] .nav a[aria-current="page"],
+  .site-header[data-overlay] .theme-toggle:hover {
+    color: var(--color-hero-fg);
   }
 
   .brand {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: var(--space-3);
     text-decoration: none;
+  }
+
+  .brand :global(.face-mark) {
+    font-size: 1.15rem;
   }
 
   .brand:hover {

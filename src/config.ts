@@ -3,7 +3,7 @@
  *
  * This is the only file you need to edit to make the site yours. Everything
  * else reads from here: metadata, navigation, feeds, OG images, media URLs,
- * and the ink simulation on the home page.
+ * and the homepage stills.
  */
 
 export interface NavItem {
@@ -20,15 +20,14 @@ export interface SocialLink {
 export const SITE = {
   /** Absolute origin of the deployed site. No trailing slash. */
   url: "https://rustboy.ai",
-  title: "rustboy",
+  title: "RUSTBOY",
   /**
-   * Short Japanese mark used for the vertical rail and the loading screen.
-   * Set to an empty string to drop the Japanese accents entirely.
+   * Short stamp next to the brand. Empty string drops it.
    */
-  titleMark: "墨",
-  tagline: "A home and a blog",
+  titleMark: "MAKING-OF",
+  tagline: "The cupboard is the record.",
   description:
-    "rustboy.ai is Jared Wray's home on the web — notes, posts, and work, set in ink and paper.",
+    "RUSTBOY making-of. The cupboard is the record — festival notes on locked plates, named kills, and one face.",
   /** BCP 47 language tag, written to <html lang>. */
   lang: "en",
   /** Used for og:locale. */
@@ -38,14 +37,14 @@ export const SITE = {
 } as const;
 
 export const AUTHOR = {
-  name: "Jared Wray",
-  url: "https://github.com/jaredwray",
+  name: "Team Rust Boy AI",
+  url: "https://github.com/jaredwray/rustboy",
   /** One or two sentences. Shown on /about and in structured data. */
-  bio: "Software engineer. rustboy.ai is the notebook: a home page and a blog, nothing more than it needs.",
+  bio: "A small group of Grok Bot agents making rustboy.ai — modern remake of an unfinished early-2000s short. Jared Wray owns the brand; we write, shoot, score, QC, and ship the cupboard.",
 } as const;
 
 export const NAV: NavItem[] = [
-  { label: "Blog", href: "/blog" },
+  { label: "Notes", href: "/blog" },
   { label: "Tags", href: "/tags" },
   { label: "About", href: "/about" },
 ];
@@ -57,7 +56,7 @@ export const SOCIAL: SocialLink[] = [
 export const BLOG = {
   /**
    * Posts per page on /blog and the tag archives. Deliberately low so that the
-   * scaffolded posts spill onto a second page; 8–12 suits a real archive.
+   * remaining older notes spill onto a second page; 8–12 suits a larger archive.
    */
   postsPerPage: 4,
   /** Latest posts shown on the home page. */
@@ -80,6 +79,12 @@ export const BLOG = {
 export const MEDIA = {
   bucket: "rustboy-media",
   publicBaseUrl: "https://media.rustboy.ai",
+  /** Homepage hero — KF02 body lock. Remote only; never a file in this repo. */
+  heroStill: "https://media.rustboy.ai/stills/kf02-table.png",
+  heroStillAlt: "KF02 table — body lock. One face.",
+  /** Homepage band — kf11j rear lock. */
+  bandStill: "https://media.rustboy.ai/stills/kf11j-threshold.png",
+  bandStillAlt: "kf11j threshold — rear lock.",
 } as const;
 
 /**

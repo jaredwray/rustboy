@@ -13,6 +13,8 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
+    /** Public byline. When set, this name is shown instead of the site author. */
+    author: z.string().optional(),
     /** Hidden from production builds, still visible in `astro dev`. */
     draft: z.boolean().default(false),
     /**

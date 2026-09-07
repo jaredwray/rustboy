@@ -76,10 +76,11 @@ PRs do not deploy.
 
 ## Deploy to Cloudflare Workers
 
-Merging to `main` (or running the workflow manually) builds the site and deploys the `rustboy` Worker. Custom domains **rustboy.ai** and **www.rustboy.ai** are set in [`wrangler.jsonc`](wrangler.jsonc) (`custom_domain: true`), so `wrangler deploy` attaches DNS and certificates.
+Merging to `main` (or running the workflow manually) runs an Aikido `scan-release` gate, then builds the site and deploys the `rustboy` Worker. Custom domains **rustboy.ai** and **www.rustboy.ai** are set in [`wrangler.jsonc`](wrangler.jsonc) (`custom_domain: true`), so `wrangler deploy` attaches DNS and certificates.
 
 Add these GitHub Actions secrets before the first deploy:
 
+- `AIKIDO_CLIENT_API_KEY` — from [Aikido Continuous Integration settings](https://app.aikido.dev/settings/integrations/continuous-integration). Used only to query scan results; it cannot publish.
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
 

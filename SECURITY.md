@@ -22,6 +22,10 @@ We will acknowledge receipt, work with you on a coordinated disclosure timeline,
 
 This repository follows the [defense-in-depth](https://github.com/jaredwray/agentic/blob/main/skills/security/defense-in-depth-nodejs/SKILL.md) hardening checklist; progress is tracked in [DEFENSE_IN_DEPTH.md](./DEFENSE_IN_DEPTH.md). Measures currently in place:
 
-- CI and deploy workflows use read-only `contents` permissions; checkout sets `persist-credentials: false`; the built site is uploaded as a workflow artifact and is never committed back from CI.
-- Workflow names and job ids are kebab-case so they can be set as required status checks.
-- Dependencies install through pnpm, with the version pinned in `package.json`.
+- All changes land through pull requests — direct pushes to `main` are blocked, and merging requires passing status checks.
+- Tags can only be created by repository admins; published GitHub Releases are immutable (assets and tags cannot be changed after publish).
+- Workflow runs from outside collaborators always require maintainer approval, and only allowlisted GitHub Actions can run.
+- CI runs with read-only permissions (only jobs whose purpose is mutating the repo get `contents: write`); generated output is an artifact, never committed back; every action is pinned to a full commit SHA; Socket Firewall (`sfw`) wraps `pnpm install`; workflows are security-linted with zizmor on every PR.
+- Codespaces and Cursor Cloud Agents install through Aikido Safe Chain; package-manager shims must not be bypassed.
+- The Codespaces Dev Container image is pinned by digest (`name:<tag>@sha256:<digest>`), not a floating tag.
+- Dependencies install through pnpm with a 7-day cooldown on new versions, lifecycle scripts blocked by default, and `trustPolicy: no-downgrade`. Socket reviews every dependency change; Aikido scans every build; production deploys wait for a passing Aikido `scan-release`.
