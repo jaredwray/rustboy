@@ -9,6 +9,14 @@ import { SITE } from "./src/config";
 export default defineConfig({
   site: SITE.url,
   integrations: [mdx(), sitemap()],
+  redirects: {
+    "/blog/notes-in-progress": "/blog/",
+    "/blog/a-quiet-stack": "/blog/",
+    "/blog/writing-in-the-open": "/blog/",
+    "/blog/media-lives-in-r2": "/blog/",
+    "/blog/how-this-site-is-built": "/blog/",
+    "/blog/welcome-to-rustboy": "/blog/",
+  },
 
   markdown: {
     shikiConfig: {
