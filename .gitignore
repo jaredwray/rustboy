@@ -61,6 +61,7 @@ vite.config.ts.timestamp-*
 # Editors / OS
 .DS_Store
 .idea/
+.vscode/
 .vscode-test
 
 # Media lives in R2, never in git. Upload with wrangler (see README).
