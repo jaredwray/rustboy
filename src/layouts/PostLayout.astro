@@ -25,6 +25,7 @@ const {
   pubDate,
   updatedDate,
   tags,
+  author,
   heroImage,
   heroImageAlt,
 } = post.data;
@@ -35,6 +36,7 @@ const article = {
   publishedTime: isoDate(pubDate),
   modifiedTime: updatedDate ? isoDate(updatedDate) : undefined,
   tags,
+  author,
 };
 ---
 
@@ -48,6 +50,7 @@ const article = {
     <header class="post__header">
       <p class="post__stamp eyebrow">
         <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+        {author && <span class="post__byline"> · {author}</span>}
         {
           updatedDate && (
             <span class="post__updated">

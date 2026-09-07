@@ -6,10 +6,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { AUTHOR, SITE, SOCIAL } from "../config";
 
 const colophon = [
-  { term: "Site", value: "rustboy.ai — home and blog" },
+  { term: "Site", value: "rustboy.ai — making-of" },
   { term: "Framework", value: "Astro 7, static output" },
   { term: "Host", value: "Cloudflare Workers" },
-  { term: "Theme", value: "Sumi — ink, washi, vermilion" },
+  { term: "Look", value: "Scrap-steel, rust, one green optic" },
   { term: "Type", value: "Source Serif 4 · JetBrains Mono" },
   { term: "Licence", value: "MIT" },
 ];
@@ -22,16 +22,15 @@ const colophon = [
     <div class="about">
       <div class="prose about__body">
         <p>
-          {SITE.title} is a small site on purpose: a home page and a blog. It is
-          the public notebook for work worth writing down, not a feed to be
-          scrolled past.
+          {SITE.title} is a small site on purpose: a home page and a making-of
+          notebook. The cupboard is the record. Not a feed.
         </p>
 
         <p>
-          The look comes from <a href="https://github.com/kpab/astro-sumi">Sumi</a>,
-          an Astro 7 theme built around ink, washi paper, and generous negative
-          space. One serif for reading, one monospace for labels, a single
-          vermilion accent, and the ink simulation on the front page.
+          The look is industrial scrap: millboard, rust, one warm green optic
+          and an empty socket. Stills and clips live on{" "}
+          <a href="https://media.rustboy.ai/">media.rustboy.ai</a>. One serif
+          for reading, one monospace for stamps.
         </p>
 
         <h2>Writing here</h2>
@@ -65,7 +64,7 @@ const colophon = [
 
       <aside class="about__aside">
         <p class="tategaki about__rail" aria-hidden="true">
-          墨と余白 — INK AND SPACE
+          ONE FACE — THE RECORD
         </p>
 
         <dl class="about__colophon">

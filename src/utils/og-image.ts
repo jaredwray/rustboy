@@ -26,10 +26,10 @@ function loadFont(): Promise<Buffer> {
   return fontPromise;
 }
 
-const INK = "#0b0c0e";
-const PAPER = "#e9e7e1";
-const FAINT = "rgba(233,231,225,0.45)";
-const ACCENT = "#c85a52";
+const INK = "#0c0a09";
+const PAPER = "#e8ddd0";
+const FAINT = "rgba(232,221,208,0.45)";
+const ACCENT = "#d4623a";
 
 interface OgOptions {
   title: string;

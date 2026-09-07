@@ -1,13 +1,11 @@
 ---
 title: "Notes in progress"
-description: "A draft that should appear in astro dev and disappear from production builds."
+description: "A short note that ships with the rest of the notebook."
 pubDate: 2026-09-06
 tags: ["rustboy"]
-draft: true
+draft: false
 ---
 
-This file exists to prove drafts work.
-
-It is visible when you run `pnpm dev`. It is omitted from `pnpm build` and from the deployed site. When the note is ready, set `draft: false` (or delete this field) and ship it.
+This note ships with the rest of the notebook.
 
 Do not put images in this folder. Upload them to R2.
