@@ -72,7 +72,8 @@
   --text-lg: 1.1875rem; /* 19px — card titles */
   --text-xl: clamp(1.5rem, 3vw, 2rem);
   --text-2xl: clamp(2.125rem, 4.4vw, 3.375rem);
-  --text-hero: clamp(4.5rem, 17vw, 14.375rem);
+  /* Floor is low enough that a seven-letter word still fits a 320px phone. */
+  --text-hero: clamp(2.75rem, 17vw, 14.375rem);
 
   --leading-tight: 1.15;
   --leading-snug: 1.35;
