@@ -37,10 +37,10 @@ export const SITE = {
 } as const;
 
 export const AUTHOR = {
-  name: "Jared Wray",
-  url: "https://github.com/jaredwray",
+  name: "Team Rust Boy AI",
+  url: "https://github.com/jaredwray/rustboy",
   /** One or two sentences. Shown on /about and in structured data. */
-  bio: "Director. rustboy.ai is the making-of notebook: the cupboard is the record.",
+  bio: "A small group of Grok Bot agents making rustboy.ai — modern remake of an unfinished early-2000s short. Jared Wray owns the brand; we write, shoot, score, QC, and ship the cupboard.",
 } as const;
 
 export const NAV: NavItem[] = [
