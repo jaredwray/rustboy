@@ -55,7 +55,9 @@ const isCurrent = (href: string) =>
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
+    max-width: 100%;
     padding: var(--space-6) var(--gutter);
+    overflow-x: clip;
   }
 
   .site-header[data-overlay] {
@@ -148,7 +150,33 @@ const isCurrent = (href: string) =>
     }
 
     .site-header {
+      gap: var(--space-3);
       padding-block: var(--space-4);
+    }
+
+    .site-header__end,
+    .nav__list {
+      gap: var(--space-3);
+    }
+  }
+
+  /* Face mark + RUSTBOY + Notes/Tags/About no longer fit on one row. */
+  @media (max-width: 21.5rem) {
+    .brand :global(.face-mark) {
+      display: none;
+    }
+
+    .site-header,
+    .site-header__end,
+    .nav__list {
+      gap: var(--space-2);
+    }
+  }
+
+  /* Fold-cover widths: one row cannot hold the brand and the nav. */
+  @media (max-width: 18.75rem) {
+    .site-header {
+      flex-wrap: wrap;
     }
   }
 </style>
