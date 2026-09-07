@@ -36,7 +36,7 @@ Profile: website/app · public
 - [x] No npm tokens (or other registry credentials) in Actions secrets
 
 ## 6. Security tooling
-- [ ] Aikido runs on every build (PR pending)
+- [ ] Aikido runs on every build (PR #20 pending)
 - [x] Socket reviews every PR that changes dependencies
 
 ## 7. Repository lockdown
