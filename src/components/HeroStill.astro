@@ -1,0 +1,98 @@
+---
+/**
+ * Full-bleed still from the media bucket. Used as the homepage hero
+ * and as a section band. Remote URL only — nothing from git.
+ */
+interface Props {
+  variant?: "hero" | "band";
+  src: string;
+  alt: string;
+}
+
+const { variant = "hero", src, alt } = Astro.props;
+---
+
+<div class:list={["still", `still--${variant}`]}>
+  <img
+    class="still__image"
+    src={src}
+    alt={alt}
+    width="1920"
+    height="1080"
+    loading={variant === "hero" ? "eager" : "lazy"}
+    fetchpriority={variant === "hero" ? "high" : "auto"}
+    decoding="async"
+  />
+  <div class="still__veil" aria-hidden="true"></div>
+  <div class="still__content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .still {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--color-hero-bg);
+    color: var(--color-hero-fg);
+  }
+
+  .still--hero {
+    min-height: min(100svh, 52rem);
+  }
+
+  .still--band {
+    min-height: 16rem;
+  }
+
+  .still__image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .still--band .still__image {
+    object-position: center 60%;
+  }
+
+  .still__veil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--color-hero-bg) 58%, transparent) 0%,
+        color-mix(in oklab, var(--color-hero-bg) 18%, transparent) 38%,
+        color-mix(in oklab, var(--color-hero-bg) 72%, transparent) 100%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--color-hero-bg) 55%, transparent) 0%,
+        transparent 52%
+      );
+  }
+
+  .still--band .still__veil {
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--color-hero-bg) 35%, transparent),
+      color-mix(in oklab, var(--color-hero-bg) 70%, transparent)
+    );
+  }
+
+  .still__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+</style>

@@ -1,6 +1,7 @@
 /*
- * Sumi — design tokens
+ * RUSTBOY — design tokens
  *
+ * Dark industrial scrap: millboard, rust, one warm green optic.
  * Colours are declared once with `light-dark()`. The active scheme is driven by
  * the `color-scheme` property, so the manual theme toggle only has to set
  * `data-theme` on <html>; with JavaScript disabled the root keeps `light dark`
@@ -11,53 +12,62 @@
   color-scheme: light dark;
 
   /* ---- palette ------------------------------------------------------- */
-  /* washi (paper) */
-  --washi-100: #ffffff;
-  --washi-200: #faf8f5;
-  --washi-300: #f3f0ea;
-  --washi-400: #e8e4db;
+  /* millboard / scrap paper */
+  --board-100: #f3ece3;
+  --board-200: #e6dcd0;
+  --board-300: #d4c7b6;
+  --board-400: #b9ab99;
 
-  /* sumi (ink) */
-  --sumi-100: #e9e7e1;
-  --sumi-400: #5a5854;
-  --sumi-700: #333333;
-  --sumi-800: #1a1a1a;
-  --sumi-900: #101114;
-  --sumi-950: #0b0c0e;
+  /* steel / soot */
+  --steel-100: #e8ddd0;
+  --steel-400: #6e645a;
+  --steel-700: #2a221c;
+  --steel-800: #161210;
+  --steel-900: #0f0c0b;
+  --steel-950: #0c0a09;
 
-  /* shu (vermilion) */
-  --shu-500: #c73e3a;
-  --shu-400: #c85a52;
+  /* rust (oxidized iron / copper tear) */
+  --rust-500: #b44a28;
+  --rust-400: #d4623a;
+
+  /* one living optic — warm phosphor, not toy neon */
+  --optic-500: #7a9428;
+  --optic-400: #9bb84a;
 
   /* ---- semantic colours ---------------------------------------------- */
-  --color-bg: light-dark(var(--washi-200), var(--sumi-950));
-  --color-bg-subtle: light-dark(var(--washi-300), var(--sumi-900));
-  --color-bg-raised: light-dark(var(--washi-100), #14161a);
+  --color-bg: light-dark(var(--board-200), var(--steel-950));
+  --color-bg-subtle: light-dark(var(--board-300), var(--steel-900));
+  --color-bg-raised: light-dark(var(--board-100), #171311);
 
-  --color-fg: light-dark(var(--sumi-800), var(--sumi-100));
-  --color-fg-muted: light-dark(var(--sumi-400), rgba(233, 231, 225, 0.62));
+  --color-fg: light-dark(var(--steel-800), var(--steel-100));
+  --color-fg-muted: light-dark(var(--steel-400), rgba(232, 221, 208, 0.64));
   /* Faint still has to clear 4.5:1 against the page — it is used for tag links,
      the contents heading and the footer, not just decoration. */
-  --color-fg-faint: light-dark(rgba(26, 26, 26, 0.62), rgba(233, 231, 225, 0.55));
+  --color-fg-faint: light-dark(rgba(22, 18, 16, 0.62), rgba(232, 221, 208, 0.55));
 
-  --color-rule: light-dark(rgba(26, 26, 26, 0.14), rgba(233, 231, 225, 0.14));
-  --color-rule-strong: light-dark(rgba(26, 26, 26, 0.28), rgba(233, 231, 225, 0.28));
+  --color-rule: light-dark(rgba(22, 18, 16, 0.16), rgba(232, 221, 208, 0.14));
+  --color-rule-strong: light-dark(rgba(22, 18, 16, 0.3), rgba(232, 221, 208, 0.28));
 
-  --color-accent: light-dark(var(--shu-500), var(--shu-400));
-  --color-accent-fg: light-dark(var(--washi-200), var(--sumi-950));
+  --color-accent: light-dark(var(--rust-500), var(--rust-400));
+  --color-accent-fg: light-dark(var(--board-200), var(--steel-950));
+  --color-optic: light-dark(var(--optic-500), var(--optic-400));
 
   --color-selection-bg: var(--color-accent);
   --color-selection-fg: var(--color-accent-fg);
 
+  /* Hero stills are always dark. Type on them does not follow the page theme. */
+  --color-hero-bg: var(--steel-950);
+  --color-hero-fg: var(--steel-100);
+  --color-hero-muted: rgba(232, 221, 208, 0.72);
+
   /*
-   * The ink simulation resolves these three by reading them off a probe
-   * element, which is what makes light-dark() collapse to a real colour.
-   * Whether it paints ink onto paper or glows it on black is derived from the
-   * luminance of --ink-canvas-bg, so a custom palette keeps working.
+   * The ink simulation (unused on the home still) resolves these three by
+   * reading them off a probe element, which is what makes light-dark()
+   * collapse to a real colour.
    */
-  --ink-canvas-bg: light-dark(var(--washi-200), var(--sumi-950));
-  --ink-pigment: light-dark(#1a1a1a, #e8e6e0);
-  --ink-accent: light-dark(var(--shu-500), var(--shu-400));
+  --ink-canvas-bg: light-dark(var(--board-200), var(--steel-950));
+  --ink-pigment: light-dark(#161210, #e8ddd0);
+  --ink-accent: light-dark(var(--rust-500), var(--rust-400));
 
   /* ---- typography ---------------------------------------------------- */
   --font-serif: "Source Serif 4", "Source Serif Pro", "Yu Mincho", YuMincho,
@@ -72,7 +82,7 @@
   --text-lg: 1.1875rem; /* 19px — card titles */
   --text-xl: clamp(1.5rem, 3vw, 2rem);
   --text-2xl: clamp(2.125rem, 4.4vw, 3.375rem);
-  --text-hero: clamp(4.5rem, 17vw, 14.375rem);
+  --text-hero: clamp(3.25rem, 11vw, 8.5rem);
 
   --leading-tight: 1.15;
   --leading-snug: 1.35;
@@ -81,7 +91,7 @@
 
   --tracking-label: 0.14em;
   --tracking-wide: 0.3em;
-  --tracking-hero: 0.04em;
+  --tracking-hero: 0.06em;
   --tracking-tight: -0.01em;
 
   /* ---- space & layout ------------------------------------------------ */
