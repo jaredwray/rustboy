@@ -54,7 +54,10 @@ export const SOCIAL: SocialLink[] = [
 ];
 
 export const BLOG = {
-  /** Posts per page on /blog and the tag archives. */
+  /**
+   * Posts per page on /blog and the tag archives. Deliberately low so that the
+   * remaining older notes spill onto a second page; 8–12 suits a larger archive.
+   */
   postsPerPage: 4,
   /** Latest posts shown on the home page. */
   postsOnHome: 4,
