@@ -5,6 +5,7 @@ export interface ArticleMeta {
   publishedTime: string;
   modifiedTime?: string;
   tags: string[];
+  author?: string;
 }
 
 interface Props {
@@ -129,7 +130,7 @@ const structuredData = article
           content={article.modifiedTime}
         />
       )}
-      <meta property="article:author" content={AUTHOR.name} />
+      <meta property="article:author" content={article.author ?? AUTHOR.name} />
       {article.tags.map((tag) => (
         <meta property="article:tag" content={tag} />
       ))}
