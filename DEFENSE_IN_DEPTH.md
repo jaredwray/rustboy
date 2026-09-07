@@ -41,4 +41,4 @@ Profile: website/app · public
 ## 7. Repository lockdown
 - [x] Phishing-resistant 2FA (passkeys / hardware keys) on the GitHub account (manual) — verified (maintainer)
 - [x] Recovery codes stored offline in a password manager (manual) — verified (maintainer)
-- [x] `lockdown-repo.sh` applied by a repo admin (never committed to this repo); `--check` with `--required-checks "build,zizmor"` passes (PRs required on the default branch, merges blocked unless required status checks pass, tag ruleset, immutable releases, fork-PR approval (public repos), read-only workflow tokens, Actions allowlist, secret scanning, Dependabot disabled, private vulnerability reporting (public repos)) — PR pending
+- [x] `lockdown-repo.sh` applied by a repo admin (never committed to this repo); `--check` with `--required-checks "build,zizmor"` passes (PRs required on the default branch, merges blocked unless required status checks pass, tag ruleset, immutable releases, fork-PR approval (public repos), read-only workflow tokens, Actions allowlist, secret scanning, Dependabot disabled, private vulnerability reporting (public repos)) — PR #22
