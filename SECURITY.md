@@ -24,4 +24,4 @@ This repository follows the [defense-in-depth](https://github.com/jaredwray/agen
 
 - CI and deploy workflows use read-only `contents` permissions; checkout sets `persist-credentials: false`; generated output is a workflow artifact, never committed back; every action is pinned to a full commit SHA; Socket Firewall (`sfw`) wraps `pnpm install`; workflows are security-linted with zizmor on every PR.
 - Workflow names and job ids are kebab-case so they can be set as required status checks.
-- Dependencies install through pnpm with a 7-day cooldown on new versions, lifecycle scripts blocked by default, and `trustPolicy: no-downgrade`. Socket reviews every dependency change.
+- Dependencies install through pnpm with a 7-day cooldown on new versions, lifecycle scripts blocked by default, and `trustPolicy: no-downgrade`. Socket reviews every dependency change; Aikido scans every build.
