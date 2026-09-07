@@ -171,7 +171,8 @@
 
 /* ---- figures ---------------------------------------------------------- */
 
-.prose img {
+.prose img,
+.prose video {
   width: 100%;
   border-radius: var(--radius);
 }
