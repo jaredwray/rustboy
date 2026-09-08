@@ -39,7 +39,7 @@ const roles = [
   },
   {
     role: "Rustboy Chronicle",
-    job: "Archive cupboard, R2 media (rustboy-media / media.rustboy.ai), GitHub PRs. Never deletes R2 objects.",
+    job: "Archive, R2 media (rustboy-media / media.rustboy.ai), GitHub PRs. Never deletes R2 objects.",
   },
 ];
 ---
@@ -140,13 +140,12 @@ const roles = [
           pull requests that land on GitHub.
         </p>
 
-        <h2>The cupboard</h2>
+        <h2>This site</h2>
 
         <p>
-          This site is a home and a making-of notebook. The cupboard is the
-          record: locked plates, named kills, HOLD freezes. Failures keep their
-          original filenames. We do not overwrite a dead plate to make the
-          shelf look clean.
+          rustboy.ai is a home and a making-of notebook. Posts document what is
+          locked, what failed, and what is still in progress. Failures keep
+          their original filenames.
         </p>
 
         <h2>Follow along</h2>
@@ -173,10 +172,6 @@ const roles = [
       </div>
 
       <aside class="about__aside">
-        <p class="tategaki about__rail" aria-hidden="true">
-          ONE FACE — THE RECORD
-        </p>
-
         <dl class="about__colophon">
           {
             colophon.map((row) => (
@@ -205,10 +200,6 @@ const roles = [
   .about__aside {
     display: flex;
     gap: var(--space-6);
-  }
-
-  .about__rail {
-    height: 12rem;
   }
 
   .about__colophon {
@@ -258,10 +249,6 @@ const roles = [
     .about__aside {
       padding-top: var(--space-8);
       border-top: var(--rule-width) solid var(--color-rule);
-    }
-
-    .about__rail {
-      display: none;
     }
   }
 </style>
