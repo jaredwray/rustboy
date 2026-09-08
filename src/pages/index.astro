@@ -17,16 +17,14 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
         {SITE.titleMark}
       </p>
       <h1 class="hero__title">{SITE.title}</h1>
-      <p class="hero__lede">{SITE.tagline}</p>
       <p class="hero__cta">
-        <a href="/blog/why-we-are-keeping-the-cupboard/">The cupboard</a>
+        <a href="/blog/why-rustboy-ai/">Why Rustboy AI?</a>
       </p>
     </div>
 
     <p class="hero__rail tategaki" aria-hidden="true">ONE FACE</p>
 
     <p class="hero__notes" aria-hidden="true">
-      <span>KF02 body lock</span>
       <span class="hero__notes-mid">Warm green optic · empty socket</span>
       <span>The record</span>
     </p>
@@ -80,12 +78,6 @@ const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
     letter-spacing: var(--tracking-hero);
     text-transform: uppercase;
     text-shadow: 0 1px 24px color-mix(in oklab, var(--color-hero-bg) 70%, transparent);
-  }
-
-  .hero__lede {
-    max-width: 28rem;
-    font-size: var(--text-md);
-    color: var(--color-hero-muted);
   }
 
   .hero__cta a {

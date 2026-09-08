@@ -60,7 +60,7 @@ export const BLOG = {
    */
   postsPerPage: 4,
   /** Latest posts shown on the home page. */
-  postsOnHome: 4,
+  postsOnHome: 20,
   /** Estimated reading speed used for the "N min read" label. */
   wordsPerMinute: 220,
   showReadingTime: true,
