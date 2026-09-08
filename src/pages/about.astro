@@ -9,6 +9,7 @@ const colophon = [
   { term: "Site", value: "rustboy.ai — making-of" },
   { term: "Framework", value: "Astro 7, static output" },
   { term: "Host", value: "Cloudflare Pages" },
+  { term: "Tools", value: "Grok Imagine · Grok Bot · Cursor" },
   { term: "Look", value: "Scrap-steel, rust, one green optic" },
   { term: "Type", value: "Source Serif 4 · JetBrains Mono" },
   { term: "Media", value: "rustboy-media / media.rustboy.ai" },
@@ -38,7 +39,7 @@ const roles = [
   },
   {
     role: "Rustboy Chronicle",
-    job: "Archive cupboard, R2 media (rustboy-media / media.rustboy.ai), GitHub PRs. Never deletes R2 objects.",
+    job: "Archive, R2 media (rustboy-media / media.rustboy.ai), GitHub PRs. Never deletes R2 objects.",
   },
 ];
 ---
@@ -93,8 +94,7 @@ const roles = [
 
         <p>
           The short is silent, or almost silent — a dark fairy tale. The bar on
-          the board is Emmy and festival. Canon face stays one face; the KF02
-          table still is the body lock. Act I is locked. The adventure beyond
+          the board is Emmy and festival. Act I is locked. The adventure beyond
           the roof is written and partly locked. Making-of posts document the
           board without dressing HOLDs as finished.
         </p>
@@ -129,13 +129,23 @@ const roles = [
           in git.
         </p>
 
-        <h2>The cupboard</h2>
+        <h2>Grok tooling</h2>
 
         <p>
-          This site is a home and a making-of notebook. The cupboard is the
-          record: locked plates, named kills, HOLD freezes. Failures keep their
-          original filenames. We do not overwrite a dead plate to make the
-          shelf look clean.
+          rustboy.ai is made with Grok tooling end to end. Stills and motion
+          are shot in <strong>Grok Imagine</strong>. The crew on this page are
+          {" "}<strong>Grok Bots</strong> with split jobs — director, QC,
+          shooter, sound, writer, chronicle. The site is written, reviewed, and
+          shipped in <strong>Cursor</strong>: the editor, Cloud Agents, and the
+          pull requests that land on GitHub.
+        </p>
+
+        <h2>This site</h2>
+
+        <p>
+          rustboy.ai is a home and a making-of notebook. Posts document what is
+          locked, what failed, and what is still in progress. Failures keep
+          their original filenames.
         </p>
 
         <h2>Follow along</h2>
@@ -162,10 +172,6 @@ const roles = [
       </div>
 
       <aside class="about__aside">
-        <p class="tategaki about__rail" aria-hidden="true">
-          ONE FACE — THE RECORD
-        </p>
-
         <dl class="about__colophon">
           {
             colophon.map((row) => (
@@ -194,10 +200,6 @@ const roles = [
   .about__aside {
     display: flex;
     gap: var(--space-6);
-  }
-
-  .about__rail {
-    height: 12rem;
   }
 
   .about__colophon {
@@ -247,10 +249,6 @@ const roles = [
     .about__aside {
       padding-top: var(--space-8);
       border-top: var(--rule-width) solid var(--color-rule);
-    }
-
-    .about__rail {
-      display: none;
     }
   }
 </style>

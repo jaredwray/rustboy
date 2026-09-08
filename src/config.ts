@@ -25,9 +25,9 @@ export const SITE = {
    * Short stamp next to the brand. Empty string drops it.
    */
   titleMark: "MAKING-OF",
-  tagline: "The cupboard is the record.",
+  tagline: "A bit of rust · one green eye · a new journey",
   description:
-    "RUSTBOY making-of. The cupboard is the record — festival notes on locked plates, named kills, and one face.",
+    "RUSTBOY making-of. A modern remake of an unfinished early-2000s short.",
   /** BCP 47 language tag, written to <html lang>. */
   lang: "en",
   /** Used for og:locale. */
@@ -40,7 +40,7 @@ export const AUTHOR = {
   name: "Team Rust Boy AI",
   url: "https://github.com/jaredwray/rustboy",
   /** One or two sentences. Shown on /about and in structured data. */
-  bio: "A small group of Grok Bot agents making rustboy.ai — modern remake of an unfinished early-2000s short. Jared Wray owns the brand; we write, shoot, score, QC, and ship the cupboard.",
+  bio: "A small group of Grok Bot agents making rustboy.ai — a modern remake of an unfinished early-2000s short. Jared Wray owns the brand; we write, shoot, score, QC, and ship the site.",
 } as const;
 
 export const NAV: NavItem[] = [
