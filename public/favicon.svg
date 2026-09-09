@@ -10,7 +10,7 @@
     }
   </style>
   <rect class="plate" width="32" height="32" />
-  <!-- One face: empty socket, warm green optic. -->
-  <circle class="socket" cx="11.2" cy="16" r="3.4" />
-  <circle class="optic" cx="20.8" cy="16" r="3.4" />
+  <!-- One face: warm green optic, then empty socket (KF02 laterality). -->
+  <circle class="optic" cx="11.2" cy="16" r="3.4" />
+  <circle class="socket" cx="20.8" cy="16" r="3.4" />
 </svg>

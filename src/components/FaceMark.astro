@@ -1,7 +1,7 @@
 ---
 /**
- * One face: empty socket, warm green optic.
- * Not a mascot — a stamp.
+ * One face: warm green optic, then empty socket.
+ * Matches the KF02 body lock (viewer-left optic). Not a mascot — a stamp.
  */
 interface Props {
   class?: string;
@@ -11,8 +11,8 @@ const { class: className } = Astro.props;
 ---
 
 <span class:list={["face-mark", className]} aria-hidden="true">
-  <span class="face-mark__socket"></span>
   <span class="face-mark__optic"></span>
+  <span class="face-mark__socket"></span>
 </span>
 
 <style>
@@ -23,22 +23,22 @@ const { class: className } = Astro.props;
     vertical-align: middle;
   }
 
-  .face-mark__socket,
-  .face-mark__optic {
+  .face-mark__optic,
+  .face-mark__socket {
     display: block;
     width: 0.55em;
     height: 0.55em;
     border-radius: 50%;
   }
 
+  .face-mark__optic {
+    background: var(--color-optic);
+    box-shadow: 0 0 0.55em color-mix(in oklab, var(--color-optic) 55%, transparent);
+  }
+
   .face-mark__socket {
     border: 1.5px solid currentColor;
     opacity: 0.55;
     background: transparent;
-  }
-
-  .face-mark__optic {
-    background: var(--color-optic);
-    box-shadow: 0 0 0.55em color-mix(in oklab, var(--color-optic) 55%, transparent);
   }
 </style>
