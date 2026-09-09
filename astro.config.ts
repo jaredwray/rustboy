@@ -14,6 +14,8 @@ export default defineConfig({
     "/blog/a-quiet-stack": "/blog/",
     "/blog/writing-in-the-open": "/blog/",
     "/blog/media-lives-in-r2": "/blog/",
+    "/blog/welcome-to-rustboy": "/blog/",
+    "/blog/how-this-site-is-built": "/blog/",
   },
 
   markdown: {
