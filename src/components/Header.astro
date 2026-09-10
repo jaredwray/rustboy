@@ -163,7 +163,8 @@ const isCurrent = (href: string) =>
   }
 
   /* Four nav labels plus brand overflow common 360–390px phones.
-     overflow-x: clip would hide the rightmost controls, so wrap here. */
+     Brand takes the first row; nav + theme toggle get a full-width second
+     row so overflow-x: clip cannot hide the rightmost control. */
   @media (max-width: 28rem) {
     .brand :global(.face-mark) {
       display: none;
@@ -171,6 +172,21 @@ const isCurrent = (href: string) =>
 
     .site-header {
       flex-wrap: wrap;
+    }
+
+    .brand,
+    .site-header__end {
+      flex: 1 1 100%;
+    }
+
+    .site-header__end {
+      min-width: 0;
+      justify-content: space-between;
+    }
+
+    .nav__list {
+      flex-wrap: wrap;
+      min-width: 0;
     }
 
     .site-header,
