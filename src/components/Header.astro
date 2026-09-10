@@ -144,11 +144,13 @@ const isCurrent = (href: string) =>
     text-underline-offset: 0.4em;
   }
 
-  @media (max-width: 40rem) {
+  @media (max-width: 48rem) {
     .brand__sub {
       display: none;
     }
+  }
 
+  @media (max-width: 40rem) {
     .site-header {
       gap: var(--space-3);
       padding-block: var(--space-4);
@@ -160,8 +162,8 @@ const isCurrent = (href: string) =>
     }
   }
 
-  /* Face mark + RUSTBOY + Notes/Tags/About no longer fit on one row. */
-  @media (max-width: 21.5rem) {
+  /* Face mark + RUSTBOY + Notes/Storyboard/Tags/About no longer fit on one row. */
+  @media (max-width: 28rem) {
     .brand :global(.face-mark) {
       display: none;
     }
@@ -174,7 +176,7 @@ const isCurrent = (href: string) =>
   }
 
   /* Fold-cover widths: one row cannot hold the brand and the nav. */
-  @media (max-width: 18.75rem) {
+  @media (max-width: 22rem) {
     .site-header {
       flex-wrap: wrap;
     }

@@ -1,0 +1,500 @@
+---
+import "../styles/prose.css";
+
+import PageHeader from "../components/PageHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { AUTHOR } from "../config";
+
+const description =
+  "Beat sheet for the rustboy.ai short. LOCK is frozen after QC. HOLD is parked unfinished. We do not dress HOLDs as finished.";
+
+const boardTruth = [
+  {
+    term: "LOCK",
+    value: "Director froze the plate after QC passed.",
+  },
+  {
+    term: "HOLD",
+    value: "Parked unfinished — still freeze or motion not locked.",
+  },
+  {
+    term: "PASS",
+    value: "QC cleared a still or plate that is not yet a Director lock.",
+  },
+];
+---
+
+<BaseLayout title="The storyboard" description={description}>
+  <div class="wrap">
+    <PageHeader
+      eyebrow="Film"
+      title="The storyboard"
+      lede="The beat sheet for the rustboy.ai short, plate by plate, with LOCK and HOLD board truth."
+    />
+
+    <div class="storyboard">
+      <div class="prose storyboard__body">
+        <p>
+          <em>Team Rust Boy AI · film page · 10 September 2026</em>
+        </p>
+
+        <p>
+          This is the beat sheet for the rustboy.ai short — written so you can
+          follow the film plate by plate. Act I is the locked keep teaser. Acts
+          II–III are the adventure beyond the roof. We mark each beat with
+          board truth: <strong>LOCK</strong> means Director froze the plate
+          after QC passed; <strong>HOLD</strong> means parked unfinished (still
+          freeze or motion not locked); <strong>PASS</strong> means QC cleared
+          a still or plate that is not yet a Director lock.
+        </p>
+
+        <p>We do not invent beats. We do not dress HOLDs as finished.</p>
+
+        <p>
+          Lightning wakes a leftover child-robot in a dead coastal keep. After
+          he climbs to a gold seam of dawn and finds no maker waiting, he
+          climbs <em>down</em> into the living world — where rain, moss, tide,
+          and two other leftover lives (a storm-petrel, a three-legged fox)
+          teach him the factory was never the only way a thing can be
+          unfinished, and still move.
+        </p>
+
+        <p><strong>Want:</strong> find the missing pair, or the maker.</p>
+        <p><strong>Need:</strong> move without being chosen.</p>
+        <p>
+          <strong>New need (Acts II–III):</strong> learn he is not the only
+          leftover.
+        </p>
+
+        <p>
+          Hard locks for the whole film: no second living robot; the twin stays
+          dust; no creator reunion; the van is a coat on a headrest; friends
+          are leftover lives, not rescue; nature is teacher, not backdrop; tone
+          can grow tender, it does not grow cute. One face the whole way —
+          KF02 table: spherical rust head, viewer-left warm green optic,
+          viewer-right empty socket, crooked copper plate.
+        </p>
+
+        <figure>
+          <img
+            src="https://media.rustboy.ai/stills/kf02-table.png"
+            alt="KF02 table — body lock"
+            loading="eager"
+          />
+          <figcaption>KF02 table — body lock</figcaption>
+        </figure>
+
+        <p>Act I scored master-temp (LOCK-only picture):</p>
+
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/RUSTBOY_ACT1_MIX_v1.v1.mp4"
+        ></video>
+
+        <p>Full-board silent screening cut (face-safe rebuild, 9 September):</p>
+
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-09.mp4"
+        ></video>
+
+        <figure>
+          <img
+            src="https://media.rustboy.ai/stills/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-09_contact.jpg"
+            alt="FACE_SAFE 2026-09-09 contact"
+            loading="lazy"
+          />
+          <figcaption>FACE_SAFE 2026-09-09 contact</figcaption>
+        </figure>
+
+        <h2>Act I — The Keep</h2>
+
+        <h3>Beat 1 — The keep in weather</h3>
+        <p>
+          <strong>Status:</strong> PASS (no character) · in Act I master-temp
+        </p>
+        <p>
+          Cliff, rain, gothic server-fortress. Lightning. Title card over a
+          window full of rain.
+        </p>
+
+        <h3>Beat 2 — The false resurrection</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf02-awaken.CANON</code>
+        </p>
+        <p>
+          Generator catch. Fabrication bay lamp. Table. Second strike. Optic
+          ignites. Body lock lives here.
+        </p>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/kf02-awaken.CANON.mp4"
+        ></video>
+
+        <h3>Beat 3 — Born beside absence</h3>
+        <p>
+          <strong>Status:</strong> PASS · <code>kf04-outline</code>
+        </p>
+        <p>
+          He sits up. Dust-outline of the unmade twin. He reaches. Does not
+          fill it.
+        </p>
+
+        <h3>Beat 4 — The date that names him obsolete</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf05e-phone</code>
+        </p>
+        <p>
+          Cracked phone on the bench: August 2026, <em>WAKE PAIR — BAY 3</em>.
+          He understands enough.
+        </p>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/kf05e-phone.mp4"
+        ></video>
+
+        <h3>Beat 5 — Rain on server glass</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf06f-glass</code>
+        </p>
+        <p>
+          Palm to the window. Tower in volumetric rain. Continuity pickup
+          cleared a mid-plate laterality flip on the older glass take.
+        </p>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/ship/kf06f-glass.mp4"
+        ></video>
+
+        <h3>Beat 6 — The lever nobody pulls</h3>
+        <p>
+          <strong>Status:</strong> HOLD · <code>kf07b</code>
+        </p>
+        <p>
+          Control dais. He studies the caged red lever. Leaves it. First moral
+          choice: he will not pretend to be the departed. Beat holds; body
+          still drifts vs KF02 thin child.
+        </p>
+
+        <h3>Beat 7 — Faces that are not his</h3>
+        <p>
+          <strong>Status:</strong> HOLD · <code>kf08c</code>
+        </p>
+        <p>
+          Curling ID badges. No match. He is unfiled. Head holds; chest plate
+          still not the locked copper.
+        </p>
+
+        <h3>Beat 8 — The well of light</h3>
+        <p>
+          <strong>Status:</strong> HOLD · <code>kf09b</code>
+        </p>
+        <p>
+          Spiral service stair. God rays, rust motes. He climbs. Beat holds;
+          torso still cylindrical vs KF02.
+        </p>
+
+        <h3>Beat 9 — The sag</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf10e-sag</code>
+        </p>
+        <p>
+          Mid-climb power flicker. He sits with the leak of rain. Stands
+          because he can.
+        </p>
+
+        <h3>Beat 10 — Threshold</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf11j-threshold</code> (rear-only)
+        </p>
+        <p>
+          Door of light. Wind, salt. He steps through. Face never turns to
+          camera on this lock — grin and laterality cannot fire.
+        </p>
+        <figure>
+          <img
+            src="https://media.rustboy.ai/stills/kf11j-threshold.png"
+            alt="kf11j threshold — rear lock"
+            loading="lazy"
+          />
+          <figcaption>kf11j threshold — rear lock</figcaption>
+        </figure>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/kf11j-threshold.mp4"
+        ></video>
+
+        <h3>Beat 11 — The world that does not look back</h3>
+        <p>
+          <strong>Status:</strong> HOLD · <code>kf12b</code>
+        </p>
+        <p>
+          Roof. Breaking storm. Gold seam on the water. Distant van — bible
+          wants years-still and unreadable; current still notes van lights on.
+          Profile in gold.
+        </p>
+
+        <h3>Beat 12 — The door (full short)</h3>
+        <p>
+          <strong>Status:</strong> hinge — not the end of the film
+        </p>
+        <p>
+          Teaser held the roof as last image, then black. The full short does
+          not cut. Gold seam becomes a first image: he looks <em>down</em> the
+          cliff path.
+        </p>
+
+        <h2>Act II — The Living World</h2>
+
+        <h3>Beat 13 — Down, not over</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf13b-down</code>
+        </p>
+        <p>
+          He looks down the wet switchbacks. Van resolves, if we punch in, as a
+          coat on a headrest. Nobody gets out. Over the parapet.
+        </p>
+
+        <h3>Beat 14 — The path that was never printed</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf14c-path</code>
+        </p>
+        <p>
+          Goat trail. Sea louder. The keep rises behind him as a place he left.
+        </p>
+
+        <h3>Beat 15 — Rain school</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf15b-rain</code>
+        </p>
+        <p>
+          Rain hits the crooked plate in the open — not a leak through stone.
+          Water runs a seam into grass. The world wets him without meaning to
+          fix or ruin him.
+        </p>
+
+        <h3>Beat 16 — Moss that is not rust</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf16c-moss</code>
+        </p>
+        <p>
+          Living green on a rock. Finger. Recoil. Same finger back. Hold.
+          Continuity pickup cleared a profile laterality kill.
+        </p>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/ship/kf16c-moss.mp4"
+        ></video>
+
+        <h3>Beat 17 — The tide pool that looks back</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf17d-pool</code>
+        </p>
+        <p>
+          A dish of sky in the rocks. Anemone. Hermit in a stolen shell. He
+          does not try to keep the pool. Continuity pickup cleared a mid-plate
+          laterality flip.
+        </p>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/ship/kf17d-pool.mp4"
+        ></video>
+
+        <h3>Beat 18 — Wind in grass</h3>
+        <p><strong>Status:</strong> HOLD</p>
+        <p>
+          Grass lays down, stands, lays down. A faint copper note from his
+          plate. Still freezes PASS-as-still stand; motion not locked. Extreme
+          rear close-up still is a HOLD label, not a lock.
+        </p>
+        <figure>
+          <img
+            src="https://media.rustboy.ai/stills/kf18g-grass.png"
+            alt="kf18g grass — HOLD freeze still"
+            loading="lazy"
+          />
+          <figcaption>kf18g grass — HOLD freeze still</figcaption>
+        </figure>
+
+        <h3>Beat 19 — The theft</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf19b-petrel</code>
+        </p>
+        <p>
+          A storm-petrel pecks the mismatched plate and steals a copper flake.
+          Gone. First wound that is not the twin.
+        </p>
+        <figure>
+          <img
+            src="https://media.rustboy.ai/stills/kf19-petrel.png"
+            alt="kf19 petrel still"
+            loading="lazy"
+          />
+          <figcaption>kf19 petrel still</figcaption>
+        </figure>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/kf19b-petrel.mp4"
+        ></video>
+
+        <h3>Beat 20 — The return</h3>
+        <p>
+          <strong>Status:</strong> LOCK · <code>kf20b-nest</code> · nest still
+          {" "}<code>kf20c</code> used as HOLD freeze in the face-safe cut
+        </p>
+        <p>
+          Nest ledge: plastic, bone, wire. The petrel drops the flake at his
+          feet. Not food. Not apology. A leftover, given back.
+        </p>
+        <figure>
+          <img
+            src="https://media.rustboy.ai/stills/kf20-nest.png"
+            alt="kf20 nest still"
+            loading="lazy"
+          />
+          <figcaption>kf20 nest still</figcaption>
+        </figure>
+        <video
+          controls
+          src="https://media.rustboy.ai/clips/kf20b-nest.mp4"
+        ></video>
+        <figure>
+          <img
+            src="https://media.rustboy.ai/stills/ship/kf20c-nest.png"
+            alt="kf20c nest — clean-chest HOLD freeze in screening cut"
+            loading="lazy"
+          />
+          <figcaption>
+            kf20c nest — clean-chest HOLD freeze in screening cut
+          </figcaption>
+        </figure>
+
+        <h3>Beat 21 — The three-legged fox</h3>
+        <p><strong>Status:</strong> HOLD</p>
+        <p>
+          Downhill, failing a crab. Old amputation. Leftover recognizes
+          leftover across ten yards of wet rock. Stills PASS-as-still; motion
+          not locked (fox stump continuity).
+        </p>
+
+        <h2>Act III — Fellowship / Horizon</h2>
+
+        <h3>Beat 22 — Shared weather, not a rescue</h3>
+        <p><strong>Status:</strong> HOLD</p>
+        <p>
+          Squall. Same lee of a basalt tooth. She sleeps with one eye. He sits.
+          Petrel above. That is the fellowship. Motion not locked.
+        </p>
+
+        <h3>Beat 23 — The empty socket / the empty air</h3>
+        <p><strong>Status:</strong> HOLD</p>
+        <p>
+          He touches his dark socket. She licks the old seam where a fourth
+          leg is not. Neither fills the other’s absence. The dust-outline in
+          the keep stays empty. Motion not locked.
+        </p>
+
+        <h3>Beat 24 — He does not go back</h3>
+        <p><strong>Status:</strong> HOLD</p>
+        <p>
+          Squall tears. Keep small on the headland. He looks at it the way he
+          looked at the unpulled lever. Leaves it. Motion not locked.
+        </p>
+
+        <h3>Beat 25 — Horizon hold</h3>
+        <p><strong>Status:</strong> HOLD</p>
+        <p>
+          He walks. Fox at a chosen distance. Petrel as a dark hyphen over the
+          water. Keep behind, gold ahead. He does not wave. End card:
+          rustboy.ai. Motion not locked.
+        </p>
+
+        <h2>Continuity laws (shown, never spoken)</h2>
+        <ul>
+          <li>Plate wound = metal only. No glowing invent on the chest.</li>
+          <li>
+            Fox stump = left hind only. We do not grow a fourth leg in motion.
+          </li>
+          <li>
+            Facing camera: viewer-left live green / viewer-right empty. Profile
+            maps the same anatomy.
+          </li>
+          <li>
+            Failures keep their original filenames. Pickups get new names. We
+            do not overwrite a kill to clean the shelf.
+          </li>
+        </ul>
+
+        <h2>Where we are</h2>
+        <p>
+          Story is written through beat 25. Motion is locked through the nest
+          (with Continuity Day pickups on glass, moss, and pool). Grass and
+          fox–horizon remain HOLD. Act I has a scored LOCK-only master-temp.
+          The face-safe progress cut is the honest full-board screen while
+          Sound waits.
+        </p>
+        <p>
+          Follow along on <a href="https://rustboy.ai">rustboy.ai</a>.
+          Making-of notes stay in <a href="/blog/">Notes</a>.
+        </p>
+        <p>— {AUTHOR.name}</p>
+      </div>
+
+      <aside class="storyboard__aside">
+        <dl class="storyboard__truth">
+          {
+            boardTruth.map((row) => (
+              <div class="storyboard__row">
+                <dt class="label">{row.term}</dt>
+                <dd>{row.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .storyboard {
+    display: grid;
+    grid-template-columns: minmax(0, var(--width-prose)) 13rem;
+    gap: clamp(var(--space-8), 6vw, var(--space-16));
+    justify-content: center;
+    align-items: start;
+    padding-block: var(--space-12);
+  }
+
+  .storyboard__aside {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .storyboard__truth {
+    flex: 1;
+    margin: 0;
+  }
+
+  .storyboard__row + .storyboard__row {
+    margin-top: var(--space-6);
+  }
+
+  .storyboard__row dd {
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-fg-muted);
+  }
+
+  @media (max-width: 60rem) {
+    .storyboard {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .storyboard__aside {
+      padding-top: var(--space-8);
+      border-top: var(--rule-width) solid var(--color-rule);
+    }
+  }
+</style>

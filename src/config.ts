@@ -45,6 +45,7 @@ export const AUTHOR = {
 
 export const NAV: NavItem[] = [
   { label: "Notes", href: "/blog" },
+  { label: "Storyboard", href: "/storyboard" },
   { label: "Tags", href: "/tags" },
   { label: "About", href: "/about" },
 ];
