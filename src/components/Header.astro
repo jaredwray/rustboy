@@ -144,11 +144,13 @@ const isCurrent = (href: string) =>
     text-underline-offset: 0.4em;
   }
 
-  @media (max-width: 40rem) {
+  @media (max-width: 48rem) {
     .brand__sub {
       display: none;
     }
+  }
 
+  @media (max-width: 40rem) {
     .site-header {
       gap: var(--space-3);
       padding-block: var(--space-4);
@@ -160,23 +162,38 @@ const isCurrent = (href: string) =>
     }
   }
 
-  /* Face mark + RUSTBOY + Notes/Tags/About no longer fit on one row. */
-  @media (max-width: 21.5rem) {
+  /* Four nav labels plus brand overflow common 360–390px phones.
+     Brand takes the first row; nav + theme toggle get a full-width second
+     row so overflow-x: clip cannot hide the rightmost control. */
+  @media (max-width: 28rem) {
     .brand :global(.face-mark) {
       display: none;
+    }
+
+    .site-header {
+      flex-wrap: wrap;
+      overflow-x: visible;
+    }
+
+    .brand,
+    .site-header__end {
+      flex: 1 1 100%;
+    }
+
+    .site-header__end {
+      min-width: 0;
+      justify-content: space-between;
+    }
+
+    .nav__list {
+      flex-wrap: wrap;
+      min-width: 0;
     }
 
     .site-header,
     .site-header__end,
     .nav__list {
       gap: var(--space-2);
-    }
-  }
-
-  /* Fold-cover widths: one row cannot hold the brand and the nav. */
-  @media (max-width: 18.75rem) {
-    .site-header {
-      flex-wrap: wrap;
     }
   }
 </style>

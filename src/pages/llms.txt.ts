@@ -32,6 +32,7 @@ export const GET: APIRoute = async ({ site }) => {
     "## Pages",
     "",
     `- [Blog](${absolute("/blog/")}): every post, newest first.`,
+    `- [Storyboard](${absolute("/storyboard/")}): beat sheet for the rustboy.ai short, with LOCK and HOLD board truth.`,
     `- [Tags](${absolute("/tags/")}): ${tags.map((t) => t.name).join(", ")}.`,
     `- [About](${absolute("/about/")}): about Team Rust Boy AI and this site.`,
     "",
