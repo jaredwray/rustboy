@@ -1,6 +1,14 @@
 import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
+
+/** Public media only — never a path in this repo. */
+const mediaUrl = z
+  .url()
+  .refine(
+    (value) => String(value).startsWith("https://media.rustboy.ai/"),
+    { message: "Storyboard media must be an https://media.rustboy.ai/ URL" },
+  );
 
 const blog = defineCollection({
   // Files starting with an underscore are ignored, which makes drafts easy to
@@ -27,4 +35,31 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const storyboard = defineCollection({
+  loader: file("src/content/storyboard/plates.json"),
+  schema: z.object({
+    /** Sequence on the board, left to right (1–25). */
+    n: z.number().int().min(1),
+    act: z.enum(["I", "II", "III"]),
+    title: z.string(),
+    /** One or two sentences. The cell is a slate, not an essay. */
+    line: z.string(),
+    /** Public chip: Finished / Parked / Waiting. */
+    status: z.enum(["finished", "parked", "waiting"]),
+    /** Keyframe stem, when one exists (e.g. kf11j-threshold). */
+    kf: z.string().optional(),
+    still: z
+      .object({
+        src: mediaUrl,
+        alt: z.string(),
+      })
+      .optional(),
+    clip: z
+      .object({
+        src: mediaUrl,
+      })
+      .optional(),
+  }),
+});
+
+export const collections = { blog, storyboard };

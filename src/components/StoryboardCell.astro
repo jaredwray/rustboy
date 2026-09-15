@@ -1,0 +1,176 @@
+---
+import { padPlate, statusLabel, type StoryPlate } from "../utils/storyboard";
+
+interface Props {
+  plate: StoryPlate;
+}
+
+const { plate } = Astro.props;
+const { n, title, line, status, kf, still, clip } = plate.data;
+const chip = statusLabel(status);
+const hasMedia = Boolean(still || clip);
+const number = padPlate(n);
+---
+
+<article class="cell" id={`kf-${number}`} data-status={status}>
+  <div class="cell__frames">
+    {
+      still && (
+        <figure class="cell__frame">
+          <img
+            src={String(still.src)}
+            alt={still.alt}
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      )
+    }
+    {
+      clip && (
+        <figure class="cell__frame cell__frame--clip">
+          <video
+            controls
+            preload="none"
+            width="1920"
+            height="1080"
+            src={String(clip.src)}
+            title={`${kf ?? number} ${title} — clip`}
+          />
+        </figure>
+      )
+    }
+    {
+      !hasMedia && (
+        <div class="cell__frame cell__frame--empty">
+          <span class="label">Coming as we shoot</span>
+        </div>
+      )
+    }
+  </div>
+
+  <header class="cell__meta">
+    <p class="cell__slate">
+      <span class="cell__num">{number}</span>
+      <span class:list={["cell__chip", `cell__chip--${status}`]}>
+        {chip}
+      </span>
+    </p>
+    <h3 class="cell__title">{title}</h3>
+    {kf && <p class="cell__kf label">{kf}</p>}
+    <p class="cell__line">{line}</p>
+  </header>
+</article>
+
+<style>
+  .cell {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--color-bg-raised);
+  }
+
+  .cell__frames {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cell__frame {
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-hero-bg);
+  }
+
+  .cell__frame + .cell__frame {
+    border-top: var(--rule-width) solid var(--color-rule);
+  }
+
+  .cell__frame img,
+  .cell__frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cell__frame--empty {
+    display: grid;
+    place-items: center;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 7px,
+        color-mix(in oklab, var(--color-rule) 55%, transparent) 7px,
+        color-mix(in oklab, var(--color-rule) 55%, transparent) 8px
+      ),
+      var(--color-bg-subtle);
+  }
+
+  .cell__meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex: 1;
+    padding: var(--space-3);
+    border-top: var(--rule-width) solid var(--color-rule);
+  }
+
+  .cell__slate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .cell__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-label);
+    color: var(--color-fg-muted);
+  }
+
+  .cell__chip {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    padding: 0.15em 0.5em;
+    border: var(--rule-width) solid var(--color-rule);
+    border-radius: var(--radius);
+    color: var(--color-fg-faint);
+  }
+
+  .cell__chip--finished {
+    color: var(--color-optic);
+    border-color: color-mix(in oklab, var(--color-optic) 55%, var(--color-rule));
+  }
+
+  .cell__chip--parked {
+    color: var(--color-accent);
+    border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-rule));
+  }
+
+  .cell__chip--waiting {
+    color: var(--color-fg-faint);
+  }
+
+  .cell__title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    text-wrap: balance;
+  }
+
+  .cell__kf {
+    color: var(--color-fg-faint);
+  }
+
+  .cell__line {
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-fg-muted);
+  }
+</style>
