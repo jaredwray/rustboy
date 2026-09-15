@@ -80,9 +80,9 @@ export const BLOG = {
 export const MEDIA = {
   bucket: "rustboy-media",
   publicBaseUrl: "https://media.rustboy.ai",
-  /** Homepage hero — KF02 body lock. Remote only; never a file in this repo. */
-  heroStill: "https://media.rustboy.ai/stills/kf02-table.png",
-  heroStillAlt: "KF02 table — body lock. One face.",
+  /** Homepage hero — character-pack lock. Remote only; never a file in this repo. */
+  heroStill: "https://media.rustboy.ai/stills/ship/pack-hero-LOCK-2026-09-14.png",
+  heroStillAlt: "Character-pack hero lock — pack-hero-LOCK-2026-09-14. One face, viewer-left green optic.",
   /** Homepage band — kf11j rear lock. */
   bandStill: "https://media.rustboy.ai/stills/kf11j-threshold.png",
   bandStillAlt: "kf11j threshold — rear lock.",
