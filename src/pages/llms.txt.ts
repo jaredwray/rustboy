@@ -32,7 +32,7 @@ export const GET: APIRoute = async ({ site }) => {
     "## Pages",
     "",
     `- [Blog](${absolute("/blog/")}): every post, newest first.`,
-    `- [Storyboard](${absolute("/storyboard/")}): beat sheet for the rustboy.ai short, with LOCK and HOLD board truth.`,
+    `- [Storyboard](${absolute("/storyboard/")}): production board for plates 1–25 (kf## keyframes), with stills and clips as they land. Status: Finished, Parked, Waiting.`,
     `- [Tags](${absolute("/tags/")}): ${tags.map((t) => t.name).join(", ")}.`,
     `- [About](${absolute("/about/")}): about Team Rust Boy AI and this site.`,
     "",
