@@ -80,7 +80,7 @@ Each object:
 | `act` | `"I"`, `"II"`, or `"III"`. |
 | `title` | Short slate title. |
 | `line` | One or two sentences. |
-| `status` | `lock` (finished), `hold` (parked), `pass` or `hinge` (waiting). |
+| `status` | `finished`, `parked`, or `waiting` — shown as those words on the page. |
 | `kf` | Optional keyframe stem, e.g. `kf11j-threshold`. |
 | `still` | Optional `{ "src", "alt" }`. `src` must be `https://media.rustboy.ai/…`. |
 | `clip` | Optional `{ "src" }`. Same URL rule. Omit both to keep the empty slot. |

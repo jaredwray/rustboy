@@ -1,5 +1,5 @@
 ---
-import { padPlate, statusChip, type StoryPlate } from "../utils/storyboard";
+import { padPlate, statusLabel, type StoryPlate } from "../utils/storyboard";
 
 interface Props {
   plate: StoryPlate;
@@ -7,7 +7,7 @@ interface Props {
 
 const { plate } = Astro.props;
 const { n, title, line, status, kf, still, clip } = plate.data;
-const chip = statusChip(status);
+const chip = statusLabel(status);
 const hasMedia = Boolean(still || clip);
 const number = padPlate(n);
 ---
@@ -45,7 +45,7 @@ const number = padPlate(n);
     {
       !hasMedia && (
         <div class="cell__frame cell__frame--empty">
-          <span class="label">No plate yet</span>
+          <span class="label">Coming as we shoot</span>
         </div>
       )
     }
@@ -54,8 +54,8 @@ const number = padPlate(n);
   <header class="cell__meta">
     <p class="cell__slate">
       <span class="cell__num">{number}</span>
-      <span class:list={["cell__chip", `cell__chip--${chip.tone}`]}>
-        {chip.label}
+      <span class:list={["cell__chip", `cell__chip--${status}`]}>
+        {chip}
       </span>
     </p>
     <h3 class="cell__title">{title}</h3>
@@ -151,6 +151,10 @@ const number = padPlate(n);
   .cell__chip--parked {
     color: var(--color-accent);
     border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-rule));
+  }
+
+  .cell__chip--waiting {
+    color: var(--color-fg-faint);
   }
 
   .cell__title {

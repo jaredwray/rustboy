@@ -4,56 +4,36 @@ import StoryboardCell from "../components/StoryboardCell.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { AUTHOR } from "../config";
 import {
-  countByTone,
+  countByStatus,
   getStoryPlates,
   groupPlatesByAct,
 } from "../utils/storyboard";
 
 const description =
-  "Production board for the rustboy.ai short. Plates 1–25 in order, with stills and clips as they land. Finished is LOCK. Parked is HOLD. Waiting is PASS.";
+  "Production board for the rustboy.ai short. Plates 1–25 in order, with stills and clips as they land. Finished, parked, or waiting.";
 
 const plates = await getStoryPlates();
 const acts = groupPlatesByAct(plates);
-const counts = countByTone(plates);
-
-const laws = [
-  "Plate wound = metal only. No glowing invent on the chest.",
-  "Fox stump = left hind only. We do not grow a fourth leg in motion.",
-  "Facing camera: viewer-left live green / viewer-right empty.",
-  "Failures keep their original filenames. Pickups get new names.",
-];
-
-const reels = [
-  {
-    title: "Act I master-temp",
-    note: "LOCK-only character picture",
-    src: "https://media.rustboy.ai/clips/RUSTBOY_ACT1_MIX_v1.v1.mp4",
-  },
-  {
-    title: "Face-safe progress cut",
-    note: "Full-board silent screen",
-    src: "https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-10.mp4",
-  },
-];
+const counts = countByStatus(plates);
 ---
 
-<BaseLayout title="The storyboard" description={description}>
+<BaseLayout title="Storyboard" description={description}>
   <div class="wrap">
     <PageHeader
       eyebrow="Film"
-      title="The storyboard"
-      lede="Plate 1 → 25, left to right. Each cell is a slate: number, title, one line, and a media frame that fills as stills and clips land."
+      title="Storyboard"
+      lede="We fill each cell as the plate is finished — still and clip when we have them."
     >
       <p class="board-legend label">
         <span class="board-legend__chip board-legend__chip--finished">
           Finished
-        </span>{" "}is LOCK.
+        </span>{" "}is locked in the cut.
         <span class="board-legend__chip board-legend__chip--parked">
           Parked
-        </span>{" "}is HOLD.
+        </span>{" "}is a frame, not finished motion.
         <span class="board-legend__chip board-legend__chip--waiting">
           Waiting
-        </span>{" "}is PASS (or a hinge). We do not dress parked cells as finished.
+        </span>{" "}is an empty slot until we shoot.
       </p>
       <p class="board-counts label">
         {counts.finished} finished · {counts.parked} parked · {
@@ -62,33 +42,34 @@ const reels = [
       </p>
     </PageHeader>
 
-    <section class="board-intro" aria-label="Story">
-      <p>
-        Lightning wakes a leftover child-robot in a dead coastal keep. After he
-        climbs to a gold seam of dawn and finds no maker waiting, he climbs
-        down into the living world — rain, moss, tide, and two other leftover
-        lives (a storm-petrel, a three-legged fox).
-      </p>
-      <dl class="board-wants">
-        <div>
-          <dt class="label">Want</dt>
-          <dd>Find the missing pair, or the maker.</dd>
-        </div>
-        <div>
-          <dt class="label">Need</dt>
-          <dd>Move without being chosen.</dd>
-        </div>
-        <div>
-          <dt class="label">Acts II–III</dt>
-          <dd>Learn he is not the only leftover.</dd>
-        </div>
-      </dl>
-      <p class="board-face">
-        One face the whole way — KF02 table: spherical rust head, viewer-left
-        warm green optic, viewer-right empty socket, crooked copper plate. No
-        second living robot. The twin stays dust. No creator reunion. The van
-        is a coat on a headrest. Friends are leftover lives, not rescue.
-      </p>
+    <section class="board-reels board-reels--hero" aria-label="Screening spine">
+      <figure class="board-reels__item">
+        <video
+          controls
+          preload="none"
+          width="1920"
+          height="1080"
+          src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-10.mp4"
+          title="Face-safe progress cut"
+        ></video>
+        <figcaption>
+          <span>Face-safe progress cut</span>
+          <span class="label">Screening spine</span>
+        </figcaption>
+      </figure>
+      <figure class="board-reels__item">
+        <img
+          src="https://media.rustboy.ai/stills/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-10_contact.jpg"
+          alt="FACE_SAFE 2026-09-10 contact sheet"
+          width="1280"
+          height="720"
+          loading="lazy"
+        />
+        <figcaption>
+          <span>Contact sheet</span>
+          <span class="label">Same cut</span>
+        </figcaption>
+      </figure>
     </section>
 
     <div class="board">
@@ -122,39 +103,27 @@ const reels = [
     </div>
 
     <section class="board-notes">
-      <h2 class="board-notes__title">Continuity laws</h2>
-      <p class="board-notes__lede">Shown, never spoken.</p>
-      <ul class="board-laws">
-        {laws.map((law) => (
-          <li>{law}</li>
-        ))}
-      </ul>
-
-      <h2 class="board-notes__title">Reels</h2>
-      <div class="board-reels">
-        {
-          reels.map((reel) => (
-            <figure class="board-reels__item">
-              <video
-                controls
-                preload="none"
-                width="1920"
-                height="1080"
-                src={reel.src}
-                title={reel.title}
-              />
-              <figcaption>
-                <span>{reel.title}</span>
-                <span class="label">{reel.note}</span>
-              </figcaption>
-            </figure>
-          ))
-        }
-      </div>
-
+      <p class="board-laws">
+        Plate wound after the theft = metal/copper tear only. Fox stump = left
+        hind only.
+      </p>
+      <figure class="board-mix">
+        <video
+          controls
+          preload="none"
+          width="1920"
+          height="1080"
+          src="https://media.rustboy.ai/clips/RUSTBOY_ACT1_MIX_v1.v1.mp4"
+          title="Act I scored reel"
+        ></video>
+        <figcaption>
+          <span>Act I scored reel</span>
+          <span class="label">Secondary — keep plates only</span>
+        </figcaption>
+      </figure>
       <p class="board-notes__where">
-        Story is written through plate 25. Empty frames are waiting for a public
-        <code>https://media.rustboy.ai/…</code> still or clip — plug the URL into{" "}
+        Empty frames stay empty until a public{" "}
+        <code>https://media.rustboy.ai/…</code> URL lands in{" "}
         <code>src/content/storyboard/plates.json</code>. Making-of notes stay in
         {" "}<a href="/blog/">Notes</a>.
       </p>
@@ -194,33 +163,13 @@ const reels = [
     border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-rule));
   }
 
-  .board-counts {
-    margin-top: var(--space-4);
+  .board-legend__chip--waiting {
     color: var(--color-fg-faint);
   }
 
-  .board-intro {
-    max-width: 46rem;
-    padding-block: var(--space-8);
-    font-size: var(--text-sm);
-    line-height: var(--leading-normal);
-    color: var(--color-fg-muted);
-  }
-
-  .board-wants {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-4);
-    margin-top: var(--space-6);
-  }
-
-  .board-wants dd {
-    margin-top: var(--space-2);
-    color: var(--color-fg);
-  }
-
-  .board-face {
-    margin-top: var(--space-6);
+  .board-counts {
+    margin-top: var(--space-4);
+    color: var(--color-fg-faint);
   }
 
   .board {
@@ -276,46 +225,19 @@ const reels = [
     padding-top: var(--space-12);
   }
 
-  .board-notes__title {
-    font-size: var(--text-lg);
-  }
-
-  .board-notes__title + .board-notes__title,
-  .board-reels + .board-notes__where,
-  .board-laws + .board-notes__title {
-    margin-top: var(--space-12);
-  }
-
-  .board-notes__lede {
-    margin-top: var(--space-2);
-    font-size: var(--text-sm);
-    color: var(--color-fg-muted);
-  }
-
   .board-laws {
-    margin-top: var(--space-4);
-    padding-left: var(--space-6);
     font-size: var(--text-sm);
     line-height: var(--leading-snug);
     color: var(--color-fg-muted);
   }
 
-  .board-laws li + li {
-    margin-top: var(--space-2);
+  .board-mix {
+    margin: var(--space-8) 0 0;
   }
 
-  .board-reels {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-6);
-    margin-top: var(--space-6);
-  }
-
-  .board-reels__item {
-    margin: 0;
-  }
-
-  .board-reels video {
+  .board-mix video,
+  .board-reels video,
+  .board-reels img {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
@@ -323,12 +245,25 @@ const reels = [
     border-radius: var(--radius);
   }
 
+  .board-mix figcaption,
   .board-reels figcaption {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
     margin-top: var(--space-3);
     font-size: var(--text-sm);
+  }
+
+  .board-reels {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .board-reels__item {
+    margin: 0;
   }
 
   .board-notes__where {
@@ -350,10 +285,6 @@ const reels = [
   }
 
   @media (max-width: 48rem) {
-    .board-wants {
-      grid-template-columns: 1fr;
-    }
-
     .board__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }

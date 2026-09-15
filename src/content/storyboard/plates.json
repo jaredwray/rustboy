@@ -3,9 +3,9 @@
     "id": "01",
     "n": 1,
     "act": "I",
-    "title": "The keep in weather",
-    "line": "Lightning hits the building first. Cliff, rain, gothic server-fortress. Title card over a window full of rain.",
-    "status": "pass",
+    "title": "Keep in weather",
+    "line": "Storm night on the coastal data-keep. Lightning hits the building first. Title.",
+    "status": "finished",
     "kf": "kf01-keep",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf01-keep.b.png",
@@ -16,13 +16,13 @@
     "id": "02",
     "n": 2,
     "act": "I",
-    "title": "The false resurrection",
-    "line": "Green laser wakes him. Generator catch. Fabrication bay lamp. Table. Optic ignites. Body lock lives here.",
-    "status": "lock",
+    "title": "Awakening",
+    "line": "On the table, a green laser finds him after the building strike. Optic wakes. One face: spherical rust head, warm green eye left, empty socket right, crooked copper plate.",
+    "status": "finished",
     "kf": "kf02-awaken.CANON",
     "still": {
       "src": "https://media.rustboy.ai/stills/kf02-table.png",
-      "alt": "KF02 table — body lock"
+      "alt": "kf02 table — one face"
     },
     "clip": {
       "src": "https://media.rustboy.ai/clips/kf02-awaken.CANON.mp4"
@@ -33,21 +33,21 @@
     "n": 3,
     "act": "I",
     "title": "Born beside absence",
-    "line": "He sits up. Dust-outline of the unmade twin. He reaches. Does not fill it.",
-    "status": "pass",
+    "line": "Dust outline of an unfinished twin on the long table. He reaches. Nothing fills it.",
+    "status": "finished",
     "kf": "kf04-outline",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf04-outline.b.png",
-      "alt": "kf04 outline — dust of the unmade twin"
+      "alt": "kf04 outline — unfinished twin"
     }
   },
   {
     "id": "04",
     "n": 4,
     "act": "I",
-    "title": "The date that names him obsolete",
-    "line": "Cracked phone on the bench: August 2026, WAKE PAIR — BAY 3. He understands enough.",
-    "status": "lock",
+    "title": "The dead phone",
+    "line": "Cracked phone ghosts August 2026 and WAKE PAIR — BAY 3. He sets it down carefully.",
+    "status": "finished",
     "kf": "kf05e-phone",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf05e-phone.b.png",
@@ -62,8 +62,8 @@
     "n": 5,
     "act": "I",
     "title": "Rain on server glass",
-    "line": "Palm to the window. Tower in volumetric rain. Continuity pickup cleared a mid-plate laterality flip.",
-    "status": "lock",
+    "line": "Palm on storm glass. Tower in the rain. One green point against the keep.",
+    "status": "finished",
     "kf": "kf06f-glass",
     "clip": {
       "src": "https://media.rustboy.ai/clips/ship/kf06f-glass.mp4"
@@ -73,9 +73,9 @@
     "id": "06",
     "n": 6,
     "act": "I",
-    "title": "The lever nobody pulls",
-    "line": "Control dais. He studies the caged red lever. Leaves it. First moral choice: he will not pretend to be the departed.",
-    "status": "hold",
+    "title": "The unpulled lever",
+    "line": "Red caged lever. He studies it. Leaves it.",
+    "status": "parked",
     "kf": "kf07c-lever",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf07c-lever.b.png",
@@ -87,8 +87,8 @@
     "n": 7,
     "act": "I",
     "title": "Faces that are not his",
-    "line": "Curling ID badges. No match. He is unfiled. Head holds; chest plate still not the locked copper.",
-    "status": "hold",
+    "line": "Curling ID badges. None of them are him.",
+    "status": "parked",
     "kf": "kf08d-badges",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf08d-badges.b.png",
@@ -99,9 +99,9 @@
     "id": "08",
     "n": 8,
     "act": "I",
-    "title": "The well of light",
-    "line": "Spiral service stair. God rays, rust motes. He climbs. Plate holds; torso still cylindrical vs KF02.",
-    "status": "hold",
+    "title": "Well of light",
+    "line": "Spiral stair. Storm light above. He starts climbing.",
+    "status": "parked",
     "kf": "kf09d-well",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf09d-well.b.png",
@@ -113,8 +113,8 @@
     "n": 9,
     "act": "I",
     "title": "The sag",
-    "line": "Mid-climb power flicker. He sits with the leak of rain. Stands because he can.",
-    "status": "lock",
+    "line": "Midway, power dips. He sits with the rain leak. Stands because he can.",
+    "status": "finished",
     "kf": "kf10e-sag",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf10e-sag.b.png",
@@ -126,8 +126,8 @@
     "n": 10,
     "act": "I",
     "title": "Threshold",
-    "line": "Door of light. Wind, salt. He steps through. Face never turns to camera on this lock.",
-    "status": "lock",
+    "line": "Roof door. He steps through rear-on — face never turns to camera here.",
+    "status": "finished",
     "kf": "kf11j-threshold",
     "still": {
       "src": "https://media.rustboy.ai/stills/kf11j-threshold.png",
@@ -141,9 +141,9 @@
     "id": "11",
     "n": 11,
     "act": "I",
-    "title": "The world that does not look back",
-    "line": "Roof. Breaking storm. Gold seam on the water. Distant van — years-still, unreadable. Profile in gold.",
-    "status": "hold",
+    "title": "Gold seam / the door",
+    "line": "Breaking storm. Gold light on the water. Distant van that doesn’t become a savior. In the full short he looks down, not into the light as an ending.",
+    "status": "parked",
     "kf": "kf12c-gold",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf12c-gold.b.png",
@@ -154,17 +154,22 @@
     "id": "12",
     "n": 12,
     "act": "I",
-    "title": "The door (full short)",
-    "line": "Teaser held the roof as last image, then black. The full short does not cut. He looks down the cliff path.",
-    "status": "hinge"
+    "title": "Hinge (not a separate shoot)",
+    "line": "Same roof frame becomes the door into Act II — over the parapet onto the cliff path.",
+    "status": "finished",
+    "kf": "kf12c-gold",
+    "still": {
+      "src": "https://media.rustboy.ai/stills/ship/kf12c-gold.b.png",
+      "alt": "kf12c gold — hinge shares the roof frame"
+    }
   },
   {
     "id": "13",
     "n": 13,
     "act": "II",
-    "title": "Down, not over",
-    "line": "He looks down the wet switchbacks. Van resolves as a coat on a headrest. Nobody gets out. Over the parapet.",
-    "status": "lock",
+    "title": "Down the cliff",
+    "line": "Wet switchbacks. Keep becomes a place behind him.",
+    "status": "finished",
     "kf": "kf13b-down",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf13-down.b.png",
@@ -178,13 +183,13 @@
     "id": "14",
     "n": 14,
     "act": "II",
-    "title": "The path that was never printed",
-    "line": "Goat trail. Sea louder. The keep rises behind him as a place he left. Still is locked; the walk is parked.",
-    "status": "hold",
+    "title": "Path that was never printed",
+    "line": "Goat trail. Living color below.",
+    "status": "parked",
     "kf": "kf14d-path",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf14d-path.png",
-      "alt": "kf14d path — locked still, walk parked"
+      "alt": "kf14d path — still finished, walk parked"
     }
   },
   {
@@ -192,12 +197,12 @@
     "n": 15,
     "act": "II",
     "title": "Rain school",
-    "line": "Rain hits the crooked plate in the open. Water runs a seam into grass. The world wets him without meaning to fix or ruin him.",
-    "status": "lock",
+    "line": "Rain hits the crooked plate in the open. Weather, not a leak in stone.",
+    "status": "finished",
     "kf": "kf15c-rain",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf15c-rain.png",
-      "alt": "kf15c rain still"
+      "alt": "kf15c rain"
     },
     "clip": {
       "src": "https://media.rustboy.ai/clips/ship/kf15c-rain.mp4"
@@ -208,8 +213,8 @@
     "n": 16,
     "act": "II",
     "title": "Moss that is not rust",
-    "line": "Living green on a rock. Finger. Recoil. Same finger back. Hold. Continuity pickup cleared a profile laterality kill.",
-    "status": "lock",
+    "line": "Soft living green. Finger. Recoil. Same finger back.",
+    "status": "finished",
     "kf": "kf16c-moss",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf16-moss.b.png",
@@ -223,9 +228,9 @@
     "id": "17",
     "n": 17,
     "act": "II",
-    "title": "The tide pool that looks back",
-    "line": "A dish of sky in the rocks. Anemone. Hermit in a stolen shell. He does not try to keep the pool.",
-    "status": "lock",
+    "title": "Tide pool looks back",
+    "line": "A dish of sky. Something looks back. He does not keep the pool.",
+    "status": "finished",
     "kf": "kf17d-pool",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf17b-pool.b.png",
@@ -240,12 +245,12 @@
     "n": 18,
     "act": "II",
     "title": "Wind in grass",
-    "line": "Grass lays down, stands, lays down. A faint copper note from his plate. Still freeze stands; motion not locked.",
-    "status": "hold",
+    "line": "Grass lays and stands. Movement with no motor.",
+    "status": "parked",
     "kf": "kf18g-grass",
     "still": {
       "src": "https://media.rustboy.ai/stills/kf18g-grass.png",
-      "alt": "kf18g grass — parked freeze still"
+      "alt": "kf18g grass — parked freeze"
     }
   },
   {
@@ -253,12 +258,12 @@
     "n": 19,
     "act": "II",
     "title": "The theft",
-    "line": "A storm-petrel pecks the mismatched plate and steals a copper flake. Gone. First wound that is not the twin.",
-    "status": "lock",
+    "line": "Storm-petrel pecks a copper flake from the mismatched plate and flies.",
+    "status": "finished",
     "kf": "kf19c-petrel",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf19c-petrel.png",
-      "alt": "kf19c petrel still"
+      "alt": "kf19c petrel"
     },
     "clip": {
       "src": "https://media.rustboy.ai/clips/ship/kf19c-petrel.mp4"
@@ -269,12 +274,12 @@
     "n": 20,
     "act": "II",
     "title": "The return",
-    "line": "Nest ledge: plastic, bone, wire. The petrel drops the flake at his feet. Not food. Not apology. A leftover, given back.",
-    "status": "lock",
+    "line": "Nest ledge. Flake given back. Leftover returned.",
+    "status": "finished",
     "kf": "kf20e-nest",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf20e-nest.png",
-      "alt": "kf20e nest still"
+      "alt": "kf20e nest"
     },
     "clip": {
       "src": "https://media.rustboy.ai/clips/ship/kf20e-nest.mp4"
@@ -284,25 +289,25 @@
     "id": "21",
     "n": 21,
     "act": "II",
-    "title": "The three-legged fox",
-    "line": "Downhill, failing a crab. Old amputation. Leftover recognizes leftover across ten yards of wet rock.",
-    "status": "hold"
+    "title": "Fox at ten yards",
+    "line": "Three-legged coastal fox. Recognition across wet rock — not a rescue.",
+    "status": "parked"
   },
   {
     "id": "22",
     "n": 22,
     "act": "III",
-    "title": "Shared weather, not a rescue",
-    "line": "Squall. Same lee of a basalt tooth. She sleeps with one eye. He sits. Petrel above. That is the fellowship.",
-    "status": "hold"
+    "title": "Shared lee",
+    "line": "Squall. Same basalt lee for fox, robot, petrel above. Nobody saves anybody.",
+    "status": "parked"
   },
   {
     "id": "23",
     "n": 23,
     "act": "III",
-    "title": "The empty socket / the empty air",
-    "line": "He touches his dark socket. She licks the old seam where a fourth leg is not. Neither fills the other’s absence.",
-    "status": "hold",
+    "title": "Absence rhymes",
+    "line": "Empty socket and missing hind rhyme. Neither fills the other.",
+    "status": "parked",
     "kf": "kf23d-absence",
     "still": {
       "src": "https://media.rustboy.ai/stills/ship/kf23d-absence.b.png",
@@ -314,15 +319,15 @@
     "n": 24,
     "act": "III",
     "title": "He does not go back",
-    "line": "Squall tears. Keep small on the headland. He looks at it the way he looked at the unpulled lever. Leaves it.",
-    "status": "hold"
+    "line": "Keep small on the headland. He walks away.",
+    "status": "parked"
   },
   {
     "id": "25",
     "n": 25,
     "act": "III",
-    "title": "Horizon hold",
-    "line": "He walks. Fox at a chosen distance. Petrel as a dark hyphen over the water. Keep behind, gold ahead. End card: rustboy.ai.",
-    "status": "hold"
+    "title": "Horizon",
+    "line": "Fox at a chosen distance. Petrel a dark hyphen over the water. Horizon ahead. End card rustboy.ai.",
+    "status": "parked"
   }
 ]

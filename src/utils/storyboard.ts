@@ -4,30 +4,20 @@ export type StoryPlate = CollectionEntry<"storyboard">;
 
 export type PlateStatus = StoryPlate["data"]["status"];
 
-export type StatusTone = "finished" | "parked" | "waiting";
-
 export const ACTS = [
   { id: "I" as const, title: "The Keep" },
   { id: "II" as const, title: "The Living World" },
   { id: "III" as const, title: "Fellowship / Horizon" },
 ];
 
-/** Plain-English chip, with the board code kept for the legend. */
-export function statusChip(status: PlateStatus): {
-  label: string;
-  code: string;
-  tone: StatusTone;
-} {
-  switch (status) {
-    case "lock":
-      return { label: "Finished", code: "LOCK", tone: "finished" };
-    case "hold":
-      return { label: "Parked", code: "HOLD", tone: "parked" };
-    case "pass":
-      return { label: "Waiting", code: "PASS", tone: "waiting" };
-    case "hinge":
-      return { label: "Waiting", code: "HINGE", tone: "waiting" };
-  }
+const STATUS_LABEL: Record<PlateStatus, string> = {
+  finished: "Finished",
+  parked: "Parked",
+  waiting: "Waiting",
+};
+
+export function statusLabel(status: PlateStatus): string {
+  return STATUS_LABEL[status];
 }
 
 export function padPlate(n: number): string {
@@ -46,10 +36,10 @@ export function groupPlatesByAct(plates: StoryPlate[]) {
   }));
 }
 
-export function countByTone(plates: StoryPlate[]) {
+export function countByStatus(plates: StoryPlate[]) {
   const counts = { finished: 0, parked: 0, waiting: 0 };
   for (const plate of plates) {
-    counts[statusChip(plate.data.status).tone] += 1;
+    counts[plate.data.status] += 1;
   }
   return counts;
 }

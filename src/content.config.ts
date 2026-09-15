@@ -44,11 +44,8 @@ const storyboard = defineCollection({
     title: z.string(),
     /** One or two sentences. The cell is a slate, not an essay. */
     line: z.string(),
-    /**
-     * Board code. Shown in plain English on the page:
-     * lock → finished, hold → parked, pass/hinge → waiting.
-     */
-    status: z.enum(["lock", "hold", "pass", "hinge"]),
+    /** Public chip: Finished / Parked / Waiting. */
+    status: z.enum(["finished", "parked", "waiting"]),
     /** Keyframe stem, when one exists (e.g. kf11j-threshold). */
     kf: z.string().optional(),
     still: z
