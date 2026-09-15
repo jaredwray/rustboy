@@ -3,7 +3,7 @@ import "../styles/prose.css";
 
 import PageHeader from "../components/PageHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { AUTHOR } from "../config";
+import { AUTHOR, MEDIA } from "../config";
 
 const description =
   "Beat sheet for the rustboy.ai short. LOCK is frozen after QC. HOLD is parked unfinished. We do not dress HOLDs as finished.";
@@ -71,19 +71,20 @@ const boardTruth = [
           dust; no creator reunion; the van is a coat on a headrest; friends
           are leftover lives, not rescue; nature is teacher, not backdrop; tone
           can grow tender, it does not grow cute. One face the whole way —
-          KF02 table: spherical rust head, viewer-left warm green optic,
-          viewer-right empty socket, crooked copper plate.
+          pack-hero-LOCK-2026-09-14: spherical rust head, viewer-left warm
+          green optic, viewer-right empty socket, triangular nose cavity,
+          thin mouth slit, chest circle through torn copper.
         </p>
 
         <figure>
           <img
-            src="https://media.rustboy.ai/stills/kf02-table.png"
-            alt="KF02 table — body lock"
-            width="1536"
-            height="1024"
+            src={MEDIA.heroStill}
+            alt={MEDIA.heroStillAlt}
+            width="1792"
+            height="1008"
             loading="eager"
           />
-          <figcaption>KF02 table — body lock</figcaption>
+          <figcaption>pack-hero-LOCK-2026-09-14 — character-pack law</figcaption>
         </figure>
 
         <p>

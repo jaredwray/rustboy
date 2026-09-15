@@ -17,6 +17,14 @@ export interface SocialLink {
   href: string;
 }
 
+/**
+ * Locked character-pack hero still (pack-hero-LOCK-2026-09-14, md5 413750c2).
+ * R2 key: rustboy-media/stills/ship/pack-hero-LOCK-2026-09-14.png
+ * Do not delete the prior KF02 table object.
+ */
+const HERO_LOCK_STILL =
+  "https://media.rustboy.ai/stills/ship/pack-hero-LOCK-2026-09-14.png";
+
 export const SITE = {
   /** Absolute origin of the deployed site. No trailing slash. */
   url: "https://rustboy.ai",
@@ -32,8 +40,11 @@ export const SITE = {
   lang: "en",
   /** Used for og:locale. */
   locale: "en_US",
-  /** Fallback OG image, relative to public/. Used for pages without one. */
-  defaultOgImage: "/og-default.png",
+  /**
+   * Fallback OG image. Absolute media URL of the locked hero still so
+   * homepage / about / storyboard shares show the same face as the site.
+   */
+  defaultOgImage: HERO_LOCK_STILL,
 } as const;
 
 export const AUTHOR = {
@@ -80,9 +91,10 @@ export const BLOG = {
 export const MEDIA = {
   bucket: "rustboy-media",
   publicBaseUrl: "https://media.rustboy.ai",
-  /** Homepage hero — KF02 body lock. Remote only; never a file in this repo. */
-  heroStill: "https://media.rustboy.ai/stills/kf02-table.png",
-  heroStillAlt: "KF02 table — body lock. One face.",
+  /** Homepage hero — pack-hero-LOCK-2026-09-14. Remote only; never a file in this repo. */
+  heroStill: HERO_LOCK_STILL,
+  heroStillAlt:
+    "Locked hero still — spherical rust head, viewer-left green optic, thin scrap kid.",
   /** Homepage band — kf11j rear lock. */
   bandStill: "https://media.rustboy.ai/stills/kf11j-threshold.png",
   bandStillAlt: "kf11j threshold — rear lock.",
