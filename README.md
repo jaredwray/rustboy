@@ -14,7 +14,7 @@ Requires **Node.js 22.12 or newer** (even-numbered releases: 22 or 24). Package 
 | `pnpm build`   | Build static output to `./dist`          |
 | `pnpm preview` | Serve the built site locally             |
 
-Site metadata, navigation, and the ink flags live in [`src/config.ts`](src/config.ts). Posts are Markdown or MDX in [`src/content/blog/`](src/content/blog/). The film board is [`/storyboard`](https://rustboy.ai/storyboard/) — sequential cells driven by [`src/content/storyboard/beats.json`](src/content/storyboard/beats.json).
+Site metadata, navigation, and the ink flags live in [`src/config.ts`](src/config.ts). Posts are Markdown or MDX in [`src/content/blog/`](src/content/blog/). The film board is [`/storyboard`](https://rustboy.ai/storyboard/) — sequential plates driven by [`src/content/storyboard/plates.json`](src/content/storyboard/plates.json).
 
 ## Media (do not store images or videos in git)
 
@@ -63,52 +63,52 @@ heroImageAlt: "A short description"
 
 Scratch files can sit in `uploads/` while you wrangle them; that directory is gitignored too.
 
-## Storyboard beats
+## Storyboard plates
 
-[`/storyboard`](https://rustboy.ai/storyboard/) is a production board: beats 1–25 left to right, each cell a slate plus a 16:9 frame. Empty frames stay empty until a public media URL is set. Do not invent local image paths.
+[`/storyboard`](https://rustboy.ai/storyboard/) is a production board: plates 1–25 left to right (kf## keyframes), each cell a slate plus a 16:9 frame. Empty frames stay empty until a public media URL is set. Do not invent local image paths. CDN ship objects often need a `.b` sibling (`kf13b-down.b.mp4`) — use the URL Chronicle published.
 
-Beats live in one collection file so Writer/Chronicle can plug media without touching the page:
+Plates live in one collection file so Writer/Chronicle can plug media without touching the page:
 
-[`src/content/storyboard/beats.json`](src/content/storyboard/beats.json)
+[`src/content/storyboard/plates.json`](src/content/storyboard/plates.json)
 
 Each object:
 
 | Field | Notes |
 | --- | --- |
 | `id` | Unique string (`"01"`…`"25"`). Required by the Astro file loader. |
-| `beat` | Sequence number. The board sorts on this. |
+| `n` | Sequence number. The board sorts on this. |
 | `act` | `"I"`, `"II"`, or `"III"`. |
 | `title` | Short slate title. |
 | `line` | One or two sentences. |
 | `status` | `lock` (finished), `hold` (parked), `pass` or `hinge` (waiting). |
-| `plate` | Optional filename stem, e.g. `kf11j-threshold`. |
+| `kf` | Optional keyframe stem, e.g. `kf11j-threshold`. |
 | `still` | Optional `{ "src", "alt" }`. `src` must be `https://media.rustboy.ai/…`. |
 | `clip` | Optional `{ "src" }`. Same URL rule. Omit both to keep the empty slot. |
 
-To add a still or clip for a beat that is already on the board:
+To add a still or clip for a plate that is already on the board:
 
 1. Upload to R2 (see above). Example:
 
 ```bash
-pnpm exec wrangler r2 object put rustboy-media/stills/kf21-fox.png \
-  --file ./kf21-fox.png \
+pnpm exec wrangler r2 object put rustboy-media/stills/ship/kf21-fox.b.png \
+  --file ./kf21-fox.b.png \
   --content-type image/png \
   --remote
 ```
 
-2. Edit that beat in `beats.json`. Add only public URLs:
+2. Edit that plate in `plates.json`. Add only public URLs:
 
 ```json
 "still": {
-  "src": "https://media.rustboy.ai/stills/kf21-fox.png",
+  "src": "https://media.rustboy.ai/stills/ship/kf21-fox.b.png",
   "alt": "kf21 fox — leftover recognizes leftover"
 },
 "clip": {
-  "src": "https://media.rustboy.ai/clips/kf21-fox.mp4"
+  "src": "https://media.rustboy.ai/clips/ship/kf21-fox.b.mp4"
 }
 ```
 
-3. Leave `still` and `clip` off until the object is on the bucket. An empty frame is honest; a broken image is not.
+3. Leave `still` and `clip` off until the object is on the bucket. An empty frame is honest; a broken image is not. Fox–horizon plates (kf21–22, kf24–25) stay empty until Director clears them.
 
 The page reads the collection via `getCollection("storyboard")` in [`src/pages/storyboard.astro`](src/pages/storyboard.astro). Schema lives in [`src/content.config.ts`](src/content.config.ts).
 

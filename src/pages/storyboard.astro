@@ -5,16 +5,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { AUTHOR } from "../config";
 import {
   countByTone,
-  getStoryBeats,
-  groupBeatsByAct,
+  getStoryPlates,
+  groupPlatesByAct,
 } from "../utils/storyboard";
 
 const description =
-  "Production board for the rustboy.ai short. Beats 1–25 in order, with stills and clips as they land. Finished is LOCK. Parked is HOLD. Waiting is PASS.";
+  "Production board for the rustboy.ai short. Plates 1–25 in order, with stills and clips as they land. Finished is LOCK. Parked is HOLD. Waiting is PASS.";
 
-const beats = await getStoryBeats();
-const acts = groupBeatsByAct(beats);
-const counts = countByTone(beats);
+const plates = await getStoryPlates();
+const acts = groupPlatesByAct(plates);
+const counts = countByTone(plates);
 
 const laws = [
   "Plate wound = metal only. No glowing invent on the chest.",
@@ -42,21 +42,18 @@ const reels = [
     <PageHeader
       eyebrow="Film"
       title="The storyboard"
-      lede="Beat 1 → 25, left to right. Each cell is a slate: number, title, one line, and a media frame that fills as stills and clips land."
+      lede="Plate 1 → 25, left to right. Each cell is a slate: number, title, one line, and a media frame that fills as stills and clips land."
     >
       <p class="board-legend label">
         <span class="board-legend__chip board-legend__chip--finished">
           Finished
-        </span>
-        is LOCK.
+        </span>{" "}is LOCK.
         <span class="board-legend__chip board-legend__chip--parked">
           Parked
-        </span>
-        is HOLD.
+        </span>{" "}is HOLD.
         <span class="board-legend__chip board-legend__chip--waiting">
           Waiting
-        </span>
-        is PASS (or a hinge). We do not dress parked cells as finished.
+        </span>{" "}is PASS (or a hinge). We do not dress parked cells as finished.
       </p>
       <p class="board-counts label">
         {counts.finished} finished · {counts.parked} parked · {
@@ -104,18 +101,18 @@ const reels = [
                 {act.title}
               </h2>
               <p class="label board__act-range">
-                {act.beats.length
-                  ? `${String(act.beats[0].data.beat).padStart(2, "0")}–${String(act.beats.at(-1)!.data.beat).padStart(2, "0")}`
+                {act.plates.length
+                  ? `${String(act.plates[0].data.n).padStart(2, "0")}–${String(act.plates.at(-1)!.data.n).padStart(2, "0")}`
                   : ""}
               </p>
             </header>
             <ol
               class="board__grid"
-              start={act.beats[0]?.data.beat ?? 1}
+              start={act.plates[0]?.data.n ?? 1}
             >
-              {act.beats.map((beat) => (
+              {act.plates.map((plate) => (
                 <li class="board__slot">
-                  <StoryboardCell beat={beat} />
+                  <StoryboardCell plate={plate} />
                 </li>
               ))}
             </ol>
@@ -156,9 +153,9 @@ const reels = [
       </div>
 
       <p class="board-notes__where">
-        Story is written through beat 25. Empty frames are waiting for a public
+        Story is written through plate 25. Empty frames are waiting for a public
         <code>https://media.rustboy.ai/…</code> still or clip — plug the URL into{" "}
-        <code>src/content/storyboard/beats.json</code>. Making-of notes stay in
+        <code>src/content/storyboard/plates.json</code>. Making-of notes stay in
         {" "}<a href="/blog/">Notes</a>.
       </p>
       <p>— {AUTHOR.name}</p>

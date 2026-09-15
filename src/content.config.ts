@@ -36,9 +36,10 @@ const blog = defineCollection({
 });
 
 const storyboard = defineCollection({
-  loader: file("src/content/storyboard/beats.json"),
+  loader: file("src/content/storyboard/plates.json"),
   schema: z.object({
-    beat: z.number().int().min(1),
+    /** Sequence on the board, left to right (1–25). */
+    n: z.number().int().min(1),
     act: z.enum(["I", "II", "III"]),
     title: z.string(),
     /** One or two sentences. The cell is a slate, not an essay. */
@@ -48,8 +49,8 @@ const storyboard = defineCollection({
      * lock → finished, hold → parked, pass/hinge → waiting.
      */
     status: z.enum(["lock", "hold", "pass", "hinge"]),
-    /** Plate filename stem, when one exists (e.g. kf11j-threshold). */
-    plate: z.string().optional(),
+    /** Keyframe stem, when one exists (e.g. kf11j-threshold). */
+    kf: z.string().optional(),
     still: z
       .object({
         src: mediaUrl,

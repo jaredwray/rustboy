@@ -1,18 +1,18 @@
 ---
-import { padBeat, statusChip, type StoryBeat } from "../utils/storyboard";
+import { padPlate, statusChip, type StoryPlate } from "../utils/storyboard";
 
 interface Props {
-  beat: StoryBeat;
+  plate: StoryPlate;
 }
 
-const { beat } = Astro.props;
-const { beat: n, title, line, status, plate, still, clip } = beat.data;
+const { plate } = Astro.props;
+const { n, title, line, status, kf, still, clip } = plate.data;
 const chip = statusChip(status);
 const hasMedia = Boolean(still || clip);
-const number = padBeat(n);
+const number = padPlate(n);
 ---
 
-<article class="cell" id={`beat-${number}`} data-status={status}>
+<article class="cell" id={`kf-${number}`} data-status={status}>
   <div class="cell__frames">
     {
       still && (
@@ -37,7 +37,7 @@ const number = padBeat(n);
             width="1920"
             height="1080"
             src={String(clip.src)}
-            title={`${number} ${title} — clip`}
+            title={`${kf ?? number} ${title} — clip`}
           />
         </figure>
       )
@@ -59,7 +59,7 @@ const number = padBeat(n);
       </span>
     </p>
     <h3 class="cell__title">{title}</h3>
-    {plate && <p class="cell__plate label">{plate}</p>}
+    {kf && <p class="cell__kf label">{kf}</p>}
     <p class="cell__line">{line}</p>
   </header>
 </article>
@@ -160,7 +160,7 @@ const number = padBeat(n);
     text-wrap: balance;
   }
 
-  .cell__plate {
+  .cell__kf {
     color: var(--color-fg-faint);
   }
 

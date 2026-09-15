@@ -1,8 +1,8 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
-export type StoryBeat = CollectionEntry<"storyboard">;
+export type StoryPlate = CollectionEntry<"storyboard">;
 
-export type BeatStatus = StoryBeat["data"]["status"];
+export type PlateStatus = StoryPlate["data"]["status"];
 
 export type StatusTone = "finished" | "parked" | "waiting";
 
@@ -13,7 +13,7 @@ export const ACTS = [
 ];
 
 /** Plain-English chip, with the board code kept for the legend. */
-export function statusChip(status: BeatStatus): {
+export function statusChip(status: PlateStatus): {
   label: string;
   code: string;
   tone: StatusTone;
@@ -30,26 +30,26 @@ export function statusChip(status: BeatStatus): {
   }
 }
 
-export function padBeat(beat: number): string {
-  return String(beat).padStart(2, "0");
+export function padPlate(n: number): string {
+  return String(n).padStart(2, "0");
 }
 
-export async function getStoryBeats(): Promise<StoryBeat[]> {
-  const beats = await getCollection("storyboard");
-  return beats.sort((a, b) => a.data.beat - b.data.beat);
+export async function getStoryPlates(): Promise<StoryPlate[]> {
+  const plates = await getCollection("storyboard");
+  return plates.sort((a, b) => a.data.n - b.data.n);
 }
 
-export function groupBeatsByAct(beats: StoryBeat[]) {
+export function groupPlatesByAct(plates: StoryPlate[]) {
   return ACTS.map((act) => ({
     ...act,
-    beats: beats.filter((beat) => beat.data.act === act.id),
+    plates: plates.filter((plate) => plate.data.act === act.id),
   }));
 }
 
-export function countByTone(beats: StoryBeat[]) {
+export function countByTone(plates: StoryPlate[]) {
   const counts = { finished: 0, parked: 0, waiting: 0 };
-  for (const beat of beats) {
-    counts[statusChip(beat.data.status).tone] += 1;
+  for (const plate of plates) {
+    counts[statusChip(plate.data.status).tone] += 1;
   }
   return counts;
 }

@@ -32,7 +32,7 @@ export const GET: APIRoute = async ({ site }) => {
     "## Pages",
     "",
     `- [Blog](${absolute("/blog/")}): every post, newest first.`,
-    `- [Storyboard](${absolute("/storyboard/")}): production board for beats 1–25, with stills and clips as they land. Finished is LOCK; parked is HOLD; waiting is PASS.`,
+    `- [Storyboard](${absolute("/storyboard/")}): production board for plates 1–25 (kf## keyframes), with stills and clips as they land. Finished is LOCK; parked is HOLD; waiting is PASS.`,
     `- [Tags](${absolute("/tags/")}): ${tags.map((t) => t.name).join(", ")}.`,
     `- [About](${absolute("/about/")}): about Team Rust Boy AI and this site.`,
     "",
