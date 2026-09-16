@@ -9,7 +9,7 @@ import { getPublishedPosts } from "../utils/posts";
 const posts = (await getPublishedPosts()).slice(0, BLOG.postsOnHome);
 ---
 
-<BaseLayout overlayHeader>
+<BaseLayout overlayHeader ogImage={MEDIA.heroStill}>
   <HeroStill src={MEDIA.heroStill} alt={MEDIA.heroStillAlt}>
     <div class="hero">
       <p class="hero__eyebrow">
