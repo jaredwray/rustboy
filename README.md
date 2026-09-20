@@ -65,7 +65,7 @@ Scratch files can sit in `uploads/` while you wrangle them; that directory is gi
 
 ## Storyboard plates
 
-[`/storyboard`](https://rustboy.ai/storyboard/) is a production board: plates 1–25 left to right (kf## keyframes), each cell a slate plus a 16:9 frame. Empty frames stay empty until a public media URL is set. Do not invent local image paths. CDN ship objects often need a `.b` sibling (`kf13b-down.b.mp4`) — use the URL Chronicle published.
+[`/storyboard`](https://rustboy.ai/storyboard/) is a production board: sequential plates left to right (kf## keyframes), each cell a slate plus a 16:9 frame. The live spine is threshold → path (no gold roof, no cliff plunge). Cut plates sit in a separate “out of picture” strip. Empty frames stay empty until a public media URL is set. Do not invent local image paths. CDN ship objects often need a `.b` sibling — use the URL Chronicle published.
 
 Plates live in one collection file so Writer/Chronicle can plug media without touching the page:
 
@@ -80,7 +80,7 @@ Each object:
 | `act` | `"I"`, `"II"`, or `"III"`. |
 | `title` | Short slate title. |
 | `line` | One or two sentences. |
-| `status` | `finished`, `parked`, or `waiting` — shown as those words on the page. |
+| `status` | `finished`, `parked`, `waiting`, or `cut` — shown as those words on the page. `cut` is out of picture, not a reshoot. |
 | `kf` | Optional keyframe stem, e.g. `kf11j-threshold`. |
 | `still` | Optional `{ "src", "alt" }`. `src` must be `https://media.rustboy.ai/…`. |
 | `clip` | Optional `{ "src" }`. Same URL rule. Omit both to keep the empty slot. |
@@ -108,7 +108,7 @@ pnpm exec wrangler r2 object put rustboy-media/stills/ship/kf21-fox.b.png \
 }
 ```
 
-3. Leave `still` and `clip` off until the object is on the bucket. An empty frame is honest; a broken image is not. Fox–horizon plates (kf21–22, kf24–25) stay empty until Director clears them.
+3. Leave `still` and `clip` off until the object is on the bucket. An empty frame is honest; a broken image is not. Finished plates without a public URL stay empty and read “Finished in the cut.” Do not point at an older leftover take. Gold/roof (`kf12`) and cliff-down (`kf13`) are cut — do not put them back on the sequential board.
 
 The page reads the collection via `getCollection("storyboard")` in [`src/pages/storyboard.astro`](src/pages/storyboard.astro). Schema lives in [`src/content.config.ts`](src/content.config.ts).
 

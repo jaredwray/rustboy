@@ -44,8 +44,8 @@ const storyboard = defineCollection({
     title: z.string(),
     /** One or two sentences. The cell is a slate, not an essay. */
     line: z.string(),
-    /** Public chip: Finished / Parked / Waiting. */
-    status: z.enum(["finished", "parked", "waiting"]),
+    /** Public chip: Finished / Parked / Waiting / Cut. */
+    status: z.enum(["finished", "parked", "waiting", "cut"]),
     /** Keyframe stem, when one exists (e.g. kf11j-threshold). */
     kf: z.string().optional(),
     still: z

@@ -5,15 +5,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { AUTHOR } from "../config";
 import {
   countByStatus,
+  getActivePlates,
+  getCutPlates,
   getStoryPlates,
   groupPlatesByAct,
 } from "../utils/storyboard";
 
 const description =
-  "Production board for the rustboy.ai short. Plates 1–25 in order, with stills and clips as they land. Finished, parked, or waiting.";
+  "Production board for the rustboy.ai short. Sequential plates as they stand in picture: threshold to path, nature lane finished, gold roof and cliff-down cut. Finished, parked, waiting, or cut.";
 
 const plates = await getStoryPlates();
-const acts = groupPlatesByAct(plates);
+const active = getActivePlates(plates);
+const cut = getCutPlates(plates);
+const acts = groupPlatesByAct(active);
 const counts = countByStatus(plates);
 ---
 
@@ -22,8 +26,12 @@ const counts = countByStatus(plates);
     <PageHeader
       eyebrow="Film"
       title="Storyboard"
-      lede="We fill each cell as the plate is finished — still and clip when we have them."
+      lede="Threshold to path, then weather. Gold roof and the cliff plunge are out. Nature lane is finished under the locked look."
     >
+      <p class="board-spine label">
+        Keep → threshold → path → rain / moss / pool / grass → petrel → fox →
+        horizon.
+      </p>
       <p class="board-legend label">
         <span class="board-legend__chip board-legend__chip--finished">
           Finished
@@ -34,40 +42,32 @@ const counts = countByStatus(plates);
         <span class="board-legend__chip board-legend__chip--waiting">
           Waiting
         </span>{" "}is an empty slot until we shoot.
+        <span class="board-legend__chip board-legend__chip--cut">
+          Cut
+        </span>{" "}is out of picture — not a reshoot.
       </p>
       <p class="board-counts label">
         {counts.finished} finished · {counts.parked} parked · {
           counts.waiting
-        } waiting
+        } waiting · {counts.cut} cut
       </p>
     </PageHeader>
 
     <section class="board-reels board-reels--hero" aria-label="Screening spine">
-      <figure class="board-reels__item">
+      <figure class="board-reels__item board-reels__item--wide">
         <video
           controls
           preload="none"
           width="1920"
           height="1080"
-          src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-10.mp4"
-          title="Face-safe progress cut"
+          src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-19c.mp4"
+          title="FACE_SAFE 2026-09-19c progress cut"
         ></video>
         <figcaption>
-          <span>Face-safe progress cut</span>
-          <span class="label">Screening spine</span>
-        </figcaption>
-      </figure>
-      <figure class="board-reels__item">
-        <img
-          src="https://media.rustboy.ai/stills/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-10_contact.jpg"
-          alt="FACE_SAFE 2026-09-10 contact sheet"
-          width="1280"
-          height="720"
-          loading="lazy"
-        />
-        <figcaption>
-          <span>Contact sheet</span>
-          <span class="label">Same cut</span>
+          <span>FACE_SAFE 2026-09-19c</span>
+          <span class="label">
+            Director progress cut · md5 ab82ec5f · ~133s silent
+          </span>
         </figcaption>
       </figure>
     </section>
@@ -102,10 +102,40 @@ const counts = countByStatus(plates);
       }
     </div>
 
+    {
+      cut.length > 0 && (
+        <section class="board-cut" aria-labelledby="cut-from-picture">
+          <header class="board__act-head">
+            <h2 class="board__act-title" id="cut-from-picture">
+              <span class="label">Out of picture</span>
+              Cut
+            </h2>
+            <p class="label board__act-range">
+              Outline · gold roof · cliff-down
+            </p>
+          </header>
+          <p class="board-cut__lede">
+            These beats are not in the cut. The adventure does not climb the gold
+            roof or fall the cliff. Outline stays out. Not a reshoot queue.
+          </p>
+          <ol class="board__grid board__grid--cut">
+            {cut.map((plate) => (
+              <li class="board__slot">
+                <StoryboardCell plate={plate} />
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+
     <section class="board-notes">
       <p class="board-laws">
         Plate wound after the theft = metal/copper tear only. Fox stump = left
-        hind only.
+        hind only. Nature lane (rain, moss, pool, grass) is finished under the
+        locked look. Fox lane and horizon are in the cut. Individual stills and
+        clips land here when a public URL is on the cupboard — empty finished
+        cells are honest, not HOLDs.
       </p>
       <figure class="board-mix">
         <video
@@ -118,7 +148,7 @@ const counts = countByStatus(plates);
         ></video>
         <figcaption>
           <span>Act I scored reel</span>
-          <span class="label">Secondary — keep plates only</span>
+          <span class="label">Legacy — keep plates only</span>
         </figcaption>
       </figure>
       <p class="board-notes__where">
@@ -133,13 +163,21 @@ const counts = countByStatus(plates);
 </BaseLayout>
 
 <style>
+  .board-spine {
+    max-width: 46rem;
+    margin-top: var(--space-6);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--color-fg-muted);
+  }
+
   .board-legend {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.35em 0.45em;
     max-width: 46rem;
-    margin-top: var(--space-6);
+    margin-top: var(--space-4);
     text-transform: none;
     letter-spacing: 0.02em;
     color: var(--color-fg-muted);
@@ -165,6 +203,12 @@ const counts = countByStatus(plates);
 
   .board-legend__chip--waiting {
     color: var(--color-fg-faint);
+  }
+
+  .board-legend__chip--cut {
+    color: var(--color-fg-faint);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
   }
 
   .board-counts {
@@ -256,7 +300,7 @@ const counts = countByStatus(plates);
 
   .board-reels {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 46rem);
     gap: var(--space-6);
     margin-top: var(--space-8);
     margin-bottom: var(--space-12);
@@ -264,6 +308,24 @@ const counts = countByStatus(plates);
 
   .board-reels__item {
     margin: 0;
+  }
+
+  .board-cut {
+    padding-bottom: var(--space-16);
+    border-top: var(--rule-width) solid var(--color-rule);
+    padding-top: var(--space-12);
+  }
+
+  .board-cut__lede {
+    max-width: 46rem;
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-fg-muted);
+  }
+
+  .board__grid--cut {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .board-notes__where {

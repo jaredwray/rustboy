@@ -1,5 +1,10 @@
 ---
-import { padPlate, statusLabel, type StoryPlate } from "../utils/storyboard";
+import {
+  emptyFrameLabel,
+  padPlate,
+  statusLabel,
+  type StoryPlate,
+} from "../utils/storyboard";
 
 interface Props {
   plate: StoryPlate;
@@ -44,8 +49,8 @@ const number = padPlate(n);
     }
     {
       !hasMedia && (
-        <div class="cell__frame cell__frame--empty">
-          <span class="label">Coming as we shoot</span>
+        <div class:list={["cell__frame", "cell__frame--empty", `cell__frame--empty-${status}`]}>
+          <span class="label">{emptyFrameLabel(status)}</span>
         </div>
       )
     }
@@ -155,6 +160,30 @@ const number = padPlate(n);
 
   .cell__chip--waiting {
     color: var(--color-fg-faint);
+  }
+
+  .cell__chip--cut {
+    color: var(--color-fg-faint);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+
+  .cell[data-status="cut"] {
+    opacity: 0.72;
+  }
+
+  .cell[data-status="cut"] .cell__title {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+
+  .cell__frame--empty-finished .label {
+    color: var(--color-optic);
+  }
+
+  .cell__frame--empty-cut .label {
+    color: var(--color-fg-faint);
+    text-decoration: line-through;
   }
 
   .cell__title {

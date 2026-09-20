@@ -14,6 +14,7 @@ const STATUS_LABEL: Record<PlateStatus, string> = {
   finished: "Finished",
   parked: "Parked",
   waiting: "Waiting",
+  cut: "Cut",
 };
 
 export function statusLabel(status: PlateStatus): string {
@@ -24,9 +25,21 @@ export function padPlate(n: number): string {
   return String(n).padStart(2, "0");
 }
 
+export function isCutPlate(plate: StoryPlate): boolean {
+  return plate.data.status === "cut";
+}
+
 export async function getStoryPlates(): Promise<StoryPlate[]> {
   const plates = await getCollection("storyboard");
   return plates.sort((a, b) => a.data.n - b.data.n);
+}
+
+export function getActivePlates(plates: StoryPlate[]): StoryPlate[] {
+  return plates.filter((plate) => !isCutPlate(plate));
+}
+
+export function getCutPlates(plates: StoryPlate[]): StoryPlate[] {
+  return plates.filter(isCutPlate);
 }
 
 export function groupPlatesByAct(plates: StoryPlate[]) {
@@ -37,9 +50,22 @@ export function groupPlatesByAct(plates: StoryPlate[]) {
 }
 
 export function countByStatus(plates: StoryPlate[]) {
-  const counts = { finished: 0, parked: 0, waiting: 0 };
+  const counts = { finished: 0, parked: 0, waiting: 0, cut: 0 };
   for (const plate of plates) {
     counts[plate.data.status] += 1;
   }
   return counts;
+}
+
+export function emptyFrameLabel(status: PlateStatus): string {
+  switch (status) {
+    case "finished":
+      return "Finished in the cut";
+    case "parked":
+      return "Frame, not finished motion";
+    case "cut":
+      return "Cut from picture";
+    default:
+      return "Coming as we shoot";
+  }
 }
