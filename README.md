@@ -65,7 +65,7 @@ Scratch files can sit in `uploads/` while you wrangle them; that directory is gi
 
 ## Storyboard plates
 
-[`/storyboard`](https://rustboy.ai/storyboard/) is a production board: sequential plates left to right (kf## keyframes), each cell a slate plus a 16:9 frame. The working spine is purpose unknown → help (wrong answers in the keep, nature as school, sticky situation + help still Waiting). Live picture bridge is threshold → path (no gold roof, no cliff plunge). CUT plates are a footnote, not sequential cells. Empty frames stay empty until a public media URL is set. Do not invent local image paths. CDN ship objects often need a `.b` sibling — use the URL Chronicle published.
+[`/storyboard`](https://rustboy.ai/storyboard/) is a production board: sequential public plates 1–24 left to right, each cell a slate plus a 16:9 frame. The working spine is purpose unknown → help (wrong answers in the keep, nature as school, tide channel + help still Waiting). Live picture bridge is threshold → path (no gold roof, no cliff plunge). CUT plates are a footnote, not sequential cells. Empty frames stay empty until a public media URL is set. Do not invent local image paths. CDN ship objects often need a `.b` sibling — use the URL Chronicle published.
 
 Plates live in one collection file so Writer/Chronicle can plug media without touching the page:
 
