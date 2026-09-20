@@ -18,7 +18,7 @@ export const ACTS = [
   {
     id: "III" as const,
     title: "Help / Horizon",
-    lede: "A sticky situation asks him to help. He chooses cost. The keep stays behind. Horizon is purpose as habit.",
+    lede: "Tide channel and help are Waiting. Shared lee is picture proof. Then absence, keep behind, horizon as purpose through helping.",
   },
 ];
 

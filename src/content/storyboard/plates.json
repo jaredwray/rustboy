@@ -20,7 +20,7 @@
     "n": 2,
     "act": "I",
     "title": "Awakening",
-    "line": "Green energy finds him after the building strike. Optic wakes. Born without a purpose. One face: spherical rust head, warm green eye left, empty socket right, crooked copper plate.",
+    "line": "On the table, green energy finds him after the building strike. Optic wakes. One face: spherical rust head, warm green eye, empty socket, crooked copper plate with circular port.",
     "status": "finished",
     "kf": "kf02-awaken.CANON",
     "still": {
@@ -36,16 +36,16 @@
     "n": 3,
     "act": "I",
     "title": "Born beside absence",
-    "line": "Cut from the picture. The dust twin stays out — not a reshoot.",
-    "status": "cut",
-    "kf": "kf04-outline"
+    "line": "Absence of the unfinished twin. Born without a purpose. He reaches. Nothing fills it.",
+    "status": "finished",
+    "kf": "kf03-optic"
   },
   {
     "id": "04",
     "n": 4,
     "act": "I",
     "title": "The dead phone",
-    "line": "Wrong answer. Cracked phone ghosts August 2026 and WAKE PAIR — BAY 3. He aligns it like a mission card. Holds too long. Leaves to search how to fulfill it.",
+    "line": "Cracked phone ghosts August 2026 and WAKE PAIR — BAY 3. He sets it straight — wrong answer for purpose.",
     "status": "finished",
     "kf": "kf05p-phone",
     "still": {
@@ -61,7 +61,7 @@
     "n": 5,
     "act": "I",
     "title": "Rain on server glass",
-    "line": "Wrong answer. Palm on storm glass. He matches the optic to a stubborn LED. The light does not hire him.",
+    "line": "Palm on storm glass. Tower in the rain. Optic almost matches a stubborn LED — wrong answer. The light does not hire him.",
     "status": "finished",
     "kf": "kf06f-glass",
     "clip": {
@@ -73,7 +73,7 @@
     "n": 6,
     "act": "I",
     "title": "The unpulled lever",
-    "line": "Wrong answer. He studies the caged lever as if pulling were the job. Leaves it. Will not wear a larger hand.",
+    "line": "Red caged lever. He studies it as if a larger hand’s work were his purpose. Leaves it. Wrong answer.",
     "status": "finished",
     "kf": "kf07e-lever"
   },
@@ -82,7 +82,7 @@
     "n": 7,
     "act": "I",
     "title": "Faces that are not his",
-    "line": "Wrong answer. Curling ID badges. None match. No face that owns a job for him.",
+    "line": "Curling ID badges. None of them are him. No role. Wrong answer.",
     "status": "finished",
     "kf": "kf08g-badges"
   },
@@ -91,7 +91,7 @@
     "n": 8,
     "act": "I",
     "title": "Well of light",
-    "line": "Spiral stair. Storm light above. He climbs — half-hoping purpose waits at the door.",
+    "line": "Spiral stair. Storm light above. He climbs.",
     "status": "finished",
     "kf": "kf09f-well"
   },
@@ -113,7 +113,7 @@
     "n": 10,
     "act": "I",
     "title": "Threshold",
-    "line": "Roof door. Wind, salt, no work order waiting. He steps through. The path begins.",
+    "line": "Roof door. He steps through — leaves the workshop world. No work order waiting. The path begins.",
     "status": "finished",
     "kf": "kf11j-threshold",
     "still": {
@@ -127,27 +127,9 @@
   {
     "id": "11",
     "n": 11,
-    "act": "I",
-    "title": "Gold seam / the door",
-    "line": "Cut from the picture. Not a reshoot. No gold roof — threshold goes to the path.",
-    "status": "cut",
-    "kf": "kf12-gold"
-  },
-  {
-    "id": "13",
-    "n": 13,
-    "act": "II",
-    "title": "Down the cliff",
-    "line": "Cut from the picture. Not a reshoot. No plunge — threshold to path, then weather.",
-    "status": "cut",
-    "kf": "kf13-down"
-  },
-  {
-    "id": "14",
-    "n": 14,
     "act": "II",
     "title": "Path that was never printed",
-    "line": "Goat trail. He looks back. The keep once held work orders; it does not call. He continues with the question.",
+    "line": "Living path / goat trail just beyond the keep. Workshop behind; weather ahead. Still hunting purpose.",
     "status": "finished",
     "kf": "kf14d-path",
     "still": {
@@ -156,17 +138,17 @@
     }
   },
   {
-    "id": "15",
-    "n": 15,
+    "id": "12",
+    "n": 12,
     "act": "II",
     "title": "Rain school",
-    "line": "Rain hits the crooked plate in the open. The world wets him. It does not hire or fix him.",
+    "line": "Rain hits the crooked plate in the open. Weather does not hire him.",
     "status": "finished",
     "kf": "kf15g2-rain"
   },
   {
-    "id": "16",
-    "n": 16,
+    "id": "13",
+    "n": 13,
     "act": "II",
     "title": "Moss that is not rust",
     "line": "Soft living green. Finger. Recoil. Same finger back. Unfinished grows without a bay order.",
@@ -174,29 +156,29 @@
     "kf": "kf16h-moss"
   },
   {
-    "id": "17",
-    "n": 17,
+    "id": "14",
+    "n": 14,
     "act": "II",
     "title": "Tide pool looks back",
-    "line": "A dish of sky. Something looks back. He almost scoops. Stops. He does not keep the pool.",
+    "line": "A dish of sky. Something looks back. He does not keep the pool.",
     "status": "finished",
     "kf": "kf17g2-pool"
   },
   {
-    "id": "18",
-    "n": 18,
+    "id": "15",
+    "n": 15,
     "act": "II",
     "title": "Wind in grass",
-    "line": "Grass lays and stands. Movement with no motor. Purpose still empty — ready to mistake the next contact for a job.",
+    "line": "Grass lays and stands. Movement with no motor.",
     "status": "finished",
     "kf": "kf18l2-grass"
   },
   {
-    "id": "19",
-    "n": 19,
+    "id": "16",
+    "n": 16,
     "act": "II",
     "title": "The theft",
-    "line": "Almost a job. Storm-petrel pecks a copper flake. He follows as if reclaim were purpose.",
+    "line": "Storm-petrel pecks a copper flake from the mismatched plate and flies. Almost a job.",
     "status": "finished",
     "kf": "kf19d-petrel",
     "still": {
@@ -208,11 +190,11 @@
     }
   },
   {
-    "id": "20",
-    "n": 20,
+    "id": "17",
+    "n": 17,
     "act": "II",
     "title": "The return",
-    "line": "Nest ledge. Petrel drops the flake. He leaves it in shared space — care without owning. Warmth without meaning.",
+    "line": "Nest ledge. Flake given back. Care without owning. Still not purpose.",
     "status": "finished",
     "kf": "kf20f-nest",
     "still": {
@@ -224,64 +206,91 @@
     }
   },
   {
-    "id": "21",
-    "n": 21,
+    "id": "18",
+    "n": 18,
     "act": "II",
     "title": "Fox at ten yards",
-    "line": "Three-legged coastal fox. Recognition across wet rock. Leftover is not purpose. Nothing asks him yet. Purpose empty.",
+    "line": "Three-legged coastal fox. Recognition across wet rock. Purpose empty — leftover company present, nothing asks him yet.",
     "status": "finished",
     "kf": "kf21m-fox"
   },
   {
-    "id": "sticky",
-    "n": 22,
+    "id": "19",
+    "n": 19,
     "act": "III",
-    "title": "Sticky situation",
-    "line": "Rising tide. Shared scrap tangle. Fox snared stump-side; petrel tangled in the same wire. Safe stone above. He sees both.",
+    "title": "Tide channel",
+    "line": "Rising tide and shared scrap tangle. Fox snared stump-side; petrel tangled in the same trail. Water climbs marked rock.",
     "status": "waiting"
   },
   {
-    "id": "help",
-    "n": 23,
+    "id": "20",
+    "n": 20,
     "act": "III",
-    "title": "He chooses to help",
-    "line": "He enters the channel at cost. Unweaves the bird. Braces the cable for the fox. Frees both. Does not own them.",
+    "title": "Help climax",
+    "line": "He enters the channel at cost. Unweaves the petrel; braces the fox free. Frees both without owning. Purpose lands as help.",
     "status": "waiting"
   },
   {
-    "id": "22",
-    "n": 24,
+    "id": "21",
+    "n": 21,
     "act": "III",
     "title": "Shared lee",
-    "line": "Higher ground after weather. Fox, robot, petrel. Picture in the current cut; the story climax moves to the channel.",
+    "line": "Squall. Same basalt lee for fox, robot, petrel above. In the live cut this is fellowship; the full short may rework it toward the channel.",
     "status": "finished",
     "kf": "kf22g-lee"
   },
   {
-    "id": "23",
-    "n": 25,
+    "id": "22",
+    "n": 22,
     "act": "III",
     "title": "Absence rhymes",
-    "line": "After help, empty socket and missing hind still rhyme. Neither fills the other. Help is not completion.",
+    "line": "Empty socket and missing hind rhyme. Neither fills the other. Help is not completion.",
     "status": "finished",
     "kf": "kf23r2-absence"
   },
   {
-    "id": "24",
-    "n": 26,
+    "id": "23",
+    "n": 23,
     "act": "III",
     "title": "He does not go back",
-    "line": "Keep small on the headland. He looks the way he looked at the lever. Leaves it having helped.",
+    "line": "Keep small on the headland. He walks away — having helped.",
     "status": "finished",
     "kf": "kf24m2-keep"
   },
   {
-    "id": "25",
-    "n": 27,
+    "id": "24",
+    "n": 24,
     "act": "III",
     "title": "Horizon",
-    "line": "He walks. Fox at a chosen distance. Petrel a dark hyphen. Purpose as habit: notice need, choose cost, free without owning. End card rustboy.ai.",
+    "line": "Fox at a chosen distance. Petrel a dark hyphen over the water. Horizon ahead — purpose as habit. End card rustboy.ai.",
     "status": "finished",
     "kf": "kf25h-horizon"
+  },
+  {
+    "id": "cut-outline",
+    "n": 104,
+    "act": "I",
+    "title": "Outline",
+    "line": "Cut from the picture. Absence is carried by the optic cell. Not a reshoot.",
+    "status": "cut",
+    "kf": "kf04-outline"
+  },
+  {
+    "id": "cut-gold",
+    "n": 112,
+    "act": "I",
+    "title": "Gold roof",
+    "line": "Cut from the picture. No gold-seam climax. Threshold goes to the path.",
+    "status": "cut",
+    "kf": "kf12-gold"
+  },
+  {
+    "id": "cut-down",
+    "n": 113,
+    "act": "II",
+    "title": "Cliff / down",
+    "line": "Cut from the picture. No plunge. Bridge is threshold to path.",
+    "status": "cut",
+    "kf": "kf13-down"
   }
 ]
