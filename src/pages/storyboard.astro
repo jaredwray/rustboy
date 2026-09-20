@@ -6,17 +6,15 @@ import { AUTHOR } from "../config";
 import {
   countByStatus,
   getActivePlates,
-  getCutPlates,
   getStoryPlates,
   groupPlatesByAct,
 } from "../utils/storyboard";
 
 const description =
-  "Production board for the rustboy.ai short. Sequential plates as they stand in picture: threshold to path, nature lane finished, gold roof and cliff-down cut. Finished, parked, waiting, or cut.";
+  "Production board for the rustboy.ai short. Purpose unknown, then help: wrong answers in the keep, nature as school, a sticky situation still waiting. Finished, parked, waiting, or cut.";
 
 const plates = await getStoryPlates();
 const active = getActivePlates(plates);
-const cut = getCutPlates(plates);
 const acts = groupPlatesByAct(active);
 const counts = countByStatus(plates);
 ---
@@ -26,10 +24,11 @@ const counts = countByStatus(plates);
     <PageHeader
       eyebrow="Film"
       title="Storyboard"
-      lede="Threshold to path, then weather. Gold roof and the cliff plunge are out. Nature lane is finished under the locked look."
+      lede="He hunts for a purpose. The keep’s leftover answers fail. Nature teaches. A sticky situation asks him to help."
     >
       <p class="board-spine label">
-        Keep → threshold → path → rain / moss / pool / grass → petrel → fox →
+        Wrong answers in the keep → threshold → path → nature school → petrel /
+        nest / fox (purpose empty) → sticky situation → help → keep behind →
         horizon.
       </p>
       <p class="board-legend label">
@@ -42,14 +41,15 @@ const counts = countByStatus(plates);
         <span class="board-legend__chip board-legend__chip--waiting">
           Waiting
         </span>{" "}is an empty slot until we shoot.
-        <span class="board-legend__chip board-legend__chip--cut">
-          Cut
-        </span>{" "}is out of picture — not a reshoot.
       </p>
       <p class="board-counts label">
         {counts.finished} finished · {counts.parked} parked · {
           counts.waiting
-        } waiting · {counts.cut} cut
+        } waiting
+      </p>
+      <p class="board-cut-note label">
+        CUT from picture (footnote, not sequential cells): outline · gold roof ·
+        cliff-down. Bridge is threshold → path. Not a reshoot.
       </p>
     </PageHeader>
 
@@ -66,7 +66,8 @@ const counts = countByStatus(plates);
         <figcaption>
           <span>FACE_SAFE 2026-09-19c</span>
           <span class="label">
-            Director progress cut · md5 ab82ec5f · ~133s silent
+            Picture proof · md5 ab82ec5f · ~133s silent · nature in, gold and
+            cliff out. Sticky situation and help are not in this reel yet.
           </span>
         </figcaption>
       </figure>
@@ -87,6 +88,7 @@ const counts = countByStatus(plates);
                   : ""}
               </p>
             </header>
+            {act.lede && <p class="board__act-lede">{act.lede}</p>}
             <ol
               class="board__grid"
               start={act.plates[0]?.data.n ?? 1}
@@ -102,40 +104,14 @@ const counts = countByStatus(plates);
       }
     </div>
 
-    {
-      cut.length > 0 && (
-        <section class="board-cut" aria-labelledby="cut-from-picture">
-          <header class="board__act-head">
-            <h2 class="board__act-title" id="cut-from-picture">
-              <span class="label">Out of picture</span>
-              Cut
-            </h2>
-            <p class="label board__act-range">
-              Outline · gold roof · cliff-down
-            </p>
-          </header>
-          <p class="board-cut__lede">
-            These beats are not in the cut. The adventure does not climb the gold
-            roof or fall the cliff. Outline stays out. Not a reshoot queue.
-          </p>
-          <ol class="board__grid board__grid--cut">
-            {cut.map((plate) => (
-              <li class="board__slot">
-                <StoryboardCell plate={plate} />
-              </li>
-            ))}
-          </ol>
-        </section>
-      )
-    }
-
     <section class="board-notes">
       <p class="board-laws">
         Plate wound after the theft = metal/copper tear only. Fox stump = left
         hind only. Nature lane (rain, moss, pool, grass) is finished under the
-        locked look. Fox lane and horizon are in the cut. Individual stills and
-        clips land here when a public URL is on the cupboard — empty finished
-        cells are honest, not HOLDs.
+        locked look. Sticky situation and help are Waiting — coming as we shoot,
+        not in the 0919c reel. Keep-behind and horizon stay Finished, read as
+        life that found purpose through helping. Empty finished cells wait on a
+        public cupboard URL; they are not Parked leftovers.
       </p>
       <figure class="board-mix">
         <video
@@ -205,14 +181,16 @@ const counts = countByStatus(plates);
     color: var(--color-fg-faint);
   }
 
-  .board-legend__chip--cut {
-    color: var(--color-fg-faint);
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
-  }
-
   .board-counts {
     margin-top: var(--space-4);
+    color: var(--color-fg-faint);
+  }
+
+  .board-cut-note {
+    max-width: 46rem;
+    margin-top: var(--space-3);
+    text-transform: none;
+    letter-spacing: 0.02em;
     color: var(--color-fg-faint);
   }
 
@@ -244,6 +222,14 @@ const counts = countByStatus(plates);
 
   .board__act-range {
     color: var(--color-fg-faint);
+  }
+
+  .board__act-lede {
+    max-width: 46rem;
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-fg-muted);
   }
 
   .board__grid {
@@ -308,24 +294,6 @@ const counts = countByStatus(plates);
 
   .board-reels__item {
     margin: 0;
-  }
-
-  .board-cut {
-    padding-bottom: var(--space-16);
-    border-top: var(--rule-width) solid var(--color-rule);
-    padding-top: var(--space-12);
-  }
-
-  .board-cut__lede {
-    max-width: 46rem;
-    margin: 0 0 var(--space-4);
-    font-size: var(--text-sm);
-    line-height: var(--leading-snug);
-    color: var(--color-fg-muted);
-  }
-
-  .board__grid--cut {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .board-notes__where {

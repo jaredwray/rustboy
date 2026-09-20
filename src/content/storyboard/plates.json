@@ -20,7 +20,7 @@
     "n": 2,
     "act": "I",
     "title": "Awakening",
-    "line": "On the table, a green laser finds him after the building strike. Optic wakes. One face: spherical rust head, warm green eye left, empty socket right, crooked copper plate.",
+    "line": "Green energy finds him after the building strike. Optic wakes. Born without a purpose. One face: spherical rust head, warm green eye left, empty socket right, crooked copper plate.",
     "status": "finished",
     "kf": "kf02-awaken.CANON",
     "still": {
@@ -38,18 +38,14 @@
     "title": "Born beside absence",
     "line": "Cut from the picture. The dust twin stays out — not a reshoot.",
     "status": "cut",
-    "kf": "kf04-outline",
-    "still": {
-      "src": "https://media.rustboy.ai/stills/ship/kf04-outline.b.png",
-      "alt": "kf04 outline — cut from picture"
-    }
+    "kf": "kf04-outline"
   },
   {
     "id": "04",
     "n": 4,
     "act": "I",
     "title": "The dead phone",
-    "line": "Cracked phone ghosts August 2026 and WAKE PAIR — BAY 3. He sets it down carefully.",
+    "line": "Wrong answer. Cracked phone ghosts August 2026 and WAKE PAIR — BAY 3. He aligns it like a mission card. Holds too long. Leaves to search how to fulfill it.",
     "status": "finished",
     "kf": "kf05p-phone",
     "still": {
@@ -65,7 +61,7 @@
     "n": 5,
     "act": "I",
     "title": "Rain on server glass",
-    "line": "Palm on storm glass. Tower in the rain. One green point against the keep.",
+    "line": "Wrong answer. Palm on storm glass. He matches the optic to a stubborn LED. The light does not hire him.",
     "status": "finished",
     "kf": "kf06f-glass",
     "clip": {
@@ -77,7 +73,7 @@
     "n": 6,
     "act": "I",
     "title": "The unpulled lever",
-    "line": "Red caged lever. He studies it. Leaves it.",
+    "line": "Wrong answer. He studies the caged lever as if pulling were the job. Leaves it. Will not wear a larger hand.",
     "status": "finished",
     "kf": "kf07e-lever"
   },
@@ -86,7 +82,7 @@
     "n": 7,
     "act": "I",
     "title": "Faces that are not his",
-    "line": "Curling ID badges. None of them are him.",
+    "line": "Wrong answer. Curling ID badges. None match. No face that owns a job for him.",
     "status": "finished",
     "kf": "kf08g-badges"
   },
@@ -95,7 +91,7 @@
     "n": 8,
     "act": "I",
     "title": "Well of light",
-    "line": "Spiral stair. Storm light above. He starts climbing.",
+    "line": "Spiral stair. Storm light above. He climbs — half-hoping purpose waits at the door.",
     "status": "finished",
     "kf": "kf09f-well"
   },
@@ -117,7 +113,7 @@
     "n": 10,
     "act": "I",
     "title": "Threshold",
-    "line": "Roof door. He steps through rear-on — face never turns to camera here. The keep ends here; the path begins.",
+    "line": "Roof door. Wind, salt, no work order waiting. He steps through. The path begins.",
     "status": "finished",
     "kf": "kf11j-threshold",
     "still": {
@@ -135,11 +131,7 @@
     "title": "Gold seam / the door",
     "line": "Cut from the picture. Not a reshoot. No gold roof — threshold goes to the path.",
     "status": "cut",
-    "kf": "kf12-gold",
-    "still": {
-      "src": "https://media.rustboy.ai/stills/ship/kf12c-gold.b.png",
-      "alt": "kf12 gold — cut from picture"
-    }
+    "kf": "kf12-gold"
   },
   {
     "id": "13",
@@ -148,18 +140,14 @@
     "title": "Down the cliff",
     "line": "Cut from the picture. Not a reshoot. No plunge — threshold to path, then weather.",
     "status": "cut",
-    "kf": "kf13-down",
-    "still": {
-      "src": "https://media.rustboy.ai/stills/ship/kf13-down.b.png",
-      "alt": "kf13 down — cut from picture"
-    }
+    "kf": "kf13-down"
   },
   {
     "id": "14",
     "n": 14,
     "act": "II",
     "title": "Path that was never printed",
-    "line": "Goat trail. Living color below. After the threshold — no gold roof, no cliff fall.",
+    "line": "Goat trail. He looks back. The keep once held work orders; it does not call. He continues with the question.",
     "status": "finished",
     "kf": "kf14d-path",
     "still": {
@@ -172,7 +160,7 @@
     "n": 15,
     "act": "II",
     "title": "Rain school",
-    "line": "Rain hits the crooked plate in the open. Weather, not a leak in stone.",
+    "line": "Rain hits the crooked plate in the open. The world wets him. It does not hire or fix him.",
     "status": "finished",
     "kf": "kf15g2-rain"
   },
@@ -181,7 +169,7 @@
     "n": 16,
     "act": "II",
     "title": "Moss that is not rust",
-    "line": "Soft living green. Finger. Recoil. Same finger back.",
+    "line": "Soft living green. Finger. Recoil. Same finger back. Unfinished grows without a bay order.",
     "status": "finished",
     "kf": "kf16h-moss"
   },
@@ -190,7 +178,7 @@
     "n": 17,
     "act": "II",
     "title": "Tide pool looks back",
-    "line": "A dish of sky. Something looks back. He does not keep the pool.",
+    "line": "A dish of sky. Something looks back. He almost scoops. Stops. He does not keep the pool.",
     "status": "finished",
     "kf": "kf17g2-pool"
   },
@@ -199,7 +187,7 @@
     "n": 18,
     "act": "II",
     "title": "Wind in grass",
-    "line": "Grass lays and stands. Movement with no motor.",
+    "line": "Grass lays and stands. Movement with no motor. Purpose still empty — ready to mistake the next contact for a job.",
     "status": "finished",
     "kf": "kf18l2-grass"
   },
@@ -208,7 +196,7 @@
     "n": 19,
     "act": "II",
     "title": "The theft",
-    "line": "Storm-petrel pecks a copper flake from the mismatched plate and flies.",
+    "line": "Almost a job. Storm-petrel pecks a copper flake. He follows as if reclaim were purpose.",
     "status": "finished",
     "kf": "kf19d-petrel",
     "still": {
@@ -224,7 +212,7 @@
     "n": 20,
     "act": "II",
     "title": "The return",
-    "line": "Nest ledge. Flake given back. Leftover returned.",
+    "line": "Nest ledge. Petrel drops the flake. He leaves it in shared space — care without owning. Warmth without meaning.",
     "status": "finished",
     "kf": "kf20f-nest",
     "still": {
@@ -240,43 +228,59 @@
     "n": 21,
     "act": "II",
     "title": "Fox at ten yards",
-    "line": "Three-legged coastal fox. Recognition across wet rock — not a rescue.",
+    "line": "Three-legged coastal fox. Recognition across wet rock. Leftover is not purpose. Nothing asks him yet. Purpose empty.",
     "status": "finished",
     "kf": "kf21m-fox"
   },
   {
-    "id": "22",
+    "id": "sticky",
     "n": 22,
     "act": "III",
+    "title": "Sticky situation",
+    "line": "Rising tide. Shared scrap tangle. Fox snared stump-side; petrel tangled in the same wire. Safe stone above. He sees both.",
+    "status": "waiting"
+  },
+  {
+    "id": "help",
+    "n": 23,
+    "act": "III",
+    "title": "He chooses to help",
+    "line": "He enters the channel at cost. Unweaves the bird. Braces the cable for the fox. Frees both. Does not own them.",
+    "status": "waiting"
+  },
+  {
+    "id": "22",
+    "n": 24,
+    "act": "III",
     "title": "Shared lee",
-    "line": "Squall. Same basalt lee for fox, robot, petrel above. Nobody saves anybody.",
+    "line": "Higher ground after weather. Fox, robot, petrel. Picture in the current cut; the story climax moves to the channel.",
     "status": "finished",
     "kf": "kf22g-lee"
   },
   {
     "id": "23",
-    "n": 23,
+    "n": 25,
     "act": "III",
     "title": "Absence rhymes",
-    "line": "Empty socket and missing hind rhyme. Neither fills the other.",
+    "line": "After help, empty socket and missing hind still rhyme. Neither fills the other. Help is not completion.",
     "status": "finished",
     "kf": "kf23r2-absence"
   },
   {
     "id": "24",
-    "n": 24,
+    "n": 26,
     "act": "III",
     "title": "He does not go back",
-    "line": "Keep small on the headland. He walks away.",
+    "line": "Keep small on the headland. He looks the way he looked at the lever. Leaves it having helped.",
     "status": "finished",
     "kf": "kf24m2-keep"
   },
   {
     "id": "25",
-    "n": 25,
+    "n": 27,
     "act": "III",
     "title": "Horizon",
-    "line": "Fox at a chosen distance. Petrel a dark hyphen over the water. Horizon ahead. End card rustboy.ai.",
+    "line": "He walks. Fox at a chosen distance. Petrel a dark hyphen. Purpose as habit: notice need, choose cost, free without owning. End card rustboy.ai.",
     "status": "finished",
     "kf": "kf25h-horizon"
   }

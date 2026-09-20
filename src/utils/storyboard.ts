@@ -5,9 +5,21 @@ export type StoryPlate = CollectionEntry<"storyboard">;
 export type PlateStatus = StoryPlate["data"]["status"];
 
 export const ACTS = [
-  { id: "I" as const, title: "The Keep" },
-  { id: "II" as const, title: "The Living World" },
-  { id: "III" as const, title: "Fellowship / Horizon" },
+  {
+    id: "I" as const,
+    title: "The Keep — purpose unknown",
+    lede: "He tries the leftover answers — phone, badges, lever, WAKE PAIR — and finds them empty.",
+  },
+  {
+    id: "II" as const,
+    title: "Nature school",
+    lede: "Threshold to path. Weather teaches. Petrel and nest almost feel like a job. At the fox, purpose still empty.",
+  },
+  {
+    id: "III" as const,
+    title: "Help / Horizon",
+    lede: "A sticky situation asks him to help. He chooses cost. The keep stays behind. Horizon is purpose as habit.",
+  },
 ];
 
 const STATUS_LABEL: Record<PlateStatus, string> = {
