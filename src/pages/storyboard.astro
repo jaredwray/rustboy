@@ -5,15 +5,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { AUTHOR } from "../config";
 import {
   countByStatus,
+  getActivePlates,
   getStoryPlates,
   groupPlatesByAct,
 } from "../utils/storyboard";
 
 const description =
-  "Production board for the rustboy.ai short. Plates 1–25 in order, with stills and clips as they land. Finished, parked, or waiting.";
+  "Production board for the rustboy.ai short. Purpose unknown, then help: wrong answers in the keep, nature as school, a sticky situation still waiting. Finished, parked, waiting, or cut.";
 
 const plates = await getStoryPlates();
-const acts = groupPlatesByAct(plates);
+const active = getActivePlates(plates);
+const acts = groupPlatesByAct(active);
 const counts = countByStatus(plates);
 ---
 
@@ -22,8 +24,13 @@ const counts = countByStatus(plates);
     <PageHeader
       eyebrow="Film"
       title="Storyboard"
-      lede="We fill each cell as the plate is finished — still and clip when we have them."
+      lede="We fill each cell as the plate is finished — still and clip when we have them. Full short direction: purpose → help (sticky cells still Waiting)."
     >
+      <p class="board-spine label">
+        Purpose unknown → wrong answers (phone / badges / lever / WAKE PAIR) →
+        nature school → purpose empty → sticky help → purpose as habit →
+        horizon.
+      </p>
       <p class="board-legend label">
         <span class="board-legend__chip board-legend__chip--finished">
           Finished
@@ -40,34 +47,28 @@ const counts = countByStatus(plates);
           counts.waiting
         } waiting
       </p>
+      <p class="board-cut-note label">
+        CUT from picture (footnote, not sequential cells): outline · gold roof ·
+        cliff-down. Bridge is threshold → path. Not a reshoot.
+      </p>
     </PageHeader>
 
     <section class="board-reels board-reels--hero" aria-label="Screening spine">
-      <figure class="board-reels__item">
+      <figure class="board-reels__item board-reels__item--wide">
         <video
           controls
           preload="none"
           width="1920"
           height="1080"
-          src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-10.mp4"
-          title="Face-safe progress cut"
+          src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-19c.ship.mp4"
+          title="FACE_SAFE 2026-09-19c progress cut"
         ></video>
         <figcaption>
-          <span>Face-safe progress cut</span>
-          <span class="label">Screening spine</span>
-        </figcaption>
-      </figure>
-      <figure class="board-reels__item">
-        <img
-          src="https://media.rustboy.ai/stills/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-10_contact.jpg"
-          alt="FACE_SAFE 2026-09-10 contact sheet"
-          width="1280"
-          height="720"
-          loading="lazy"
-        />
-        <figcaption>
-          <span>Contact sheet</span>
-          <span class="label">Same cut</span>
+          <span>FACE_SAFE 2026-09-19c</span>
+          <span class="label">
+            Picture proof · md5 ab82ec5f · ~133s silent · nature in, gold and
+            cliff out. Sticky situation and help are not in this reel yet.
+          </span>
         </figcaption>
       </figure>
     </section>
@@ -87,6 +88,7 @@ const counts = countByStatus(plates);
                   : ""}
               </p>
             </header>
+            {act.lede && <p class="board__act-lede">{act.lede}</p>}
             <ol
               class="board__grid"
               start={act.plates[0]?.data.n ?? 1}
@@ -105,7 +107,11 @@ const counts = countByStatus(plates);
     <section class="board-notes">
       <p class="board-laws">
         Plate wound after the theft = metal/copper tear only. Fox stump = left
-        hind only.
+        hind only. Sticky help = unweave and brace, not a prosthesis; animals
+        are not pets. Nature lane is Finished under the locked look. Tide
+        channel and help climax are Waiting — coming as we shoot, not in the
+        0919c reel. Shared lee stays Finished as picture proof; it may rework
+        toward the channel. Empty finished cells wait on a public cupboard URL.
       </p>
       <figure class="board-mix">
         <video
@@ -118,7 +124,7 @@ const counts = countByStatus(plates);
         ></video>
         <figcaption>
           <span>Act I scored reel</span>
-          <span class="label">Secondary — keep plates only</span>
+          <span class="label">Legacy — keep plates only</span>
         </figcaption>
       </figure>
       <p class="board-notes__where">
@@ -133,13 +139,21 @@ const counts = countByStatus(plates);
 </BaseLayout>
 
 <style>
+  .board-spine {
+    max-width: 46rem;
+    margin-top: var(--space-6);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--color-fg-muted);
+  }
+
   .board-legend {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.35em 0.45em;
     max-width: 46rem;
-    margin-top: var(--space-6);
+    margin-top: var(--space-4);
     text-transform: none;
     letter-spacing: 0.02em;
     color: var(--color-fg-muted);
@@ -172,6 +186,14 @@ const counts = countByStatus(plates);
     color: var(--color-fg-faint);
   }
 
+  .board-cut-note {
+    max-width: 46rem;
+    margin-top: var(--space-3);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--color-fg-faint);
+  }
+
   .board {
     padding-bottom: var(--space-16);
   }
@@ -200,6 +222,14 @@ const counts = countByStatus(plates);
 
   .board__act-range {
     color: var(--color-fg-faint);
+  }
+
+  .board__act-lede {
+    max-width: 46rem;
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-fg-muted);
   }
 
   .board__grid {
@@ -256,7 +286,7 @@ const counts = countByStatus(plates);
 
   .board-reels {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 46rem);
     gap: var(--space-6);
     margin-top: var(--space-8);
     margin-bottom: var(--space-12);

@@ -32,7 +32,7 @@ export const GET: APIRoute = async ({ site }) => {
     "## Pages",
     "",
     `- [Blog](${absolute("/blog/")}): every post, newest first.`,
-    `- [Storyboard](${absolute("/storyboard/")}): production board for plates 1–25 (kf## keyframes), with stills and clips as they land. Status: Finished, Parked, Waiting.`,
+    `- [Storyboard](${absolute("/storyboard/")}): production board in story order (plates / keyframes / cells). Purpose unknown → help; nature lane finished; sticky situation and help waiting; gold roof and cliff-down cut. Status: Finished, Parked, Waiting, Cut.`,
     `- [Tags](${absolute("/tags/")}): ${tags.map((t) => t.name).join(", ")}.`,
     `- [About](${absolute("/about/")}): about Team Rust Boy AI and this site.`,
     "",
