@@ -12,5 +12,10 @@ allowBuilds:
   workerd: true
 
 # Pin transitive deps that later published without provenance (trust downgrade).
+# CVE-2026-84961 (GHSA-w293-vg96-wgc3): BalancedPool JSON-clones its options
+# and drops function-valued connect/tls callbacks. miniflare pins 7.29.0;
+# unifont resolves 8.10.0. Both ranges are patched at 7.29.1 and 8.10.2.
 overrides:
   "chokidar@^4": 4.0.1
+  "undici@>=7.24.1 <7.29.1": 7.29.1
+  "undici@>=8.0.0 <8.10.2": 8.10.2
