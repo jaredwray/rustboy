@@ -25,8 +25,8 @@ export const GET: APIRoute = async ({ site }) => {
     ...posts.map(
       (post) =>
         `- [${post.data.title}](${absolute(`/blog/${post.id}/`)}): ${
-          post.data.description
-        } Published ${formatDate(post.data.pubDate)}.`,
+          post.data.description ? `${post.data.description} ` : ""
+        }Published ${formatDate(post.data.pubDate)}.`,
     ),
     "",
     "## Pages",

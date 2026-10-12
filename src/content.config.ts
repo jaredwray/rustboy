@@ -14,25 +14,46 @@ const blog = defineCollection({
   // Files starting with an underscore are ignored, which makes drafts easy to
   // park outside the build entirely.
   loader: glob({ base: "./src/content/blog", pattern: "**/[^_]*.{md,mdx}" }),
-  schema: z.object({
-    title: z.string(),
-    /** Used for the post list, meta description and the OG image. */
-    description: z.string(),
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    tags: z.array(z.string()).default([]),
-    /** Public byline. When set, this name is shown instead of the site author. */
-    author: z.string().optional(),
-    /** Hidden from production builds, still visible in `astro dev`. */
-    draft: z.boolean().default(false),
-    /**
-     * Absolute URL of a hero image hosted on the media bucket
-     * (`https://media.rustboy.ai/…`). Never a local file — images are not
-     * stored in this repository.
-     */
-    heroImage: z.url().optional(),
-    heroImageAlt: z.string().optional(),
-  }),
+  schema: z
+    .object({
+      title: z.string(),
+      /** Used for the post list, meta description and the OG image. */
+      description: z.string().optional(),
+      pubDate: z.coerce.date().optional(),
+      /** Alias for `pubDate`, for posts whose frontmatter writes `date`. */
+      date: z.coerce.date().optional(),
+      updatedDate: z.coerce.date().optional(),
+      tags: z.array(z.string()).default([]),
+      /** Public byline. When set, this name is shown instead of the site author. */
+      author: z.string().optional(),
+      /** Hidden from production builds, still visible in `astro dev`. */
+      draft: z.boolean().default(false),
+      /**
+       * Absolute URL of a hero image hosted on the media bucket
+       * (`https://media.rustboy.ai/…`). Never a local file — images are not
+       * stored in this repository.
+       */
+      heroImage: z.url().optional(),
+      heroImageAlt: z.string().optional(),
+    })
+    .transform((data, ctx) => {
+      const pubDate = data.pubDate ?? data.date;
+      if (!(pubDate instanceof Date) || Number.isNaN(pubDate.getTime())) {
+        ctx.addIssue({
+          code: "custom",
+          message: "Set pubDate or date",
+          path: ["pubDate"],
+        });
+        return z.NEVER;
+      }
+
+      const { date: _date, ...rest } = data;
+      return {
+        ...rest,
+        description: data.description ?? "",
+        pubDate,
+      };
+    }),
 });
 
 const storyboard = defineCollection({

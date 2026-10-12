@@ -25,7 +25,7 @@ const minutes = readingTime(post.body);
       <a href={`/blog/${post.id}/`}>{title}</a>
     </h3>
 
-    <p class="post-card__description">{description}</p>
+    {description && <p class="post-card__description">{description}</p>}
 
     <p class="post-card__meta label">
       {

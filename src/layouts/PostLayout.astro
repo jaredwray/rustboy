@@ -42,7 +42,7 @@ const article = {
 
 <BaseLayout
   title={title}
-  description={description}
+  description={description || undefined}
   ogImage={OG.enabled ? `/og/${post.id}.png` : undefined}
   article={article}
 >
@@ -64,7 +64,7 @@ const article = {
       </p>
 
       <h1 class="post__title">{title}</h1>
-      <p class="lede post__lede">{description}</p>
+      {description && <p class="lede post__lede">{description}</p>}
 
       <p class="post__meta label">
         {
