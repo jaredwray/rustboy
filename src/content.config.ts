@@ -23,7 +23,7 @@ const blog = defineCollection({
       /** Alias for `pubDate`, for posts whose frontmatter writes `date`. */
       date: z.coerce.date().optional(),
       updatedDate: z.coerce.date().optional(),
-      tags: z.array(z.string()).default([]),
+      tags: z.array(z.string()).max(32).default([]),
       /** Public byline. When set, this name is shown instead of the site author. */
       author: z.string().optional(),
       /** Hidden from production builds, still visible in `astro dev`. */
