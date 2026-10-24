@@ -1,6 +1,13 @@
 minimumReleaseAge: 10080 # 7 days, in minutes
 minimumReleaseAgeStrict: true # fail instead of falling back to a too-new version
 minimumReleaseAgeIgnoreMissingTime: false # missing publish-time metadata fails closed
+# fast-uri@3.1.9 published 2026-10-19T23:05:26Z. It is the v3 fix for
+# GHSA-w74x-v6f9-j3xg, GHSA-wjr9-j795-jxcr, GHSA-xhq7-xmqj-769h, and
+# GHSA-333x-w4r6-6crp, and it is still inside the 7-day cooldown.
+# Exact version only. Needs Jared's sign-off. Drop this entry once the
+# release is older than minimumReleaseAge (after 2026-10-26T23:05:26Z).
+minimumReleaseAgeExclude:
+  - fast-uri@3.1.9
 blockExoticSubdeps: true
 strictDepBuilds: true
 dangerouslyAllowAllBuilds: false
@@ -19,3 +26,7 @@ overrides:
   "chokidar@^4": 4.0.1
   "undici@>=7.24.1 <7.29.1": 7.29.1
   "undici@>=8.0.0 <8.10.2": 8.10.2
+  # miniflare@5.20260828.0-alpha (via wrangler) depends on sharp@0.35.2 exactly.
+  # GHSA-wq5f-xc86-pv6w / CVE-2026-96889 is fixed in 0.35.5. The direct
+  # dependency range already allows 0.35.5; this override only replaces the pin.
+  "sharp@0.35.2": 0.35.5
