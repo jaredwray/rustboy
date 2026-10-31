@@ -3,10 +3,128 @@ import "../styles/prose.css";
 
 import PageHeader from "../components/PageHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { boardRows, isLink } from "./_storyboard-board";
+import {
+  boardRows,
+  isLink,
+  type BoardCell,
+} from "./_storyboard-board";
 
 const description =
-  "This page follows the film plate by plate (a plate, or keyframe, is one shot in the film), in the order you see them in the current cut. Each plate shows a still frame and a short clip when we have them on our media server, and an honest status. We do not dress unfinished work as finished.";
+  "The film one shot at a time, in the order the shots play in the current cut, with a still, a short clip and an honest status for each. We do not dress unfinished work as finished.";
+
+const STATUS_LABEL = {
+  "Locked (Captain, on the team's behalf)": "Signed off",
+  "QC passed, not yet locked": "Passed check, not signed off yet",
+  "Status under review": "Sign-off being confirmed",
+} as const;
+
+const QC_LABEL = {
+  Pass: "Pass",
+  "Pass with softs": "Pass, small known flaws",
+} as const;
+
+const SECTIONS = [
+  {
+    id: "storm",
+    title: "The storm wakes him",
+    ns: ["01", "02", "03"],
+  },
+  {
+    id: "wrong-answers",
+    title: "Four wrong answers",
+    ns: ["04", "04b", "05", "06", "06b", "07", "07b"],
+  },
+  {
+    id: "climb",
+    title: "The climb",
+    ns: ["08a", "08a2", "08", "08b", "09", "09b", "09c", "09d", "09e"],
+  },
+  {
+    id: "weather",
+    title: "Out into the weather",
+    ns: ["10", "10b", "11", "12", "13", "14", "15"],
+  },
+  {
+    id: "petrel-and-fox",
+    title: "The petrel and the fox",
+    ns: ["16", "17", "18", "19"],
+  },
+  {
+    id: "tide",
+    title: "The tide turns",
+    ns: ["20", "21", "22", "23", "24", "25", "26"],
+  },
+  {
+    id: "walks-on",
+    title: "He walks on",
+    ns: ["27", "28", "28b", "29", "30-31"],
+  },
+] as const;
+
+const byNumber = new Map(boardRows.map((row) => [row.n, row]));
+const claimed = new Set<string>();
+
+const sections = SECTIONS.map((section) => ({
+  ...section,
+  rows: section.ns.map((n) => {
+    if (claimed.has(n)) {
+      throw new Error(`Shot ${n} is listed in two sections.`);
+    }
+    claimed.add(n);
+    const row = byNumber.get(n);
+    if (!row) {
+      throw new Error(`Shot ${n} is not on the board.`);
+    }
+    return row;
+  }),
+}));
+
+for (const row of boardRows) {
+  if (!claimed.has(row.n)) {
+    throw new Error(`Shot ${row.n} is not in a section.`);
+  }
+}
+
+function publicStatus(status: string): string {
+  const label = STATUS_LABEL[status as keyof typeof STATUS_LABEL];
+  if (!label) {
+    throw new Error(`Unknown status on the board: ${status}`);
+  }
+  return label;
+}
+
+function publicQc(qc: string): string {
+  const label = QC_LABEL[qc as keyof typeof QC_LABEL];
+  if (!label) {
+    throw new Error(`Unknown quality check on the board: ${qc}`);
+  }
+  return label;
+}
+
+function onScreen(happens: string): string {
+  const stale = "New today. ";
+  return happens.startsWith(stale) ? happens.slice(stale.length) : happens;
+}
+
+function missingStill(cell: BoardCell): string {
+  if (cell === "—") return "No still";
+  return "Not online yet";
+}
+
+function missingClip(cell: BoardCell): string {
+  if (cell === "—") return "No clip";
+  return "Not online yet";
+}
+
+const signedOff = boardRows.filter(
+  (row) => row.status === "Locked (Captain, on the team's behalf)",
+).length;
+const passed = boardRows.filter(
+  (row) => row.status === "QC passed, not yet locked",
+).length;
+const confirming = boardRows.filter(
+  (row) => row.status === "Status under review",
+).length;
 ---
 
 <BaseLayout title="The storyboard" description={description}>
@@ -19,11 +137,10 @@ const description =
 
     <div class="prose board-intro">
       <p>
-        This page follows the film plate by plate (a plate, or keyframe, is one
-        shot in the film), in the order you see them in the current cut. Each
-        plate shows a still frame and a short clip when we have them on our
-        media server, and an honest status. We do not dress unfinished work as
-        finished.
+        This page walks through the film one shot at a time, in the order the
+        shots play in the current cut. Each shot has a line on what happens, a
+        still frame and a short clip when they are on our media server, and an
+        honest status. We do not dress unfinished work as finished.
       </p>
 
       <p>
@@ -35,114 +152,202 @@ const description =
         Then he walks on.
       </p>
 
-      <h2>Current screening cut</h2>
+      <h2 id="current-cut">Watch the current cut</h2>
 
       <p>
-        MIX_v34 · 4:44 (284.208 s) · md5 <code>53ba5128…</code> · today's cut,
-        with the new plate 10b (his first step outside).
+        This is the current cut of the film, 4 minutes 44 seconds long. It is
+        the 30 October 2026 cut, which adds shot 10b, his first step outside.
+        Any shot below without a clip of its own can be seen here. Earlier cuts
+        are no longer current.
       </p>
 
-      <video controls src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-10-30-mix-v34.r1.mp4"></video>
+      <figure>
+        <video controls src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-10-30-mix-v34.r1.mp4"></video>
+        <figcaption>
+          MIX_v34 · 284.208 s · file fingerprint (MD5) 53ba5128…
+        </figcaption>
+      </figure>
+
+      <h2>The character reference</h2>
 
       <p>
-        Character reference (the look every plate is checked against): the Sep
-        15 character pack hero, md5 <code>413750c2…</code>.
+        This is the look every shot is checked against: the main image from our
+        15 September character pack.
       </p>
 
-      <img
-        src="https://media.rustboy.ai/stills/ship/pack-hero-LOCK-2026-09-14.png"
-        alt="Rustboy character pack hero"
-      />
+      <figure>
+        <img
+          src="https://media.rustboy.ai/stills/ship/pack-hero-LOCK-2026-09-14.png"
+          alt="The small rusted robot with one green eye, the look every shot is checked against."
+        />
+        <figcaption>File fingerprint (MD5) 413750c2…</figcaption>
+      </figure>
 
-      <p><strong>What the labels mean</strong></p>
+      <h2>How to read the list</h2>
+
+      <p>
+        <strong>Shot numbers.</strong> The number on the left is the place in
+        the film. A letter, as in 04b or 08a2, means a shot that sits between
+        two numbered shots. Read down the page, not by the letter: 08a and
+        08a2 play before 08. The row marked 30-31 is the end card and the
+        credits together.
+      </p>
+
+      <p>
+        <strong>Plate codes.</strong> The small code under the shot number is
+        the crew's working name for that shot. The codes do not follow the shot
+        numbers. Shot 04 is kf05p-phone. Use the shot number to keep your
+        place.
+      </p>
+
+      <p><strong>Status.</strong> Each shot is in one of three states.</p>
       <ul>
         <li>
-          <strong>Locked (Captain, on the team's behalf)</strong>: signed off by
-          the Captain, who makes these calls for the team when the daily review
-          window closes with no objection. It can still be reopened.
+          <strong>Signed off.</strong> Approved on the team's behalf. It can
+          still be reopened. The record reads “Locked (Captain, on the team's
+          behalf)”. The Captain makes that call for the team when the day's
+          review ends with no objection.
         </li>
         <li>
-          <strong>Status under review</strong>: we are still confirming this
-          plate's sign-off record, so we are not calling it locked yet.
+          <strong>Passed check, not signed off yet.</strong> The shot passed
+          our quality check and is in the current cut, but nobody has signed it
+          off. It may still change. The record reads “QC passed, not yet
+          locked”.
         </li>
         <li>
-          <strong>QC passed, not yet locked</strong>: the plate passed our
-          quality check and is in the current cut, but nobody has formally
-          locked it. It may still change.
-        </li>
-        <li>
-          <strong>QC</strong>: <em>Pass</em> means the quality check found no
-          problems; <em>Pass with softs</em> means it passed with small, known
-          flaws we accepted and note openly.
+          <strong>Sign-off being confirmed.</strong> We are still checking this
+          shot's sign-off record, so we are not calling it signed off. The
+          record reads “Status under review”.
         </li>
       </ul>
+
+      <p>
+        <strong>Quality check.</strong> <em>Pass</em> means the check found no
+        problems. <em>Pass, small known flaws</em> means it passed with small
+        flaws we accepted and note openly. The record for that second result
+        reads “Pass with softs”.
+      </p>
+
+      <p>
+        <strong>Missing pictures.</strong> <em>No still</em> means we have no
+        still frame for that shot. <em>Not online yet</em> means the shot is in
+        the current cut above, but its own clip is not on our media server yet.
+      </p>
     </div>
 
     <div class="prose board-plates">
-      <h2 id="plates">Plates in story order</h2>
-
-      <div class="table-scroll">
-        <table aria-labelledby="plates">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Plate</th>
-              <th>What happens on screen</th>
-              <th>Status</th>
-              <th>QC</th>
-              <th>Still</th>
-              <th>Clip</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              boardRows.map((row) => (
-                <tr>
-                  <td>{row.n}</td>
-                  <td>{row.plate}</td>
-                  <td>{row.happens}</td>
-                  <td>{row.status}</td>
-                  <td>{row.qc}</td>
-                  <td>
-                    {isLink(row.still) ? (
-                      <span class="still">
-                        <img
-                          loading="lazy"
-                          src={row.still.href}
-                          alt=""
-                        />
-                        <a href={row.still.href}>still</a>
-                      </span>
-                    ) : (
-                      row.still
-                    )}
-                  </td>
-                  <td>
-                    {isLink(row.clip) ? (
-                      <a href={row.clip.href}>clip</a>
-                    ) : (
-                      row.clip
-                    )}
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
+      <h2 id="shots">The shots, in story order</h2>
 
       <p>
-        Plates marked <em>not online yet</em> are in the cut and can be seen in
-        the screening reel above; their single still and clip are not on our
-        media server yet.
+        {boardRows.length} shots, in the order they play: {signedOff} signed off, {
+          passed
+        } passed the check and not signed off yet, and {confirming} with its sign-off
+        still being confirmed.
+      </p>
+
+      <ul class="board-jumps">
+        {
+          sections.map((section) => (
+            <li>
+              <a href={`#${section.id}`}>{section.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        sections.map((section) => (
+          <section aria-labelledby={section.id}>
+            <h3 id={section.id}>{section.title}</h3>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Shot</th>
+                    <th>What happens on screen</th>
+                    <th>Status</th>
+                    <th>Quality check</th>
+                    <th>Still</th>
+                    <th>Clip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {section.rows.map((row) => (
+                    <tr id={`shot-${row.n}`}>
+                      <td>
+                        <span class="shot">
+                          <span class="shot__n">{row.n}</span>
+                          <span class="shot__plate">
+                            <span class="visually-hidden">, plate </span>{row.plate}
+                          </span>
+                        </span>
+                      </td>
+                      <td>{onScreen(row.happens)}</td>
+                      <td>
+                        <span title={row.status}>{publicStatus(row.status)}</span>
+                      </td>
+                      <td>
+                        <span title={row.qc}>{publicQc(row.qc)}</span>
+                      </td>
+                      <td>
+                        {isLink(row.still) ? (
+                          <span class="still">
+                            <img
+                              loading="lazy"
+                              src={row.still.href}
+                              alt=""
+                            />
+                            <a
+                              href={row.still.href}
+                              aria-label={`Still, shot ${row.n}`}
+                            >
+                              Still
+                            </a>
+                          </span>
+                        ) : (
+                          missingStill(row.still)
+                        )}
+                      </td>
+                      <td>
+                        {isLink(row.clip) ? (
+                          <a
+                            href={row.clip.href}
+                            aria-label={`Clip, shot ${row.n}`}
+                          >
+                            Play clip
+                          </a>
+                        ) : row.clip === "not online yet" ? (
+                          <span class="missing">
+                            {missingClip(row.clip)}
+                            <a href="#current-cut">
+                              <span class="visually-hidden">. </span>Watch in the current cut
+                            </a>
+                          </span>
+                        ) : (
+                          missingClip(row.clip)
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        ))
+      }
+
+      <h2>Not in the film</h2>
+
+      <p>
+        These were cut from the film and are not listed here: the gold roof,
+        the cliff fall, and a separate outline shot.
       </p>
 
       <p>
-        <strong>Not in the film:</strong> the gold roof, the cliff fall and the
-        separate outline plate are cut and stay out of the board. Older takes
-        and earlier cuts are kept as history only; earlier screening cuts
-        (including the Act I mix and the September silent cuts) are no longer
-        current.
+        We keep older versions of shots and earlier cuts of the film as a
+        record. None of them is current. That includes the Act I mix and the
+        silent September cuts. The cut at the top of this page is the only
+        current one.
       </p>
     </div>
   </div>
@@ -168,24 +373,48 @@ const description =
     padding-bottom: var(--space-16);
   }
 
-  .board-plates table {
-    min-width: 68rem;
+  .board-jumps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-top: var(--space-4);
+    padding: 0;
+    list-style: none;
   }
 
-  .board-plates td:nth-child(1),
-  .board-plates th:nth-child(1),
-  .board-plates td:nth-child(2) {
+  .board-plates table {
+    min-width: 52rem;
+  }
+
+  .board-plates section + section {
+    margin-top: var(--space-12);
+  }
+
+  .shot {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .shot__n,
+  .shot__plate {
+    white-space: nowrap;
+  }
+
+  .shot__n {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .shot__plate {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
-    white-space: nowrap;
+    color: var(--color-fg-faint);
   }
 
-  .board-plates td:nth-child(5) {
+  .board-plates td:nth-child(4),
+  .board-plates td:nth-child(6) {
     white-space: nowrap;
-  }
-
-  .board-plates p {
-    max-width: var(--width-prose);
   }
 
   .still {
@@ -201,5 +430,12 @@ const description =
     height: auto;
     border-radius: var(--radius);
     background: var(--color-hero-bg);
+  }
+
+  .missing {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
   }
 </style>
