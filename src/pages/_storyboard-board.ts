@@ -78,7 +78,7 @@ export const boardRows: BoardRow[] = [
     n: "04b",
     plate: "kf05s-sublevel",
     happens: "He goes looking for Bay 3 and finds the way down flooded, the sign half under black water. The job he was made for is drowned.",
-    status: "Status under review",
+    status: "Locked (Captain, on the team's behalf)",
     qc: "Pass with softs",
     still: {
       label: "still",
@@ -183,7 +183,7 @@ export const boardRows: BoardRow[] = [
     n: "08a2",
     plate: "kf09t-firststep",
     happens: "He puts his foot on the first step of the stair and begins the climb.",
-    status: "Status under review",
+    status: "Locked (Captain, on the team's behalf)",
     qc: "Pass with softs",
     still: {
       label: "still",
@@ -600,7 +600,7 @@ export const boardRows: BoardRow[] = [
     n: "28b",
     plate: "kf28d-night",
     happens: "The first night after. Alone on the coast, he lines his one green eye up with a star. It does not answer, and he no longer needs it to.",
-    status: "Status under review",
+    status: "Locked (Captain, on the team's behalf)",
     qc: "Pass with softs",
     still: {
       label: "still",
