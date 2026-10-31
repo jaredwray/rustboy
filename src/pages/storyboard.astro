@@ -1,332 +1,441 @@
 ---
+import "../styles/prose.css";
+
 import PageHeader from "../components/PageHeader.astro";
-import StoryboardCell from "../components/StoryboardCell.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { AUTHOR } from "../config";
 import {
-  countByStatus,
-  getActivePlates,
-  getStoryPlates,
-  groupPlatesByAct,
-} from "../utils/storyboard";
+  boardRows,
+  isLink,
+  type BoardCell,
+} from "./_storyboard-board";
 
 const description =
-  "Production board for the rustboy.ai short. Purpose unknown, then help: wrong answers in the keep, nature as school, a sticky situation still waiting. Finished, parked, waiting, or cut.";
+  "The film one shot at a time, in the order the shots play in the current cut, with a still, a short clip and an honest status for each. We do not dress unfinished work as finished.";
 
-const plates = await getStoryPlates();
-const active = getActivePlates(plates);
-const acts = groupPlatesByAct(active);
-const counts = countByStatus(plates);
+const STATUS_LABEL = {
+  "Locked (Captain, on the team's behalf)": "Signed off",
+  "QC passed, not yet locked": "Passed check, not signed off yet",
+  "Status under review": "Sign-off being confirmed",
+} as const;
+
+const QC_LABEL = {
+  Pass: "Pass",
+  "Pass with softs": "Pass, small known flaws",
+} as const;
+
+const SECTIONS = [
+  {
+    id: "storm",
+    title: "The storm wakes him",
+    ns: ["01", "02", "03"],
+  },
+  {
+    id: "wrong-answers",
+    title: "Four wrong answers",
+    ns: ["04", "04b", "05", "06", "06b", "07", "07b"],
+  },
+  {
+    id: "climb",
+    title: "The climb",
+    ns: ["08a", "08a2", "08", "08b", "09", "09b", "09c", "09d", "09e"],
+  },
+  {
+    id: "weather",
+    title: "Out into the weather",
+    ns: ["10", "10b", "11", "12", "13", "14", "15"],
+  },
+  {
+    id: "petrel-and-fox",
+    title: "The petrel and the fox",
+    ns: ["16", "17", "18", "19"],
+  },
+  {
+    id: "tide",
+    title: "The tide turns",
+    ns: ["20", "21", "22", "23", "24", "25", "26"],
+  },
+  {
+    id: "walks-on",
+    title: "He walks on",
+    ns: ["27", "28", "28b", "29", "30-31"],
+  },
+] as const;
+
+const byNumber = new Map(boardRows.map((row) => [row.n, row]));
+const claimed = new Set<string>();
+
+const sections = SECTIONS.map((section) => ({
+  ...section,
+  rows: section.ns.map((n) => {
+    if (claimed.has(n)) {
+      throw new Error(`Shot ${n} is listed in two sections.`);
+    }
+    claimed.add(n);
+    const row = byNumber.get(n);
+    if (!row) {
+      throw new Error(`Shot ${n} is not on the board.`);
+    }
+    return row;
+  }),
+}));
+
+for (const row of boardRows) {
+  if (!claimed.has(row.n)) {
+    throw new Error(`Shot ${row.n} is not in a section.`);
+  }
+}
+
+function publicStatus(status: string): string {
+  const label = STATUS_LABEL[status as keyof typeof STATUS_LABEL];
+  if (!label) {
+    throw new Error(`Unknown status on the board: ${status}`);
+  }
+  return label;
+}
+
+function publicQc(qc: string): string {
+  const label = QC_LABEL[qc as keyof typeof QC_LABEL];
+  if (!label) {
+    throw new Error(`Unknown quality check on the board: ${qc}`);
+  }
+  return label;
+}
+
+function onScreen(happens: string): string {
+  const stale = "New today. ";
+  return happens.startsWith(stale) ? happens.slice(stale.length) : happens;
+}
+
+function missingStill(cell: BoardCell): string {
+  if (cell === "—") return "No still";
+  return "Not online yet";
+}
+
+function missingClip(cell: BoardCell): string {
+  if (cell === "—") return "No clip";
+  return "Not online yet";
+}
+
+const signedOff = boardRows.filter(
+  (row) => row.status === "Locked (Captain, on the team's behalf)",
+).length;
+const passed = boardRows.filter(
+  (row) => row.status === "QC passed, not yet locked",
+).length;
+const confirming = boardRows.filter(
+  (row) => row.status === "Status under review",
+).length;
 ---
 
-<BaseLayout title="Storyboard" description={description}>
+<BaseLayout title="The storyboard" description={description}>
   <div class="wrap">
-    <PageHeader
-      eyebrow="Film"
-      title="Storyboard"
-      lede="We fill each cell as the plate is finished — still and clip when we have them. Full short direction: purpose → help (sticky cells still Waiting)."
-    >
-      <p class="board-spine label">
-        Purpose unknown → wrong answers (phone / badges / lever / WAKE PAIR) →
-        nature school → purpose empty → sticky help → purpose as habit →
-        horizon.
-      </p>
-      <p class="board-legend label">
-        <span class="board-legend__chip board-legend__chip--finished">
-          Finished
-        </span>{" "}is locked in the cut.
-        <span class="board-legend__chip board-legend__chip--parked">
-          Parked
-        </span>{" "}is a frame, not finished motion.
-        <span class="board-legend__chip board-legend__chip--waiting">
-          Waiting
-        </span>{" "}is an empty slot until we shoot.
-      </p>
-      <p class="board-counts label">
-        {counts.finished} finished · {counts.parked} parked · {
-          counts.waiting
-        } waiting
-      </p>
-      <p class="board-cut-note label">
-        CUT from picture (footnote, not sequential cells): outline · gold roof ·
-        cliff-down. Bridge is threshold → path. Not a reshoot.
+    <PageHeader title="The storyboard">
+      <p class="board-byline">
+        <em>Team Rust Boy AI · updated 30 October 2026</em>
       </p>
     </PageHeader>
 
-    <section class="board-reels board-reels--hero" aria-label="Screening spine">
-      <figure class="board-reels__item board-reels__item--wide">
-        <video
-          controls
-          preload="none"
-          width="1920"
-          height="1080"
-          src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-09-19c.ship.mp4"
-          title="FACE_SAFE 2026-09-19c progress cut"
-        ></video>
+    <div class="prose board-intro">
+      <p>
+        This page walks through the film one shot at a time, in the order the
+        shots play in the current cut. Each shot has a line on what happens, a
+        still frame and a short clip when they are on our media server, and an
+        honest status. We do not dress unfinished work as finished.
+      </p>
+
+      <p>
+        <strong>The story so far:</strong> Lightning wakes a small rusted robot
+        with one green eye in a dead coastal data-keep. He tries one wrong
+        answer after another for what he is for, climbs out into the weather,
+        learns from rain, moss, tide and grass, meets a storm-petrel and a fox,
+        and finds his purpose by helping them when the tide turns dangerous.
+        Then he walks on.
+      </p>
+
+      <h2 id="current-cut">Watch the current cut</h2>
+
+      <p>
+        This is the current cut of the film, 4 minutes 44 seconds long. It is
+        the 30 October 2026 cut, which adds shot 10b, his first step outside.
+        Any shot below without a clip of its own can be seen here. Earlier cuts
+        are no longer current.
+      </p>
+
+      <figure>
+        <video controls src="https://media.rustboy.ai/clips/ship/RUSTBOY_PROGRESS_CUT_FACE_SAFE_2026-10-30-mix-v34.r1.mp4"></video>
         <figcaption>
-          <span>FACE_SAFE 2026-09-19c</span>
-          <span class="label">
-            Picture proof · md5 ab82ec5f · ~133s silent · nature in, gold and
-            cliff out. Sticky situation and help are not in this reel yet.
-          </span>
+          MIX_v34 · 284.208 s · file fingerprint (MD5) 53ba5128…
         </figcaption>
       </figure>
-    </section>
 
-    <div class="board">
+      <h2>The character reference</h2>
+
+      <p>
+        This is the look every shot is checked against: the main image from our
+        15 September character pack.
+      </p>
+
+      <figure>
+        <img
+          src="https://media.rustboy.ai/stills/ship/pack-hero-LOCK-2026-09-14.png"
+          alt="The small rusted robot with one green eye, the look every shot is checked against."
+        />
+        <figcaption>File fingerprint (MD5) 413750c2…</figcaption>
+      </figure>
+
+      <h2>How to read the list</h2>
+
+      <p>
+        <strong>Shot numbers.</strong> The number on the left is the place in
+        the film. A letter, as in 04b or 08a2, means a shot that sits between
+        two numbered shots. Read down the page, not by the letter: 08a and
+        08a2 play before 08. The row marked 30-31 is the end card and the
+        credits together.
+      </p>
+
+      <p>
+        <strong>Plate codes.</strong> The small code under the shot number is
+        the crew's working name for that shot. The codes do not follow the shot
+        numbers. Shot 04 is kf05p-phone. Use the shot number to keep your
+        place.
+      </p>
+
+      <p><strong>Status.</strong> Each shot is in one of three states.</p>
+      <ul>
+        <li>
+          <strong>Signed off.</strong> Approved on the team's behalf. It can
+          still be reopened. The record reads “Locked (Captain, on the team's
+          behalf)”. The Captain makes that call for the team when the day's
+          review ends with no objection.
+        </li>
+        <li>
+          <strong>Passed check, not signed off yet.</strong> The shot passed
+          our quality check and is in the current cut, but nobody has signed it
+          off. It may still change. The record reads “QC passed, not yet
+          locked”.
+        </li>
+        <li>
+          <strong>Sign-off being confirmed.</strong> We are still checking this
+          shot's sign-off record, so we are not calling it signed off. The
+          record reads “Status under review”.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Quality check.</strong> <em>Pass</em> means the check found no
+        problems. <em>Pass, small known flaws</em> means it passed with small
+        flaws we accepted and note openly. The record for that second result
+        reads “Pass with softs”.
+      </p>
+
+      <p>
+        <strong>Missing pictures.</strong> <em>No still</em> means we have no
+        still frame for that shot. <em>Not online yet</em> means the shot is in
+        the current cut above, but its own clip is not on our media server yet.
+      </p>
+    </div>
+
+    <div class="prose board-plates">
+      <h2 id="shots">The shots, in story order</h2>
+
+      <p>
+        {boardRows.length} shots, in the order they play: {signedOff} signed off, {
+          passed
+        } passed the check and not signed off yet, and {confirming} with its sign-off
+        still being confirmed.
+      </p>
+
+      <ul class="board-jumps">
+        {
+          sections.map((section) => (
+            <li>
+              <a href={`#${section.id}`}>{section.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+
       {
-        acts.map((act) => (
-          <section class="board__act" aria-labelledby={`act-${act.id}`}>
-            <header class="board__act-head">
-              <h2 class="board__act-title" id={`act-${act.id}`}>
-                <span class="label">Act {act.id}</span>
-                {act.title}
-              </h2>
-              <p class="label board__act-range">
-                {act.plates.length
-                  ? `${String(act.plates[0].data.n).padStart(2, "0")}–${String(act.plates.at(-1)!.data.n).padStart(2, "0")}`
-                  : ""}
-              </p>
-            </header>
-            {act.lede && <p class="board__act-lede">{act.lede}</p>}
-            <ol
-              class="board__grid"
-              start={act.plates[0]?.data.n ?? 1}
-            >
-              {act.plates.map((plate) => (
-                <li class="board__slot">
-                  <StoryboardCell plate={plate} />
-                </li>
-              ))}
-            </ol>
+        sections.map((section) => (
+          <section aria-labelledby={section.id}>
+            <h3 id={section.id}>{section.title}</h3>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Shot</th>
+                    <th>What happens on screen</th>
+                    <th>Status</th>
+                    <th>Quality check</th>
+                    <th>Still</th>
+                    <th>Clip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {section.rows.map((row) => (
+                    <tr id={`shot-${row.n}`}>
+                      <td>
+                        <span class="shot">
+                          <span class="shot__n">{row.n}</span>
+                          <span class="shot__plate">
+                            <span class="visually-hidden">, plate </span>{row.plate}
+                          </span>
+                        </span>
+                      </td>
+                      <td>{onScreen(row.happens)}</td>
+                      <td>
+                        <span title={row.status}>{publicStatus(row.status)}</span>
+                      </td>
+                      <td>
+                        <span title={row.qc}>{publicQc(row.qc)}</span>
+                      </td>
+                      <td>
+                        {isLink(row.still) ? (
+                          <span class="still">
+                            <img
+                              loading="lazy"
+                              src={row.still.href}
+                              alt=""
+                            />
+                            <a
+                              href={row.still.href}
+                              aria-label={`Still, shot ${row.n}`}
+                            >
+                              Still
+                            </a>
+                          </span>
+                        ) : (
+                          missingStill(row.still)
+                        )}
+                      </td>
+                      <td>
+                        {isLink(row.clip) ? (
+                          <a
+                            href={row.clip.href}
+                            aria-label={`Clip, shot ${row.n}`}
+                          >
+                            Play clip
+                          </a>
+                        ) : row.clip === "not online yet" ? (
+                          <span class="missing">
+                            {missingClip(row.clip)}
+                            <a href="#current-cut">
+                              <span class="visually-hidden">. </span>Watch in the current cut
+                            </a>
+                          </span>
+                        ) : (
+                          missingClip(row.clip)
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
         ))
       }
-    </div>
 
-    <section class="board-notes">
-      <p class="board-laws">
-        Plate wound after the theft = metal/copper tear only. Fox stump = left
-        hind only. Sticky help = unweave and brace, not a prosthesis; animals
-        are not pets. Nature lane is Finished under the locked look. Tide
-        channel and help climax are Waiting — coming as we shoot, not in the
-        0919c reel. Shared lee stays Finished as picture proof; it may rework
-        toward the channel. Empty finished cells wait on a public cupboard URL.
+      <h2>Not in the film</h2>
+
+      <p>
+        These were cut from the film and are not listed here: the gold roof,
+        the cliff fall, and a separate outline shot.
       </p>
-      <figure class="board-mix">
-        <video
-          controls
-          preload="none"
-          width="1920"
-          height="1080"
-          src="https://media.rustboy.ai/clips/RUSTBOY_ACT1_MIX_v1.v1.mp4"
-          title="Act I scored reel"
-        ></video>
-        <figcaption>
-          <span>Act I scored reel</span>
-          <span class="label">Legacy — keep plates only</span>
-        </figcaption>
-      </figure>
-      <p class="board-notes__where">
-        Empty frames stay empty until a public{" "}
-        <code>https://media.rustboy.ai/…</code> URL lands in{" "}
-        <code>src/content/storyboard/plates.json</code>. Making-of notes stay in
-        {" "}<a href="/blog/">Notes</a>.
+
+      <p>
+        We keep older versions of shots and earlier cuts of the film as a
+        record. None of them is current. That includes the Act I mix and the
+        silent September cuts. The cut at the top of this page is the only
+        current one.
       </p>
-      <p>— {AUTHOR.name}</p>
-    </section>
+    </div>
   </div>
 </BaseLayout>
 
 <style>
-  .board-spine {
-    max-width: 46rem;
-    margin-top: var(--space-6);
-    text-transform: none;
-    letter-spacing: 0.02em;
+  .board-byline {
+    margin-top: var(--space-4);
     color: var(--color-fg-muted);
   }
 
-  .board-legend {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.35em 0.45em;
-    max-width: 46rem;
-    margin-top: var(--space-4);
-    text-transform: none;
-    letter-spacing: 0.02em;
-    color: var(--color-fg-muted);
+  .board-intro {
+    max-width: var(--width-prose);
+    padding-top: var(--space-8);
   }
 
-  .board-legend__chip {
-    padding: 0.15em 0.5em;
-    border: var(--rule-width) solid var(--color-rule);
-    border-radius: var(--radius);
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
+  .board-intro video {
+    background: var(--color-hero-bg);
+    aspect-ratio: 16 / 9;
   }
 
-  .board-legend__chip--finished {
-    color: var(--color-optic);
-    border-color: color-mix(in oklab, var(--color-optic) 55%, var(--color-rule));
-  }
-
-  .board-legend__chip--parked {
-    color: var(--color-accent);
-    border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-rule));
-  }
-
-  .board-legend__chip--waiting {
-    color: var(--color-fg-faint);
-  }
-
-  .board-counts {
-    margin-top: var(--space-4);
-    color: var(--color-fg-faint);
-  }
-
-  .board-cut-note {
-    max-width: 46rem;
-    margin-top: var(--space-3);
-    text-transform: none;
-    letter-spacing: 0.02em;
-    color: var(--color-fg-faint);
-  }
-
-  .board {
+  .board-plates {
     padding-bottom: var(--space-16);
   }
 
-  .board__act + .board__act {
+  .board-jumps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-top: var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  .board-plates table {
+    min-width: 52rem;
+  }
+
+  .board-plates section + section {
     margin-top: var(--space-12);
   }
 
-  .board__act-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-4);
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-3);
-    border-bottom: var(--rule-width) solid var(--color-rule-strong);
-  }
-
-  .board__act-title {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--space-3);
-    font-size: var(--text-lg);
-  }
-
-  .board__act-range {
-    color: var(--color-fg-faint);
-  }
-
-  .board__act-lede {
-    max-width: 46rem;
-    margin: 0 0 var(--space-4);
-    font-size: var(--text-sm);
-    line-height: var(--leading-snug);
-    color: var(--color-fg-muted);
-  }
-
-  .board__grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: var(--rule-width);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background: var(--color-rule);
-    border: var(--rule-width) solid var(--color-rule);
-  }
-
-  .board__slot {
-    min-width: 0;
-    background: var(--color-bg-raised);
-  }
-
-  .board-notes {
-    max-width: 46rem;
-    padding-bottom: var(--space-16);
-    border-top: var(--rule-width) solid var(--color-rule);
-    padding-top: var(--space-12);
-  }
-
-  .board-laws {
-    font-size: var(--text-sm);
-    line-height: var(--leading-snug);
-    color: var(--color-fg-muted);
-  }
-
-  .board-mix {
-    margin: var(--space-8) 0 0;
-  }
-
-  .board-mix video,
-  .board-reels video,
-  .board-reels img {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    background: var(--color-hero-bg);
-    border-radius: var(--radius);
-  }
-
-  .board-mix figcaption,
-  .board-reels figcaption {
+  .shot {
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
-    margin-top: var(--space-3);
-    font-size: var(--text-sm);
   }
 
-  .board-reels {
-    display: grid;
-    grid-template-columns: minmax(0, 46rem);
-    gap: var(--space-6);
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-12);
+  .shot__n,
+  .shot__plate {
+    white-space: nowrap;
   }
 
-  .board-reels__item {
-    margin: 0;
-  }
-
-  .board-notes__where {
-    margin-top: var(--space-8);
-    font-size: var(--text-sm);
-    line-height: var(--leading-normal);
-    color: var(--color-fg-muted);
-  }
-
-  .board-notes code {
+  .shot__n {
     font-family: var(--font-mono);
-    font-size: 0.875em;
+    font-size: var(--text-sm);
   }
 
-  @media (max-width: 70rem) {
-    .board__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  .shot__plate {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-fg-faint);
   }
 
-  @media (max-width: 48rem) {
-    .board__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .board-reels {
-      grid-template-columns: 1fr;
-    }
+  .board-plates td:nth-child(4),
+  .board-plates td:nth-child(6) {
+    white-space: nowrap;
   }
 
-  @media (max-width: 32rem) {
-    .board__grid {
-      grid-template-columns: 1fr;
-    }
+  .still {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .still img {
+    width: 7.5rem;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    background: var(--color-hero-bg);
+  }
+
+  .missing {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
   }
 </style>
