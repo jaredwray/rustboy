@@ -41,8 +41,14 @@ export const boardRows: BoardRow[] = [
     happens: "On the table, green energy finds him after the strike and his one eye wakes.",
     status: "Status under review",
     qc: "Pass",
-    still: "not online yet",
-    clip: "not online yet",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-10-30/kf02-awaken-j.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-10-30/kf02-awaken-j.r1.mp4",
+    },
   },
   {
     n: "03",
@@ -104,8 +110,14 @@ export const boardRows: BoardRow[] = [
     happens: "A red lever under a wire cage. He studies it and leaves it alone. Wrong answer three.",
     status: "QC passed, not yet locked",
     qc: "Pass",
-    still: "not online yet",
-    clip: "not online yet",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-10-30/kf07e-lever.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-10-30/kf07e-lever.r1.mp4",
+    },
   },
   {
     n: "06b",
@@ -128,8 +140,14 @@ export const boardRows: BoardRow[] = [
     happens: "A wall of curling staff ID badges. None of the faces are his. Wrong answer four.",
     status: "QC passed, not yet locked",
     qc: "Pass",
-    still: "not online yet",
-    clip: "not online yet",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-10-30/kf08g-badges.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-10-30/kf08g-badges.r1.mp4",
+    },
   },
   {
     n: "07b",
@@ -182,8 +200,14 @@ export const boardRows: BoardRow[] = [
     happens: "The well of light. Storm light above. He climbs.",
     status: "QC passed, not yet locked",
     qc: "Pass",
-    still: "not online yet",
-    clip: "not online yet",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-10-30/kf09f-well.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-10-30/kf09f-well.r1.mp4",
+    },
   },
   {
     n: "08b",
@@ -281,8 +305,14 @@ export const boardRows: BoardRow[] = [
     happens: "The keep door. He steps through and leaves the workshop world behind.",
     status: "QC passed, not yet locked",
     qc: "Pass",
-    still: "not online yet",
-    clip: "not online yet",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-10-30/kf11l-threshold.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-10-30/kf11l-threshold.r1.mp4",
+    },
   },
   {
     n: "10b",
@@ -305,8 +335,14 @@ export const boardRows: BoardRow[] = [
     happens: "A path that was never printed, just beyond the keep. Weather ahead.",
     status: "QC passed, not yet locked",
     qc: "Pass with softs",
-    still: "not online yet",
-    clip: "not online yet",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-10-30/kf14e2-path.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-10-30/kf14e2-path.r1.mp4",
+    },
   },
   {
     n: "12",
