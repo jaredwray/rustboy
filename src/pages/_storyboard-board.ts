@@ -345,6 +345,22 @@ export const boardRows: BoardRow[] = [
     },
   },
   {
+    n: "11b",
+    plate: "kf14s-lookback",
+    happens:
+      "On the trail, he stops and looks back once at the lit keep he's leaving.",
+    status: "Locked (Captain, on the team's behalf)",
+    qc: "Pass with softs",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-10-31/kf14s-lookback.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-10-31/kf14s-lookback.r2.mp4",
+    },
+  },
+  {
     n: "12",
     plate: "kf15g-rain",
     happens: "Rain hits his crooked chest plate in the open. The weather does not hire him.",
