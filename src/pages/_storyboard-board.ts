@@ -361,6 +361,22 @@ export const boardRows: BoardRow[] = [
     },
   },
   {
+    n: "11c",
+    plate: "kf15s-firstdrops",
+    happens:
+      "He raises the hand he pressed to the glass and the first drops of rain bead on his fingers.",
+    status: "Locked (Captain, on the team's behalf)",
+    qc: "Pass with softs",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-11-01/kf15s-firstdrops.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-11-01/kf15s-firstdrops.r1.mp4",
+    },
+  },
+  {
     n: "12",
     plate: "kf15g-rain",
     happens: "Rain hits his crooked chest plate in the open. The weather does not hire him.",
