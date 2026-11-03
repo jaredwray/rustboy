@@ -24,7 +24,3 @@ overrides:
   # miniflare@5.20261023.1-beta (via wrangler) depends on undici@7.30.1 exactly.
   # Keep undici at 8.12.2. unifont already depends on undici@^8.0.0.
   "miniflare@5.20261023.1-beta>undici@7.30.1": 8.12.2
-  # Replace sharp@0.35.2 with 0.35.5.
-  # GHSA-wq5f-xc86-pv6w / CVE-2026-96889 is fixed in 0.35.5. The direct
-  # dependency range already allows 0.35.5. Current wrangler does not use sharp@0.35.2.
-  "sharp@0.35.2": 0.35.5
