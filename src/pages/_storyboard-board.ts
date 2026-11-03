@@ -437,6 +437,22 @@ export const boardRows: BoardRow[] = [
     },
   },
   {
+    n: "15b",
+    plate: "kf19s-petrelarrive",
+    happens:
+      "A small dark storm-petrel lands on a wet rock an arm's length away. He goes still, his one green eye following it as it eyes the copper glint on his chest, and neither of them moves.",
+    status: "Locked (Captain, on the team's behalf)",
+    qc: "Pass with softs",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-11-02/kf19s-petrelarrive.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-11-02/kf19s-petrelarrive.r1.mp4",
+    },
+  },
+  {
     n: "16",
     plate: "kf19i-petrel",
     happens: "A storm-petrel pecks a copper flake from his chest plate and flies off with it.",
