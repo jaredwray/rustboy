@@ -18,9 +18,7 @@ allowBuilds:
   sharp: true
   workerd: true
 
-# Pin transitive deps that later published without provenance (trust downgrade).
 overrides:
-  "chokidar@^4": 4.0.1
   # miniflare@5.20261023.1-beta (via wrangler) depends on undici@7.30.1 exactly.
   # Keep undici at 8.12.2. unifont already depends on undici@^8.0.0.
   "miniflare@5.20261023.1-beta>undici@7.30.1": 8.12.2
