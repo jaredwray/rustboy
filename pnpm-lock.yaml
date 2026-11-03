@@ -163,7 +163,6 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  chokidar@^4: 4.0.1
   miniflare@5.20261023.1-beta>undici@7.30.1: 8.12.2
 
 importers:
