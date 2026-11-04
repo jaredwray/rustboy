@@ -468,6 +468,22 @@ export const boardRows: BoardRow[] = [
     },
   },
   {
+    n: "16b",
+    plate: "kf20s-followflight",
+    happens:
+      "Rustboy stands at the cliff edge looking down. On the ledge below, the petrel has landed with his copper flake, and it stays perfectly still.",
+    status: "Locked (Captain, on the team's behalf)",
+    qc: "Pass with softs",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-11-03/kf20s-followflight.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-11-03/kf20s-followflight.r1.mp4",
+    },
+  },
+  {
     n: "17",
     plate: "kf20g-nest",
     happens: "At the nest ledge the flake is given back. Care without owning.",
