@@ -487,7 +487,7 @@ export const boardRows: BoardRow[] = [
     n: "16c",
     plate: "kf20t-waydown",
     happens:
-      "Rustboy has climbed partway down the headland to a wet rock shelf, the nest ledge, where the petrel has his flake in view ahead. Only the mist and the grass move. The cut into this shot jumps from the cliff top to the shelf.",
+      "Rustboy climbed partway down the headland to a wet rock shelf. The shelf is the nest ledge. The petrel has his flake in view ahead. Only the mist and the grass move. The cut jumps from the cliff top to the shelf.",
     status: "Locked (Captain, on the team's behalf)",
     qc: "Pass with softs",
     still: {
