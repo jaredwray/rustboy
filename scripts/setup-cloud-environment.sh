@@ -7,8 +7,9 @@
 
 set -euo pipefail
 
-export SAFE_CHAIN_VERSION="1.5.15"
-SAFE_CHAIN_INSTALLER_SHA256="de0565e3d6346407a604e84e639e95fea8758748063da2216bbfdca5feda5dd2"
+# Release 1.5.20 wraps pnpm 12. Pin 1.5.27, the current release.
+export SAFE_CHAIN_VERSION="1.5.27"
+SAFE_CHAIN_INSTALLER_SHA256="600ebddcb3aaf1fd53653a8d7985df44528722c0f5ee7eb9fff86f26a1a4e5a8"
 SAFE_CHAIN_INSTALLER_URL="https://github.com/AikidoSec/safe-chain/releases/download/${SAFE_CHAIN_VERSION}/install-safe-chain.sh"
 SAFE_CHAIN_SHIMS="${HOME}/.safe-chain/shims"
 SAFE_CHAIN_BIN="${HOME}/.safe-chain/bin"
