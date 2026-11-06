@@ -500,6 +500,22 @@ export const boardRows: BoardRow[] = [
     },
   },
   {
+    n: "16d",
+    plate: "kf20u-nestarrive",
+    happens:
+      "Rustboy arrives upright at the nest rock, with the storm-petrel and his copper flake close beside him. Only the mist and the grass move. He is not lying down yet.",
+    status: "Locked (Captain, on the team's behalf)",
+    qc: "Pass with softs",
+    still: {
+      label: "still",
+      href: "https://media.rustboy.ai/stills/ship/2026-11-05/kf20u-nestarrive.r1.png",
+    },
+    clip: {
+      label: "clip",
+      href: "https://media.rustboy.ai/clips/ship/2026-11-05/kf20u-nestarrive.r1.mp4",
+    },
+  },
+  {
     n: "17",
     plate: "kf20g-nest",
     happens: "At the nest ledge the flake is given back. Care without owning.",
