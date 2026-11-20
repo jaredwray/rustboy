@@ -15,3 +15,8 @@ overrides:
   # miniflare@5.20261023.1-beta (via wrangler) depends on undici@7.30.1 exactly.
   # Keep undici at 8.12.2. unifont already depends on undici@^8.0.0.
   "miniflare@5.20261023.1-beta>undici@7.30.1": 8.12.2
+  # vite 8.3.8 depends on rolldown 1.2.19.
+  # That package adds @emnapi/runtime 2.0.0-beta.2.
+  # @astrojs/astro2tsx keeps @emnapi/core at 1.11.3.
+  # Keep the Astro check runtime at 1.11.3.
+  "@napi-rs/wasm-runtime@1.2.4>@emnapi/runtime": 1.11.3
